@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* ============================================
+           FOOTER - ESTILOS
+           ============================================ */
+        :root {
+            --primary-color: #2c5530;
+            --secondary-color: #4a8c5e;
+            --accent-color: #f8b500;
+            --text-dark: #333;
+            --text-light: #fff;
+            --light-color: #f8f9fa;
+            --dark-color: #1e3a28;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer principal */
+        .main-footer {
+            background: linear-gradient(135deg, var(--dark-color), var(--primary-color));
+            color: var(--text-light);
+            padding: 60px 0 0;
+            margin-top: 60px;
+        }
+
+        /* Secciones del footer */
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        @media (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        /* Columna del footer */
+        .footer-column h3 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(248, 181, 0, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-column h3 i {
+            font-size: 1.2rem;
+        }
+
+        /* Información de contacto */
+        .contact-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .contact-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .contact-list i {
+            color: var(--accent-color);
+            margin-top: 3px;
+            min-width: 20px;
+        }
+
+        .contact-text {
+            flex: 1;
+        }
+
+        .contact-text p {
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .contact-label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        /* Enlaces rápidos */
+        .quick-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .quick-links li {
+            margin-bottom: 12px;
+        }
+
+        .quick-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            padding: 5px 0;
+        }
+
+        .quick-links a:hover {
+            color: var(--accent-color);
+            transform: translateX(5px);
+        }
+
+        .quick-links i {
+            font-size: 0.8rem;
+            color: var(--accent-color);
+        }
+
+        /* Horarios */
+        .schedule-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .schedule-list li {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .schedule-day {
+            font-weight: 600;
+        }
+
+        .schedule-hours {
+            color: var(--accent-color);
+        }
+
+        /* Boletin informativo */
+        .newsletter-form {
+            margin-top: 20px;
+        }
+
+        .newsletter-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 25px;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .newsletter-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .btn-newsletter {
+            background: var(--accent-color);
+            color: var(--dark-color);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-newsletter:hover {
+            background: #e6a800;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(248, 181, 0, 0.3);
+        }
+
+        /* Sección ecológica del footer */
+        .footer-eco {
+            background: rgba(76, 175, 80, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            border-left: 4px solid #4caf50;
+        }
+
+        .footer-eco h4 {
+            color: #4caf50;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+        }
+
+        .footer-eco p {
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Redes sociales */
+        .social-footer {
+            margin-top: 20px;
+        }
+
+        .social-links-footer {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-link-footer {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link-footer:hover {
+            background: var(--accent-color);
+            color: var(--dark-color);
+            transform: translateY(-3px);
+        }
+
+        /* Barra inferior del footer */
+        .footer-bottom {
+            background: rgba(0, 0, 0, 0.2);
+            margin-top: 60px;
+            padding: 25px 0;
+        }
+
+        .footer-bottom-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .footer-bottom-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        .copyright {
+            margin: 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Logos de certificación */
+        .certifications {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .certification-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .certification-item i {
+            color: var(--accent-color);
+        }
+
+        /* Botón de WhatsApp flotante */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25d366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        .whatsapp-text {
+            position: absolute;
+            right: 70px;
+            background: var(--dark-color);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateX(10px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .whatsapp-float:hover .whatsapp-text {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Botón de ir arriba */
+        .back-to-top {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--accent-color);
+            color: var(--dark-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            text-decoration: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 3px 10px rgba(248, 181, 0, 0.3);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: #e6a800;
+            transform: translateY(-3px);
+        }
+
+        /* Mapa */
+        .footer-map {
+            margin-top: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-map iframe {
+            width: 100%;
+            height: 200px;
+            border: none;
+            display: block;
+        }
+
+        /* Responsive adicional */
+        @media (max-width: 480px) {
+            .main-footer {
+                padding: 40px 0 0;
+            }
+            
+            .footer-content {
+                padding: 0 15px;
+            }
+            
+            .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+            
+            .back-to-top {
+                bottom: 80px;
+                right: 20px;
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Footer principal -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <!-- Columna 1: Información -->
+            <div class="footer-column">
+                <h3><i class="fas fa-info-circle"></i> Información</h3>
+                <div class="footer-logo">
+                    <h4>Trajineras Barrón</h4>
+                    <p>Más de 70 años de experiencia navegando los canales de Xochimilco. Patrimonio cultural vivo de México.</p>
+                </div>
+                
+                <ul class="contact-list">
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="contact-text">
+                            <span class="contact-label">Dirección:</span>
+                            <p>Embarcadero Cuemanco, Xochimilco, CDMX</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-phone"></i>
+                        <div class="contact-text">
+                            <span class="contact-label">Teléfono:</span>
+                            <p>+52 55 1234 5678</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <div class="contact-text">
+                            <span class="contact-label">Email:</span>
+                            <p>info@trajinerasbarron.com</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Columna 2: Enlaces rápidos -->
+            <div class="footer-column">
+                <h3><i class="fas fa-link"></i> Enlaces Rápidos</h3>
+                <ul class="quick-links">
+                    <li><a href="{{ url_for('inicio') }}"><i class="fas fa-chevron-right"></i> Inicio</a></li>
+                    <li><a href="{{ url_for('servicios') }}"><i class="fas fa-chevron-right"></i> Servicios</a></li>
+                    <li><a href="{{ url_for('reservaciones') }}"><i class="fas fa-chevron-right"></i> Reservaciones</a></li>
+                    <li><a href="{{ url_for('reserva_ecologica') }}"><i class="fas fa-chevron-right"></i> Reserva Ecológica</a></li>
+                    <li><a href="{{ url_for('galeria') }}"><i class="fas fa-chevron-right"></i> Galería</a></li>
+                    <li><a href="{{ url_for('contacto') }}"><i class="fas fa-chevron-right"></i> Contacto</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Preguntas Frecuentes</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Términos y Condiciones</a></li>
+                </ul>
+            </div>
+
+            <!-- Columna 3: Horarios -->
+            <div class="footer-column">
+                <h3><i class="fas fa-clock"></i> Horarios</h3>
+                <ul class="schedule-list">
+                    <li>
+                        <span class="schedule-day">Lunes - Viernes</span>
+                        <span class="schedule-hours">9:00 - 19:00</span>
+                    </li>
+                    <li>
+                        <span class="schedule-day">Sábados</span>
+                        <span class="schedule-hours">8:00 - 20:00</span>
+                    </li>
+                    <li>
+                        <span class="schedule-day">Domingos</span>
+                        <span class="schedule-hours">8:00 - 20:00</span>
+                    </li>
+                    <li>
+                        <span class="schedule-day">Festivos</span>
+                        <span class="schedule-hours">9:00 - 20:00</span>
+                    </li>
+                </ul>
+                
+                <div class="footer-eco">
+                    <h4><i class="fas fa-leaf"></i> Compromiso Ecológico</h4>
+                    <p>El 5% de cada reserva ecológica se destina a la conservación de chinampas y protección del ajolote mexicano.</p>
+                </div>
+            </div>
+
+            <!-- Columna 4: Newsletter y redes -->
+            <div class="footer-column">
+                <h3><i class="fas fa-newspaper"></i> Newsletter</h3>
+                <p>Suscríbete para recibir ofertas especiales y novedades sobre nuestros tours ecológicos.</p>
+                
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" class="newsletter-input" placeholder="Tu correo electrónico" required>
+                    <button type="submit" class="btn-newsletter">
+                        <i class="fas fa-paper-plane"></i> Suscribirse
+                    </button>
+                </form>
+                
+                <div class="social-footer">
+                    <h4>Síguenos</h4>
+                    <div class="social-links-footer">
+                        <a href="#" class="social-link-footer" title="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link-footer" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link-footer" title="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link-footer" title="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="social-link-footer" title="TripAdvisor">
+                            <i class="fab fa-tripadvisor"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="certifications">
+                    <div class="certification-item">
+                        <i class="fas fa-award"></i> Turismo Sustentable
+                    </div>
+                    <div class="certification-item">
+                        <i class="fas fa-shield-alt"></i> Seguridad Certificada
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mapa -->
+        <div class="footer-map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3765.591581371609!2d-99.10220972433314!3d19.301332542041097!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce01d2c0c8d36b%3A0x6e1018e6b7c9afb8!2sEmbarcadero%20Cuemanco%2C%20Xochimilco!5e0!3m2!1ses!2smx!4v1699834567890!5m2!1ses!2smx" 
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+
+        <!-- Barra inferior -->
+        <div class="footer-bottom">
+            <div class="footer-bottom-content">
+                <p class="copyright">
+                    © 2024 Trajineras Barrón. Todos los derechos reservados.
+                </p>
+                <div class="footer-links">
+                    <a href="#">Política de Privacidad</a>
+                    <a href="#">Términos de Servicio</a>
+                    <a href="#">Aviso Legal</a>
+                    <a href="#">Mapa del Sitio</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón de WhatsApp flotante -->
+    <a href="https://wa.me/525512345678?text=Hola,%20me%20interesa%20reservar%20una%20trajinera" 
+       class="whatsapp-float" target="_blank" title="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+        <span class="whatsapp-text">¿Necesitas ayuda?</span>
+    </a>
+
+    <!-- Botón para ir arriba -->
+    <a href="#" class="back-to-top" id="backToTop" title="Volver arriba">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <script>
+        // Botón de ir arriba
+        document.addEventListener('DOMContentLoaded', function() {
+            const backToTop = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            });
+            
+            backToTop.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Newsletter
+            const newsletterForm = document.getElementById('newsletterForm');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const email = this.querySelector('.newsletter-input').value;
+                    
+                    // Aquí iría la lógica para enviar el email al servidor
+                    alert(`¡Gracias por suscribirte con: ${email}! Recibirás nuestras novedades pronto.`);
+                    this.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

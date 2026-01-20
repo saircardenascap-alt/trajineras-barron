@@ -1,0 +1,1893 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva tu Trajinera - Trajineras Barrón</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/reservaciones.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+<body>
+    {% include 'header.html' %}
+
+    <!-- 1. HEADER CON PROGRESO -->
+    <section class="reservation-header">
+        <div class="container">
+            <div class="reservation-title">
+                <h1><i class="fas fa-ship"></i> Reserva tu Trajinera</h1>
+                <p class="subtitle">Crea tu experiencia perfecta en Xochimilco</p>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress-step active" id="step1-indicator">
+                    <div class="step-number">1</div>
+                    <div class="step-info">
+                        <div class="step-title">Elige paquete</div>
+                        <div class="step-desc">Selecciona fecha y paquete</div>
+                    </div>
+                </div>
+                
+                <div class="progress-step" id="step2-indicator">
+                    <div class="step-number">2</div>
+                    <div class="step-info">
+                        <div class="step-title">Personaliza</div>
+                        <div class="step-desc">Agrega extras y catering</div>
+                    </div>
+                </div>
+                
+                <div class="progress-step" id="step3-indicator">
+                    <div class="step-number">3</div>
+                    <div class="step-info">
+                        <div class="step-title">Tus datos</div>
+                        <div class="step-desc">Información de contacto</div>
+                    </div>
+                </div>
+                
+                <div class="progress-step" id="step4-indicator">
+                    <div class="step-number">4</div>
+                    <div class="step-info">
+                        <div class="step-title">Paga</div>
+                        <div class="step-desc">Confirma tu reserva</div>
+                    </div>
+                </div>
+                
+                <div class="progress-line">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN PRINCIPAL DE RESERVA -->
+    <div class="reservation-container">
+        <div class="container">
+            <div class="reservation-wizard">
+                <!-- PASO 1: ELECCIÓN DE PAQUETE Y FECHA -->
+                <div class="reservation-step active" id="step1">
+                    <div class="step-header">
+                        <h2><i class="far fa-calendar-alt"></i> Elige tu Paquete y Fecha</h2>
+                        <p>Selecciona la fecha, hora y paquete para tu experiencia</p>
+                    </div>
+                    
+                    <div class="step-content">
+                        <div class="date-time-selector">
+                            <div class="selector-card">
+                                <h3><i class="fas fa-calendar-day"></i> Fecha del Evento</h3>
+                                <div class="date-picker-container">
+                                    <input type="text" id="datepicker" placeholder="Selecciona una fecha" 
+                                           data-min-date="{{ today }}">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+                                <div class="availability-status" id="availability-status">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span>Selecciona una fecha para ver disponibilidad</span>
+                                </div>
+                            </div>
+                            
+                            <div class="selector-card">
+                                <h3><i class="far fa-clock"></i> Hora del Recorrido</h3>
+                                <div class="time-slots" id="time-slots">
+                                    <!-- Horarios se cargarán dinámicamente -->
+                                    <div class="time-slot" data-time="09:00">
+                                        <div class="slot-time">9:00 AM</div>
+                                        <div class="slot-status available">Disponible</div>
+                                    </div>
+                                    <div class="time-slot" data-time="12:00">
+                                        <div class="slot-time">12:00 PM</div>
+                                        <div class="slot-status available">Disponible</div>
+                                    </div>
+                                    <div class="time-slot" data-time="15:00">
+                                        <div class="slot-time">3:00 PM</div>
+                                        <div class="slot-status available">Disponible</div>
+                                    </div>
+                                    <div class="time-slot" data-time="18:00">
+                                        <div class="slot-time">6:00 PM</div>
+                                        <div class="slot-status available">Disponible</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="selector-card">
+                                <h3><i class="fas fa-users"></i> Número de Personas</h3>
+                                <div class="people-selector">
+                                    <button class="people-btn minus" onclick="adjustPeople(-1)">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <div class="people-count">
+                                        <input type="number" id="people-count" value="10" min="1" max="20" readonly>
+                                        <div class="people-label">personas</div>
+                                    </div>
+                                    <button class="people-btn plus" onclick="adjustPeople(1)">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                                <div class="capacity-info">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span>Capacidad máxima: 20 personas</span>
+                                    <span class="capacity-warning" id="capacity-warning" style="display: none;">
+                                        <i class="fas fa-exclamation-triangle"></i> Grupos mayores requieren trajinera adicional
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="packages-selection">
+                            <h3><i class="fas fa-gift"></i> Paquetes Disponibles</h3>
+                            <p class="section-subtitle">Precios actualizados según fecha y personas seleccionadas</p>
+                            
+                            <div class="packages-grid" id="packages-grid">
+                                {% for key, package in packages.items() %}
+                                <div class="package-card-reservation" data-package="{{ key }}">
+                                    <div class="package-header">
+                                        <div class="package-icon">
+                                            {% if key == 'familiar' %}
+                                            <i class="fas fa-users"></i>
+                                            {% elif key == 'lunada' %}
+                                            <i class="fas fa-moon"></i>
+                                            {% elif key == 'amanecer' %}
+                                            <i class="fas fa-sun"></i>
+                                            {% else %}
+                                            <i class="fas fa-star"></i>
+                                            {% endif %}
+                                        </div>
+                                        <h4>{{ package.name }}</h4>
+                                        <div class="package-tag">
+                                            {% if key == 'familiar' %}
+                                            <span class="tag popular">Más Popular</span>
+                                            {% elif key == 'amanecer' %}
+                                            <span class="tag new">Nuevo</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="package-body">
+                                        <div class="package-duration">
+                                            <i class="far fa-clock"></i> {{ package.duration }}
+                                        </div>
+                                        
+                                        <div class="package-price-dynamic">
+                                            <div class="price-loading">
+                                                <i class="fas fa-spinner fa-spin"></i>
+                                                <span>Calculando precio...</span>
+                                            </div>
+                                            <div class="price-final" style="display: none;">
+                                                <span class="amount">$0</span>
+                                                <span class="currency">MXN</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <ul class="package-includes">
+                                            {% for item in package.includes[:3] %}
+                                            <li><i class="fas fa-check"></i> {{ item }}</li>
+                                            {% endfor %}
+                                            {% if package.includes|length > 3 %}
+                                            <li class="more-items">+ {{ package.includes|length - 3 }} más</li>
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="package-footer">
+                                        <button class="btn btn-outline btn-details">
+                                            <i class="fas fa-info-circle"></i> Detalles
+                                        </button>
+                                        <button class="btn btn-primary btn-select" onclick="selectPackage('{{ key }}')">
+                                            <i class="fas fa-check"></i> Seleccionar
+                                        </button>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        
+                        <div class="step-actions">
+                            <button class="btn btn-primary btn-next" onclick="nextStep()" id="step1-next">
+                                Continuar a Personalizar <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PASO 2: PERSONALIZACIÓN -->
+                <div class="reservation-step" id="step2">
+                    <div class="step-header">
+                        <h2><i class="fas fa-sliders-h"></i> Personaliza tu Experiencia</h2>
+                        <p>Agrega extras y servicios para hacer tu recorrido único</p>
+                    </div>
+                    
+                    <div class="step-content">
+                        <div class="personalization-container">
+                            <div class="personalization-main">
+                                <!-- Servicios Incluidos -->
+                                <div class="personalization-section">
+                                    <h3><i class="fas fa-check-circle"></i> Servicios Incluidos en tu Paquete</h3>
+                                    <div class="included-services" id="included-services">
+                                        <!-- Se llena dinámicamente según paquete -->
+                                        <div class="loading-included">
+                                            <i class="fas fa-spinner fa-spin"></i>
+                                            <span>Selecciona un paquete primero</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Extras Personalizables -->
+                                <div class="personalization-section">
+                                    <h3><i class="fas fa-plus-circle"></i> Extras Personalizables</h3>
+                                    <p class="section-subtitle">Mejora tu experiencia con estos servicios adicionales</p>
+                                    
+                                    <!-- Comida y Bebida -->
+                                    <div class="extra-category">
+                                        <h4><i class="fas fa-utensils"></i> Comida y Bebida</h4>
+                                        <div class="extras-grid">
+                                            <div class="extra-item" data-extra="catering-basico">
+                                                <div class="extra-info">
+                                                    <h5>Paquete Básico</h5>
+                                                    <p>Refrescos, agua, botana tradicional</p>
+                                                    <div class="extra-price">$150 MXN pp</div>
+                                                </div>
+                                                <div class="extra-controls">
+                                                    <div class="quantity-selector">
+                                                        <button class="qty-btn minus" onclick="adjustExtra('catering-basico', -1)">-</button>
+                                                        <input type="number" class="qty-input" value="0" min="0" max="20" readonly>
+                                                        <button class="qty-btn plus" onclick="adjustExtra('catering-basico', 1)">+</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="extra-item" data-extra="catering-premium">
+                                                <div class="extra-info">
+                                                    <h5>Paquete Premium</h5>
+                                                    <p>Comida completa + bebidas especiales</p>
+                                                    <div class="extra-price">$300 MXN pp</div>
+                                                </div>
+                                                <div class="extra-controls">
+                                                    <div class="quantity-selector">
+                                                        <button class="qty-btn minus" onclick="adjustExtra('catering-premium', -1)">-</button>
+                                                        <input type="number" class="qty-input" value="0" min="0" max="20" readonly>
+                                                        <button class="qty-btn plus" onclick="adjustExtra('catering-premium', 1)">+</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="extra-item" data-extra="postre-especial">
+                                                <div class="extra-info">
+                                                    <h5>Postre Especial</h5>
+                                                    <p>Pastel o postre tradicional</p>
+                                                    <div class="extra-price">$500 MXN</div>
+                                                </div>
+                                                <div class="extra-controls">
+                                                    <div class="quantity-selector">
+                                                        <button class="qty-btn minus" onclick="adjustExtra('postre-especial', -1)">-</button>
+                                                        <input type="number" class="qty-input" value="0" min="0" max="5" readonly>
+                                                        <button class="qty-btn plus" onclick="adjustExtra('postre-especial', 1)">+</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Entretenimiento -->
+                                    <div class="extra-category">
+                                        <h4><i class="fas fa-music"></i> Entretenimiento</h4>
+                                        <div class="extras-grid">
+                                            <div class="extra-item" data-extra="mariachi">
+                                                <div class="extra-info">
+                                                    <h5>Mariachi Completo</h5>
+                                                    <p>1 hora de música en vivo</p>
+                                                    <div class="extra-price">$4,500 MXN</div>
+                                                </div>
+                                                <div class="extra-controls">
+                                                    <div class="toggle-switch">
+                                                        <input type="checkbox" id="mariachi-toggle" onchange="toggleExtra('mariachi')">
+                                                        <label for="mariachi-toggle"></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="extra-item" data-extra="trio">
+                                                <div class="extra-info">
+                                                    <h5>Trio de Cuerdas</h5>
+                                                    <p>Música romántica por 1 hora</p>
+                                                    <div class="extra-price">$2,500 MXN</div>
+                                                </div>
+                                                <div class="extra-controls">
+                                                    <div class="toggle-switch">
+                                                        <input type="checkbox" id="trio-toggle" onchange="toggleExtra('trio')">
+                                                        <label for="trio-toggle"></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="extra-item" data-extra="bocina">
+                                                <div class="extra-info">
+                                                    <h5>Bocina Bluetooth</h5>
+                                                    <p>Sistema de sonido profesional</p>
+                                                    <div class="extra-price">$500 MXN</div>
+                                                </div>
+                                                <div class="extra-controls">
+                                                    <div class="toggle-switch">
+                                                        <input type="checkbox" id="bocina-toggle" onchange="toggleExtra('bocina')">
+                                                        <label for="bocina-toggle"></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Decoración -->
+                                    <div class="extra-category">
+                                        <h4><i class="fas fa-palette"></i> Decoración</h4>
+                                        <div class="extras-grid">
+                                            <div class="extra-item" data-extra="decoracion-tematica">
+                                                <div class="extra-info">
+                                                    <h5>Decoración Temática</h5>
+                                                    <p>Globos, manteles, centro de mesa</p>
+                                                    <div class="extra-price">$500 MXN</div>
+                                                </div>
+                                                <div class="extra-controls">
+                                                    <div class="toggle-switch">
+                                                        <input type="checkbox" id="decoracion-toggle" onchange="toggleExtra('decoracion-tematica')">
+                                                        <label for="decoracion-toggle"></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="extra-item" data-extra="cambio-nombre">
+                                                <div class="extra-info">
+                                                    <h5>Cambio de Nombre</h5>
+                                                    <p>Personaliza la trajinera por un día</p>
+                                                    <div class="extra-price">$500 MXN</div>
+                                                </div>
+                                                <div class="extra-controls">
+                                                    <div class="toggle-switch">
+                                                        <input type="checkbox" id="nombre-toggle" onchange="toggleExtra('cambio-nombre')">
+                                                        <label for="nombre-toggle"></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Servicios Especiales -->
+                                    <div class="extra-category">
+                                        <h4><i class="fas fa-star"></i> Servicios Especiales</h4>
+                                        <div class="extras-grid">
+                                            <div class="extra-item" data-extra="fotografo">
+                                                <div class="extra-info">
+                                                    <h5>Fotógrafo Profesional</h5>
+                                                    <p>2 horas, 50+ fotos editadas</p>
+                                                    <div class="extra-price">$1,500 MXN</div>
+                                                </div>
+                                                <div class="extra-controls">
+                                                    <div class="toggle-switch">
+                                                        <input type="checkbox" id="fotografo-toggle" onchange="toggleExtra('fotografo')">
+                                                        <label for="fotografo-toggle"></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="extra-item" data-extra="guia-bilingue">
+                                                <div class="extra-info">
+                                                    <h5>Guía Bilingüe</h5>
+                                                    <p>Inglés/Español, conocimiento experto</p>
+                                                    <div class="extra-price">$800 MXN</div>
+                                                </div>
+                                                <div class="extra-controls">
+                                                    <div class="toggle-switch">
+                                                        <input type="checkbox" id="guia-toggle" onchange="toggleExtra('guia-bilingue')">
+                                                        <label for="guia-toggle"></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- RESUMEN LATERAL -->
+                            <div class="personalization-sidebar">
+                                <div class="summary-card">
+                                    <h3><i class="fas fa-file-alt"></i> Resumen de Reserva</h3>
+                                    
+                                    <div class="summary-section">
+                                        <h4>Detalles del Evento</h4>
+                                        <div class="summary-item">
+                                            <span>Fecha:</span>
+                                            <span id="summary-date">No seleccionada</span>
+                                        </div>
+                                        <div class="summary-item">
+                                            <span>Hora:</span>
+                                            <span id="summary-time">No seleccionada</span>
+                                        </div>
+                                        <div class="summary-item">
+                                            <span>Personas:</span>
+                                            <span id="summary-people">10</span>
+                                        </div>
+                                        <div class="summary-item">
+                                            <span>Paquete:</span>
+                                            <span id="summary-package">No seleccionado</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="summary-section">
+                                        <h4>Extras Seleccionados</h4>
+                                        <div class="extras-summary" id="extras-summary">
+                                            <p class="no-extras">No hay extras seleccionados</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="summary-section">
+                                        <h4>Total Estimado</h4>
+                                        <div class="total-breakdown">
+                                            <div class="breakdown-item">
+                                                <span>Paquete:</span>
+                                                <span id="total-paquete">$0 MXN</span>
+                                            </div>
+                                            <div class="breakdown-item">
+                                                <span>Extras:</span>
+                                                <span id="total-extras">$0 MXN</span>
+                                            </div>
+                                            <div class="breakdown-item">
+                                                <span>Catering:</span>
+                                                <span id="total-catering">$0 MXN</span>
+                                            </div>
+                                            <div class="breakdown-item total">
+                                                <span><strong>Total:</strong></span>
+                                                <span id="total-final"><strong>$0 MXN</strong></span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="deposit-info">
+                                            <i class="fas fa-info-circle"></i>
+                                            <span>Para confirmar se requiere depósito del 30%: <strong id="deposit-amount">$0 MXN</strong></span>
+                                        </div>
+                                    </div>
+                                    
+                                    <button class="btn btn-primary btn-block" onclick="updateSummary()">
+                                        <i class="fas fa-sync-alt"></i> Actualizar Total
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="step-actions">
+                            <button class="btn btn-outline" onclick="prevStep()">
+                                <i class="fas fa-arrow-left"></i> Regresar
+                            </button>
+                            <button class="btn btn-primary btn-next" onclick="nextStep()">
+                                Continuar con tus Datos <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PASO 3: DATOS DE CONTACTO -->
+                <div class="reservation-step" id="step3">
+                    <div class="step-header">
+                        <h2><i class="fas fa-user-circle"></i> Tus Datos de Contacto</h2>
+                        <p>Completa tu información para procesar la reserva</p>
+                    </div>
+                    
+                    <div class="step-content">
+                        <div class="contact-form-container">
+                            <form id="contact-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="nombre">
+                                            <i class="fas fa-user"></i> Nombre completo *
+                                        </label>
+                                        <input type="text" id="nombre" name="nombre" required 
+                                               placeholder="Ej: Juan Pérez García">
+                                        <div class="form-error" id="nombre-error"></div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="email">
+                                            <i class="fas fa-envelope"></i> Correo electrónico *
+                                        </label>
+                                        <input type="email" id="email" name="email" required 
+                                               placeholder="ejemplo@email.com">
+                                        <div class="form-error" id="email-error"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="telefono">
+                                            <i class="fas fa-phone"></i> Teléfono *
+                                        </label>
+                                        <input type="tel" id="telefono" name="telefono" required 
+                                               placeholder="55 1234 5678">
+                                        <div class="form-error" id="telefono-error"></div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="whatsapp">
+                                            <i class="fab fa-whatsapp"></i> WhatsApp (opcional)
+                                        </label>
+                                        <input type="tel" id="whatsapp" name="whatsapp" 
+                                               placeholder="55 1234 5678">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="notas">
+                                        <i class="fas fa-comment"></i> Notas adicionales
+                                    </label>
+                                    <textarea id="notas" name="notas" rows="4" 
+                                              placeholder="Alergias alimenticias, necesidades especiales, solicitudes específicas..."></textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="evento">
+                                        <i class="fas fa-star"></i> Motivo del evento (opcional)
+                                    </label>
+                                    <select id="evento" name="evento">
+                                        <option value="">Seleccionar</option>
+                                        <option value="cumpleaños">Cumpleaños</option>
+                                        <option value="aniversario">Aniversario</option>
+                                        <option value="despedida">Despedida de soltero/a</option>
+                                        <option value="familiar">Reunión familiar</option>
+                                        <option value="empresarial">Evento empresarial</option>
+                                        <option value="romantico">Cita romántica</option>
+                                        <option value="otro">Otro</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-checkboxes">
+                                    <div class="checkbox-group">
+                                        <input type="checkbox" id="terminos" name="terminos" required>
+                                        <label for="terminos">
+                                            <span>Acepto los <a href="/terminos" target="_blank">Términos y Condiciones</a> y la <a href="/privacidad" target="_blank">Política de Privacidad</a> *</span>
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="checkbox-group">
+                                        <input type="checkbox" id="newsletter" name="newsletter" checked>
+                                        <label for="newsletter">
+                                            <span>Deseo recibir ofertas especiales y noticias sobre Xochimilco</span>
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="checkbox-group">
+                                        <input type="checkbox" id="contacto-whatsapp" name="contacto-whatsapp">
+                                        <label for="contacto-whatsapp">
+                                            <span>Prefiero que me contacten por WhatsApp</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button type="button" class="btn btn-outline" onclick="prevStep()">
+                                        <i class="fas fa-arrow-left"></i> Regresar
+                                    </button>
+                                    <button type="button" class="btn btn-primary" onclick="validateStep3()">
+                                        Continuar al Pago <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </form>
+                            
+                            <div class="contact-sidebar">
+                                <div class="info-card">
+                                    <h4><i class="fas fa-shield-alt"></i> Tu información está segura</h4>
+                                    <ul>
+                                        <li><i class="fas fa-lock"></i> Datos cifrados SSL</li>
+                                        <li><i class="fas fa-user-shield"></i> Política de privacidad estricta</li>
+                                        <li><i class="fas fa-envelope"></i> Confirmación por correo</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="info-card">
+                                    <h4><i class="fas fa-headset"></i> ¿Necesitas ayuda?</h4>
+                                    <p>Llámanos o escríbenos:</p>
+                                    <div class="contact-info">
+                                        <a href="tel:+525560094568" class="contact-link">
+                                            <i class="fas fa-phone"></i> +52 55 6009 4568
+                                        </a>
+                                        <a href="https://wa.me/525560094568" class="contact-link whatsapp" target="_blank">
+                                            <i class="fab fa-whatsapp"></i> WhatsApp
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                                <div class="info-card">
+                                    <h4><i class="far fa-clock"></i> Tiempo de respuesta</h4>
+                                    <p>Confirmación inmediata al completar el pago</p>
+                                    <p class="small">Correo de confirmación en menos de 15 minutos</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PASO 4: MÉTODO DE PAGO -->
+                <div class="reservation-step" id="step4">
+                    <div class="step-header">
+                        <h2><i class="fas fa-credit-card"></i> Método de Pago</h2>
+                        <p>Selecciona cómo deseas pagar y confirma tu reserva</p>
+                    </div>
+                    
+                    <div class="step-content">
+                        <div class="payment-container">
+                            <div class="payment-methods">
+                                <h3><i class="fas fa-money-check-alt"></i> Selecciona tu método de pago</h3>
+                                
+                                <div class="methods-grid">
+                                    <div class="method-card" data-method="transferencia">
+                                        <div class="method-header">
+                                            <div class="method-icon">
+                                                <i class="fas fa-university"></i>
+                                            </div>
+                                            <div>
+                                                <h4>Transferencia Bancaria</h4>
+                                                <p class="method-desc">Depósito del 30% para confirmar</p>
+                                            </div>
+                                            <div class="method-radio">
+                                                <input type="radio" name="payment-method" id="transferencia" checked>
+                                                <label for="transferencia"></label>
+                                            </div>
+                                        </div>
+                                        <div class="method-details">
+                                            <h5><i class="fas fa-info-circle"></i> Instrucciones:</h5>
+                                            <ul>
+                                                <li>Realiza depósito del 30% del total</li>
+                                                <li>Banco: BBVA</li>
+                                                <li>Cuenta: 0123 4567 8901 2345</li>
+                                                <li>Beneficiario: Trajineras Barrón</li>
+                                                <li>CLABE: 012 180 01234567890 1</li>
+                                            </ul>
+                                            <div class="method-note">
+                                                <i class="fas fa-exclamation-circle"></i>
+                                                <span>Envía el comprobante a trajinerasBarronurrutia@gmail.com</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="method-card" data-method="efectivo">
+                                        <div class="method-header">
+                                            <div class="method-icon">
+                                                <i class="fas fa-money-bill-wave"></i>
+                                            </div>
+                                            <div>
+                                                <h4>Efectivo al llegar</h4>
+                                                <p class="method-desc">Pago total en el embarcadero</p>
+                                            </div>
+                                            <div class="method-radio">
+                                                <input type="radio" name="payment-method" id="efectivo">
+                                                <label for="efectivo"></label>
+                                            </div>
+                                        </div>
+                                        <div class="method-details">
+                                            <h5><i class="fas fa-info-circle"></i> Información:</h5>
+                                            <ul>
+                                                <li>No requiere depósito previo</li>
+                                                <li>Aceptamos efectivo y tarjetas</li>
+                                                <li>Llega 30 minutos antes</li>
+                                                <li>Trae identificación oficial</li>
+                                            </ul>
+                                            <div class="method-note warning">
+                                                <i class="fas fa-exclamation-triangle"></i>
+                                                <span>La disponibilidad no está garantizada sin depósito</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="method-card" data-method="tarjeta">
+                                        <div class="method-header">
+                                            <div class="method-icon">
+                                                <i class="fas fa-credit-card"></i>
+                                            </div>
+                                            <div>
+                                                <h4>Tarjeta de Crédito/Débito</h4>
+                                                <p class="method-desc">Pago seguro en línea</p>
+                                            </div>
+                                            <div class="method-radio">
+                                                <input type="radio" name="payment-method" id="tarjeta">
+                                                <label for="tarjeta"></label>
+                                            </div>
+                                        </div>
+                                        <div class="method-details">
+                                            <h5><i class="fas fa-lock"></i> Pago Seguro:</h5>
+                                            <ul>
+                                                <li>Procesado por Stripe</li>
+                                                <li>100% seguro y cifrado</li>
+                                                <li>Aceptamos Visa, MasterCard</li>
+                                                <li>Confirmación inmediata</li>
+                                            </ul>
+                                            <button class="btn btn-primary btn-small" onclick="showCardForm()">
+                                                <i class="fas fa-credit-card"></i> Pagar con tarjeta
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Formulario de tarjeta (oculto por defecto) -->
+                                <div class="card-form" id="card-form" style="display: none;">
+                                    <h4><i class="fas fa-credit-card"></i> Datos de tarjeta</h4>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="card-number">Número de tarjeta</label>
+                                            <input type="text" id="card-number" placeholder="1234 5678 9012 3456">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="card-name">Nombre en la tarjeta</label>
+                                            <input type="text" id="card-name" placeholder="JUAN PEREZ">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="card-expiry">Fecha de expiración</label>
+                                            <input type="text" id="card-expiry" placeholder="MM/YY">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="card-cvc">CVC</label>
+                                            <input type="text" id="card-cvc" placeholder="123">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Políticas de pago -->
+                                <div class="payment-policies">
+                                    <h4><i class="fas fa-file-contract"></i> Políticas Importantes</h4>
+                                    <div class="policies-grid">
+                                        <div class="policy-item">
+                                            <div class="policy-icon">
+                                                <i class="fas fa-hand-holding-usd"></i>
+                                            </div>
+                                            <div>
+                                                <h5>Depósito no reembolsable</h5>
+                                                <p>El 30% de depósito no es reembolsable bajo ninguna circunstancia.</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="policy-item">
+                                            <div class="policy-icon">
+                                                <i class="fas fa-calendar-times"></i>
+                                            </div>
+                                            <div>
+                                                <h5>Cancelación</h5>
+                                                <p>Cancelación con 48 horas de anticipación para reembolso del 70%.</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="policy-item">
+                                            <div class="policy-icon">
+                                                <i class="fas fa-cloud-sun-rain"></i>
+                                            </div>
+                                            <div>
+                                                <h5>Condiciones climáticas</h5>
+                                                <p>En caso de lluvia intensa, puedes reprogramar sin costo.</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="policy-item">
+                                            <div class="policy-icon">
+                                                <i class="fas fa-users"></i>
+                                            </div>
+                                            <div>
+                                                <h5>Cambios en el grupo</h5>
+                                                <p>Cambios en número de personas con 24 horas de anticipación.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Resumen final -->
+                            <div class="payment-summary">
+                                <div class="summary-card final">
+                                    <h3><i class="fas fa-receipt"></i> Resumen Final</h3>
+                                    
+                                    <div class="summary-content">
+                                        <div class="summary-item">
+                                            <span>Reserva ID:</span>
+                                            <span id="reserva-id">PENDIENTE</span>
+                                        </div>
+                                        <div class="summary-item">
+                                            <span>Fecha:</span>
+                                            <span id="final-date">--/--/----</span>
+                                        </div>
+                                        <div class="summary-item">
+                                            <span>Paquete:</span>
+                                            <span id="final-package">--</span>
+                                        </div>
+                                        <div class="summary-item">
+                                            <span>Personas:</span>
+                                            <span id="final-people">--</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="total-section">
+                                        <div class="total-item">
+                                            <span>Total reserva:</span>
+                                            <span id="final-total">$0 MXN</span>
+                                        </div>
+                                        <div class="total-item deposit">
+                                            <span>Depósito (30%):</span>
+                                            <span id="final-deposit">$0 MXN</span>
+                                        </div>
+                                        <div class="total-item balance">
+                                            <span>Saldo a pagar:</span>
+                                            <span id="final-balance">$0 MXN</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="payment-confirm">
+                                        <div class="checkbox-group">
+                                            <input type="checkbox" id="confirm-reserva" required>
+                                            <label for="confirm-reserva">
+                                                <span>Confirmo que toda la información es correcta y acepto las políticas *</span>
+                                            </label>
+                                        </div>
+                                        
+                                        <button class="btn btn-success btn-large" onclick="processReservation()" id="confirm-btn">
+                                            <i class="fas fa-lock"></i> Confirmar y Pagar
+                                        </button>
+                                        
+                                        <p class="secure-note">
+                                            <i class="fas fa-shield-alt"></i> Pago 100% seguro. Tus datos están protegidos.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="step-actions">
+                            <button class="btn btn-outline" onclick="prevStep()">
+                                <i class="fas fa-arrow-left"></i> Regresar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PASO 5: CONFIRMACIÓN -->
+                <div class="reservation-step" id="step5" style="display: none;">
+                    <div class="step-header">
+                        <h2><i class="fas fa-check-circle"></i> ¡Reserva Confirmada!</h2>
+                        <p>Tu experiencia en Xochimilco está lista</p>
+                    </div>
+                    
+                    <div class="step-content">
+                        <div class="confirmation-container">
+                            <div class="confirmation-card">
+                                <div class="confirmation-header">
+                                    <div class="confirmation-icon">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <h3>¡Reserva Exitosa!</h3>
+                                    <p class="confirmation-subtitle">Hemos enviado la confirmación a tu correo</p>
+                                </div>
+                                
+                                <div class="confirmation-body">
+                                    <div class="confirmation-details">
+                                        <h4><i class="fas fa-ticket-alt"></i> Detalles de tu Reserva</h4>
+                                        <div class="details-grid">
+                                            <div class="detail-item">
+                                                <span class="detail-label">ID de Reserva:</span>
+                                                <span class="detail-value" id="confirmation-id">--</span>
+                                            </div>
+                                            <div class="detail-item">
+                                                <span class="detail-label">Fecha:</span>
+                                                <span class="detail-value" id="confirmation-date">--</span>
+                                            </div>
+                                            <div class="detail-item">
+                                                <span class="detail-label">Hora:</span>
+                                                <span class="detail-value" id="confirmation-time">--</span>
+                                            </div>
+                                            <div class="detail-item">
+                                                <span class="detail-label">Paquete:</span>
+                                                <span class="detail-value" id="confirmation-package">--</span>
+                                            </div>
+                                            <div class="detail-item">
+                                                <span class="detail-label">Personas:</span>
+                                                <span class="detail-value" id="confirmation-people">--</span>
+                                            </div>
+                                            <div class="detail-item">
+                                                <span class="detail-label">Total:</span>
+                                                <span class="detail-value" id="confirmation-total">--</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="confirmation-instructions">
+                                        <h4><i class="fas fa-list-check"></i> Instrucciones Importantes</h4>
+                                        <div class="instructions-grid">
+                                            <div class="instruction-item">
+                                                <div class="instruction-icon">
+                                                    <i class="fas fa-map-marker-alt"></i>
+                                                </div>
+                                                <div>
+                                                    <h5>Dónde llegar</h5>
+                                                    <p>Trajineras Barrón - Nuevo Embarcadero Puente de Urrutia</p>
+                                                    <a href="https://goo.gl/maps/ejemplo" target="_blank" class="btn-link">
+                                                        <i class="fas fa-directions"></i> Ver en Google Maps
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="instruction-item">
+                                                <div class="instruction-icon">
+                                                    <i class="far fa-clock"></i>
+                                                </div>
+                                                <div>
+                                                    <h5>Horario de llegada</h5>
+                                                    <p>Llega <strong>30 minutos antes</strong> de tu hora reservada</p>
+                                                    <p>Tiempo para estacionamiento y preparativos</p>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="instruction-item">
+                                                <div class="instruction-icon">
+                                                    <i class="fas fa-suitcase"></i>
+                                                </div>
+                                                <div>
+                                                    <h5>Qué llevar</h5>
+                                                    <ul>
+                                                        <li>Identificación oficial</li>
+                                                        <li>Comprobante de pago/reserva</li>
+                                                        <li>Protector solar y gorra</li>
+                                                        <li>Cámara fotográfica</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="instruction-item">
+                                                <div class="instruction-icon">
+                                                    <i class="fas fa-phone-alt"></i>
+                                                </div>
+                                                <div>
+                                                    <h5>Contacto de emergencia</h5>
+                                                    <p>+52 55 6009 4568 (24/7)</p>
+                                                    <p>trajinerasBarronurrutia@gmail.com</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="confirmation-actions">
+                                        <button class="btn btn-primary" onclick="printConfirmation()">
+                                            <i class="fas fa-print"></i> Imprimir Comprobante
+                                        </button>
+                                        <button class="btn btn-outline" onclick="sendConfirmationEmail()">
+                                            <i class="fas fa-envelope"></i> Reenviar por Email
+                                        </button>
+                                        <a href="/" class="btn btn-secondary">
+                                            <i class="fas fa-home"></i> Volver al Inicio
+                                        </a>
+                                    </div>
+                                    
+                                    <div class="confirmation-note">
+                                        <p><i class="fas fa-info-circle"></i> Te contactaremos 24 horas antes para confirmar tu asistencia.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. PREGUNTAS FRECUENTES -->
+    <section class="section faq-section">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-question-circle"></i> Preguntas Frecuentes de Reserva</h2>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4><i class="fas fa-edit"></i> ¿Puedo modificar mi reserva después de confirmarla?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sí, puedes modificar tu reserva con <strong>48 horas de anticipación</strong> sin costo adicional. Para cambios de fecha u hora, contáctanos al +52 55 6009 4568 o por WhatsApp. Los cambios están sujetos a disponibilidad.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4><i class="far fa-clock"></i> ¿Cuánto tiempo debo llegar antes de mi recorrido?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Recomendamos llegar <strong>30 minutos antes</strong> de tu hora reservada. Esto te da tiempo para estacionar, pagar si es necesario, y acomodarte en la trajinera. Si llegas tarde, tu tiempo de recorrido podría reducirse.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4><i class="fas fa-paw"></i> ¿Aceptan mascotas en las trajineras?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>¡Sí!</strong> Tus mascotas son bienvenidas sin costo adicional. Solo asegúrate de que estén cómodas en el agua y traigas su correa. Por seguridad, deben estar bajo tu supervisión en todo momento.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4><i class="fas fa-credit-card"></i> ¿Qué métodos de pago aceptan en el embarcadero?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Aceptamos <strong>efectivo, tarjetas de crédito/débito (Visa, MasterCard)</strong>, y transferencias. Para pagar en el embarcadero, trae identificación oficial y tu comprobante de reserva.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4><i class="fas fa-umbrella"></i> ¿Qué pasa si llueve el día de mi reserva?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Nuestras trajineras tienen techos que te protegen de lluvia ligera. En caso de <strong>lluvia intensa o condiciones peligrosas</strong>, puedes reprogramar sin costo con 24 horas de anticipación. Te recomendamos verificar el pronóstico.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4><i class="fas fa-user-friends"></i> ¿Qué pasa si somos más de 20 personas?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Para grupos mayores a 20 personas, podemos asignar <strong>trajineras adicionales</strong> que navegarán juntas. Contáctanos para grupos grandes y te ayudaremos a organizar la mejor experiencia.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. GARANTÍAS Y CONFIANZA -->
+    <section class="section guarantees-section" style="background-color: var(--light-color);">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-shield-alt"></i> Garantías y Confianza</h2>
+            <p class="section-subtitle">Tu tranquilidad es nuestra prioridad</p>
+            
+            <div class="guarantees-grid">
+                <div class="guarantee-card">
+                    <div class="guarantee-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Reserva 100% Segura</h3>
+                    <p>Proceso de reserva cifrado con tecnología SSL. Tus datos están protegidos.</p>
+                </div>
+                
+                <div class="guarantee-card">
+                    <div class="guarantee-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3>Pagos Cifrados</h3>
+                    <p>Transacciones seguras. No almacenamos datos de tarjetas de crédito.</p>
+                </div>
+                
+                <div class="guarantee-card">
+                    <div class="guarantee-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Soporte Telefónico</h3>
+                    <p>Asistencia 7:00 AM - 10:00 PM. WhatsApp 24/7 para emergencias.</p>
+                </div>
+                
+                <div class="guarantee-card">
+                    <div class="guarantee-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3>Calidad Certificada</h3>
+                    <p>Trajineras certificadas y guías capacitados. Seguridad garantizada.</p>
+                </div>
+            </div>
+            
+            <div class="recent-reservations">
+                <h3><i class="fas fa-comments"></i> Reservas Recientes</h3>
+                <div class="reservations-carousel">
+                    <div class="reservation-testimonial">
+                        <div class="testimonial-content">
+                            <p>"Reservé para el cumpleaños de mi hija y todo fue perfecto. El proceso fue fácil y rápido."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <span class="author-name">María G.</span>
+                            <span class="reservation-date">Reservó hoy a las 10:30 AM</span>
+                        </div>
+                    </div>
+                    
+                    <div class="reservation-testimonial">
+                        <div class="testimonial-content">
+                            <p>"Excelente sistema de reserva. Confirmación inmediata y atención personalizada."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <span class="author-name">Carlos R.</span>
+                            <span class="reservation-date">Reservó ayer a las 3:15 PM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Botones flotantes -->
+    <div class="floating-buttons">
+        <a href="https://wa.me/525560094568" class="floating-btn whatsapp-btn" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+            <span class="floating-tooltip">WhatsApp</span>
+        </a>
+        <a href="tel:+525560094568" class="floating-btn phone-btn">
+            <i class="fas fa-phone-alt"></i>
+            <span class="floating-tooltip">Llamar</span>
+        </a>
+        <button class="floating-btn help-btn" onclick="scrollToFAQ()">
+            <i class="fas fa-question-circle"></i>
+            <span class="floating-tooltip">FAQ</span>
+        </button>
+    </div>
+
+    {% include 'footer.html' %}
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
+    <script>
+        // Variables globales
+        let currentStep = 1;
+        let selectedDate = null;
+        let selectedTime = null;
+        let selectedPackage = null;
+        let selectedPeople = 10;
+        let selectedExtras = {};
+        let reservationData = {};
+        
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', function() {
+            // Configurar datepicker
+            flatpickr("#datepicker", {
+                locale: "es",
+                minDate: "today",
+                dateFormat: "Y-m-d",
+                onChange: function(selectedDates, dateStr, instance) {
+                    selectedDate = dateStr;
+                    updateAvailability();
+                    updateSummary();
+                }
+            });
+            
+            // Inicializar extras
+            initExtras();
+            
+            // Configurar steps
+            showStep(1);
+        });
+        
+        // Navegación entre steps
+        function showStep(step) {
+            // Ocultar todos los steps
+            document.querySelectorAll('.reservation-step').forEach(s => {
+                s.classList.remove('active');
+            });
+            
+            // Mostrar step actual
+            document.getElementById(`step${step}`).classList.add('active');
+            
+            // Actualizar barra de progreso
+            updateProgressBar(step);
+            
+            currentStep = step;
+            
+            // Scroll al inicio del step
+            document.querySelector('.reservation-container').scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
+            });
+        }
+        
+        function nextStep() {
+            if (validateCurrentStep()) {
+                if (currentStep < 4) {
+                    showStep(currentStep + 1);
+                }
+            }
+        }
+        
+        function prevStep() {
+            if (currentStep > 1) {
+                showStep(currentStep - 1);
+            }
+        }
+        
+        // Actualizar barra de progreso
+        function updateProgressBar(step) {
+            const progressFill = document.getElementById('progress-fill');
+            const percentage = ((step - 1) / 3) * 100;
+            progressFill.style.width = `${percentage}%`;
+            
+            // Actualizar indicadores
+            document.querySelectorAll('.progress-step').forEach((indicator, index) => {
+                if (index + 1 <= step) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
+        }
+        
+        // Validar step actual
+        function validateCurrentStep() {
+            switch(currentStep) {
+                case 1:
+                    return validateStep1();
+                case 2:
+                    return validateStep2();
+                case 3:
+                    return validateStep3();
+                default:
+                    return true;
+            }
+        }
+        
+        // Validar Step 1
+        function validateStep1() {
+            if (!selectedDate) {
+                alert('Por favor, selecciona una fecha.');
+                return false;
+            }
+            
+            if (!selectedTime) {
+                alert('Por favor, selecciona una hora.');
+                return false;
+            }
+            
+            if (!selectedPackage) {
+                alert('Por favor, selecciona un paquete.');
+                return false;
+            }
+            
+            // Verificar disponibilidad
+            checkAvailability();
+            
+            return true;
+        }
+        
+        // Validar Step 3
+        function validateStep3() {
+            const nombre = document.getElementById('nombre').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const telefono = document.getElementById('telefono').value.trim();
+            const terminos = document.getElementById('terminos').checked;
+            
+            let isValid = true;
+            
+            // Validar nombre
+            if (!nombre) {
+                document.getElementById('nombre-error').textContent = 'El nombre es requerido';
+                isValid = false;
+            } else {
+                document.getElementById('nombre-error').textContent = '';
+            }
+            
+            // Validar email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email || !emailRegex.test(email)) {
+                document.getElementById('email-error').textContent = 'Email inválido';
+                isValid = false;
+            } else {
+                document.getElementById('email-error').textContent = '';
+            }
+            
+            // Validar teléfono
+            const telefonoRegex = /^[0-9\s\-\(\)]{10,}$/;
+            if (!telefono || !telefonoRegex.test(telefono.replace(/\s/g, ''))) {
+                document.getElementById('telefono-error').textContent = 'Teléfono inválido';
+                isValid = false;
+            } else {
+                document.getElementById('telefono-error').textContent = '';
+            }
+            
+            // Validar términos
+            if (!terminos) {
+                alert('Debes aceptar los términos y condiciones.');
+                isValid = false;
+            }
+            
+            if (isValid) {
+                // Guardar datos de contacto
+                reservationData.contacto = {
+                    nombre: nombre,
+                    email: email,
+                    telefono: telefono,
+                    whatsapp: document.getElementById('whatsapp').value,
+                    notas: document.getElementById('notas').value,
+                    evento: document.getElementById('evento').value
+                };
+                
+                nextStep();
+            }
+            
+            return isValid;
+        }
+        
+        // Ajustar número de personas
+        function adjustPeople(delta) {
+            selectedPeople = Math.max(1, Math.min(20, selectedPeople + delta));
+            document.getElementById('people-count').value = selectedPeople;
+            
+            // Mostrar advertencia si más de 15 personas
+            const warning = document.getElementById('capacity-warning');
+            if (selectedPeople > 15) {
+                warning.style.display = 'block';
+            } else {
+                warning.style.display = 'none';
+            }
+            
+            // Actualizar precios
+            updatePackagePrices();
+            updateSummary();
+        }
+        
+        // Seleccionar hora
+        document.querySelectorAll('.time-slot').forEach(slot => {
+            slot.addEventListener('click', function() {
+                // Deseleccionar otros
+                document.querySelectorAll('.time-slot').forEach(s => {
+                    s.classList.remove('selected');
+                });
+                
+                // Seleccionar este
+                this.classList.add('selected');
+                selectedTime = this.dataset.time;
+                
+                updateSummary();
+            });
+        });
+        
+        // Seleccionar paquete
+        function selectPackage(packageId) {
+            selectedPackage = packageId;
+            
+            // Actualizar UI
+            document.querySelectorAll('.package-card-reservation').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            const selectedCard = document.querySelector(`[data-package="${packageId}"]`);
+            if (selectedCard) {
+                selectedCard.classList.add('selected');
+            }
+            
+            // Cargar servicios incluidos
+            loadIncludedServices(packageId);
+            
+            updateSummary();
+        }
+        
+        // Cargar servicios incluidos
+        function loadIncludedServices(packageId) {
+            const includedServices = document.getElementById('included-services');
+            
+            // Datos de servicios por paquete
+            const servicesByPackage = {
+                'familiar': [
+                    'Trajinera para 18-20 personas',
+                    'Guía certificado',
+                    'Seguro básico incluido',
+                    'Botanas y refrescos',
+                    'Música ambiental',
+                    'Mesa y sillas plegables'
+                ],
+                'lunada': [
+                    'Trajinera nocturna',
+                    'Iluminación especial',
+                    'Comida caliente',
+                    'Bebidas calientes',
+                    'Música suave',
+                    'Guía especializado'
+                ],
+                'amanecer': [
+                    'Recorrido al amanecer',
+                    'Desayuno mexicano',
+                    'Café de olla',
+                    'Guía especializado',
+                    'Fotografías del amanecer',
+                    'Chalecos salvavidas'
+                ],
+                'personalizado': [
+                    'Diseño a tu medida',
+                    'Decoración personalizada',
+                    'Menú especial',
+                    'Entretenimiento elegido',
+                    'Asesoría personal',
+                    'Flexibilidad total'
+                ]
+            };
+            
+            const services = servicesByPackage[packageId] || [];
+            
+            includedServices.innerHTML = services.map(service => `
+                <div class="included-service">
+                    <i class="fas fa-check-circle"></i>
+                    <span>${service}</span>
+                </div>
+            `).join('');
+        }
+        
+        // Inicializar extras
+        function initExtras() {
+            // Inicializar todos los extras en 0
+            const extras = [
+                'catering-basico', 'catering-premium', 'postre-especial',
+                'mariachi', 'trio', 'bocina',
+                'decoracion-tematica', 'cambio-nombre',
+                'fotografo', 'guia-bilingue'
+            ];
+            
+            extras.forEach(extra => {
+                selectedExtras[extra] = 0;
+            });
+        }
+        
+        // Ajustar cantidad de extra
+        function adjustExtra(extraId, delta) {
+            const input = document.querySelector(`[data-extra="${extraId}"] .qty-input`);
+            let currentValue = parseInt(input.value);
+            const max = parseInt(input.getAttribute('max'));
+            const min = parseInt(input.getAttribute('min'));
+            
+            let newValue = currentValue + delta;
+            newValue = Math.max(min, Math.min(max, newValue));
+            
+            input.value = newValue;
+            selectedExtras[extraId] = newValue;
+            
+            updateSummary();
+        }
+        
+        // Toggle extra
+        function toggleExtra(extraId) {
+            const checkbox = document.querySelector(`#${extraId}-toggle`);
+            selectedExtras[extraId] = checkbox.checked ? 1 : 0;
+            
+            updateSummary();
+        }
+        
+        // Actualizar resumen
+        function updateSummary() {
+            // Actualizar detalles del evento
+            document.getElementById('summary-date').textContent = selectedDate || 'No seleccionada';
+            document.getElementById('summary-time').textContent = selectedTime || 'No seleccionada';
+            document.getElementById('summary-people').textContent = selectedPeople;
+            
+            // Actualizar paquete
+            if (selectedPackage) {
+                const packageNames = {
+                    'familiar': 'Paquete Familiar',
+                    'lunada': 'Paquete Lunada',
+                    'amanecer': 'Paquete Amanecer',
+                    'personalizado': 'Paquete Personalizado'
+                };
+                document.getElementById('summary-package').textContent = packageNames[selectedPackage];
+            } else {
+                document.getElementById('summary-package').textContent = 'No seleccionado';
+            }
+            
+            // Actualizar extras
+            updateExtrasSummary();
+            
+            // Calcular totales
+            calculateTotals();
+        }
+        
+        // Actualizar resumen de extras
+        function updateExtrasSummary() {
+            const extrasContainer = document.getElementById('extras-summary');
+            const activeExtras = Object.entries(selectedExtras)
+                .filter(([extra, cantidad]) => cantidad > 0);
+            
+            if (activeExtras.length === 0) {
+                extrasContainer.innerHTML = '<p class="no-extras">No hay extras seleccionados</p>';
+                return;
+            }
+            
+            // Mapeo de nombres de extras
+            const extraNames = {
+                'catering-basico': 'Catering Básico',
+                'catering-premium': 'Catering Premium',
+                'postre-especial': 'Postre Especial',
+                'mariachi': 'Mariachi',
+                'trio': 'Trio de Cuerdas',
+                'bocina': 'Bocina Bluetooth',
+                'decoracion-tematica': 'Decoración Temática',
+                'cambio-nombre': 'Cambio de Nombre',
+                'fotografo': 'Fotógrafo',
+                'guia-bilingue': 'Guía Bilingüe'
+            };
+            
+            // Mapeo de precios
+            const extraPrices = {
+                'catering-basico': 150,
+                'catering-premium': 300,
+                'postre-especial': 500,
+                'mariachi': 4500,
+                'trio': 2500,
+                'bocina': 500,
+                'decoracion-tematica': 500,
+                'cambio-nombre': 500,
+                'fotografo': 1500,
+                'guia-bilingue': 800
+            };
+            
+            const extrasHTML = activeExtras.map(([extra, cantidad]) => {
+                const nombre = extraNames[extra];
+                const precio = extraPrices[extra];
+                const total = precio * cantidad;
+                
+                return `
+                    <div class="extra-summary-item">
+                        <span>${nombre} x${cantidad}</span>
+                        <span>$${total.toLocaleString()} MXN</span>
+                    </div>
+                `;
+            }).join('');
+            
+            extrasContainer.innerHTML = extrasHTML;
+        }
+        
+        // Calcular totales
+        function calculateTotals() {
+            // Precios base de paquetes
+            const packagePrices = {
+                'familiar': 1800,
+                'lunada': 1250,
+                'amanecer': 2250,
+                'personalizado': 0
+            };
+            
+            // Precio del paquete
+            let packageTotal = selectedPackage ? packagePrices[selectedPackage] || 0 : 0;
+            
+            // Calcular extras
+            let extrasTotal = 0;
+            let cateringTotal = 0;
+            
+            Object.entries(selectedExtras).forEach(([extra, cantidad]) => {
+                const precio = getExtraPrice(extra);
+                const total = precio * cantidad;
+                
+                if (extra.includes('catering')) {
+                    cateringTotal += total * selectedPeople;
+                } else {
+                    extrasTotal += total;
+                }
+            });
+            
+            // Aplicar incremento por fin de semana
+            if (selectedDate) {
+                const date = new Date(selectedDate);
+                const isWeekend = date.getDay() === 0 || date.getDay() === 6;
+                
+                if (isWeekend && selectedPackage !== 'personalizado') {
+                    packageTotal += 200; // Incremento fin de semana
+                }
+            }
+            
+            // Total final
+            const totalFinal = packageTotal + extrasTotal + cateringTotal;
+            const deposito = totalFinal * 0.3;
+            
+            // Actualizar UI
+            document.getElementById('total-paquete').textContent = `$${packageTotal.toLocaleString()} MXN`;
+            document.getElementById('total-extras').textContent = `$${extrasTotal.toLocaleString()} MXN`;
+            document.getElementById('total-catering').textContent = `$${cateringTotal.toLocaleString()} MXN`;
+            document.getElementById('total-final').innerHTML = `<strong>$${totalFinal.toLocaleString()} MXN</strong>`;
+            document.getElementById('deposit-amount').textContent = `$${deposito.toLocaleString()} MXN`;
+            
+            // Actualizar resumen final
+            document.getElementById('final-date').textContent = selectedDate || '--/--/----';
+            document.getElementById('final-package').textContent = selectedPackage ? 
+                (selectedPackage === 'familiar' ? 'Familiar' : 
+                 selectedPackage === 'lunada' ? 'Lunada' :
+                 selectedPackage === 'amanecer' ? 'Amanecer' : 'Personalizado') : '--';
+            document.getElementById('final-people').textContent = selectedPeople;
+            document.getElementById('final-total').textContent = `$${totalFinal.toLocaleString()} MXN`;
+            document.getElementById('final-deposit').textContent = `$${deposito.toLocaleString()} MXN`;
+            document.getElementById('final-balance').textContent = `$${(totalFinal - deposito).toLocaleString()} MXN`;
+            
+            // Guardar en reservationData
+            reservationData.totales = {
+                paquete: packageTotal,
+                extras: extrasTotal,
+                catering: cateringTotal,
+                total: totalFinal,
+                deposito: deposito,
+                saldo: totalFinal - deposito
+            };
+        }
+        
+        // Obtener precio de extra
+        function getExtraPrice(extraId) {
+            const prices = {
+                'catering-basico': 150,
+                'catering-premium': 300,
+                'postre-especial': 500,
+                'mariachi': 4500,
+                'trio': 2500,
+                'bocina': 500,
+                'decoracion-tematica': 500,
+                'cambio-nombre': 500,
+                'fotografo': 1500,
+                'guia-bilingue': 800
+            };
+            
+            return prices[extraId] || 0;
+        }
+        
+        // Verificar disponibilidad
+        function checkAvailability() {
+            if (!selectedDate || !selectedTime) return;
+            
+            const statusElement = document.getElementById('availability-status');
+            
+            // Simular verificación
+            fetch('/api/verificar-disponibilidad', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    fecha: selectedDate,
+                    hora: selectedTime,
+                    personas: selectedPeople
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.disponible) {
+                    statusElement.innerHTML = `
+                        <i class="fas fa-check-circle" style="color: #4CAF50;"></i>
+                        <span style="color: #4CAF50;">${data.mensaje}</span>
+                    `;
+                } else {
+                    statusElement.innerHTML = `
+                        <i class="fas fa-times-circle" style="color: #F44336;"></i>
+                        <span style="color: #F44336;">${data.mensaje}</span>
+                    `;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                statusElement.innerHTML = `
+                    <i class="fas fa-exclamation-triangle" style="color: #FF9800;"></i>
+                    <span>Error al verificar disponibilidad</span>
+                `;
+            });
+        }
+        
+        // Actualizar disponibilidad
+        function updateAvailability() {
+            if (selectedDate) {
+                // Actualizar horarios disponibles
+                fetch(`/api/horarios-disponibles/${selectedDate}`)
+                .then(response => response.json())
+                .then(data => {
+                    updateTimeSlots(data.horarios);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+        }
+        
+        // Actualizar slots de tiempo
+        function updateTimeSlots(horarios) {
+            const timeSlotsContainer = document.getElementById('time-slots');
+            
+            const slots = [
+                { time: '09:00', label: '9:00 AM' },
+                { time: '12:00', label: '12:00 PM' },
+                { time: '15:00', label: '3:00 PM' },
+                { time: '18:00', label: '6:00 PM' }
+            ];
+            
+            timeSlotsContainer.innerHTML = slots.map(slot => {
+                const disponible = horarios[slot.time];
+                return `
+                    <div class="time-slot ${disponible ? 'available' : 'unavailable'}" 
+                         data-time="${slot.time}" 
+                         ${!disponible ? 'style="opacity: 0.5; cursor: not-allowed;"' : ''}>
+                        <div class="slot-time">${slot.label}</div>
+                        <div class="slot-status ${disponible ? 'available' : 'unavailable'}">
+                            ${disponible ? 'Disponible' : 'No disponible'}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            // Re-attach event listeners
+            document.querySelectorAll('.time-slot.available').forEach(slot => {
+                slot.addEventListener('click', function() {
+                    document.querySelectorAll('.time-slot').forEach(s => {
+                        s.classList.remove('selected');
+                    });
+                    this.classList.add('selected');
+                    selectedTime = this.dataset.time;
+                    updateSummary();
+                });
+            });
+        }
+        
+        // Actualizar precios de paquetes
+        function updatePackagePrices() {
+            if (!selectedDate || !selectedPeople) return;
+            
+            document.querySelectorAll('.package-card-reservation').forEach(card => {
+                const packageId = card.dataset.package;
+                const priceElement = card.querySelector('.price-final');
+                const loadingElement = card.querySelector('.price-loading');
+                
+                // Mostrar loading
+                loadingElement.style.display = 'flex';
+                priceElement.style.display = 'none';
+                
+                // Calcular precio dinámico
+                fetch('/api/calcular-precio', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        paquete: packageId,
+                        personas: selectedPeople,
+                        fecha: selectedDate
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        loadingElement.style.display = 'none';
+                        priceElement.style.display = 'block';
+                        priceElement.querySelector('.amount').textContent = 
+                            `$${data.precio_total.toLocaleString()}`;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    loadingElement.innerHTML = '<span>Error al calcular</span>';
+                });
+            });
+        }
+        
+        // Mostrar formulario de tarjeta
+        function showCardForm() {
+            const cardForm = document.getElementById('card-form');
+            const tarjetaRadio = document.getElementById('tarjeta');
+            
+            tarjetaRadio.checked = true;
+            cardForm.style.display = 'block';
+        }
+        
+        // Procesar reserva
+        function processReservation() {
+            const confirmCheckbox = document.getElementById('confirm-reserva');
+            
+            if (!confirmCheckbox.checked) {
+                alert('Debes confirmar que la información es correcta.');
+                return;
+            }
+            
+            // Obtener método de pago seleccionado
+            const metodoPago = document.querySelector('input[name="payment-method"]:checked').value;
+            
+            // Preparar datos de la reserva
+            const reservaData = {
+                ...reservationData.contacto,
+                fecha: selectedDate,
+                hora: selectedTime,
+                paquete: selectedPackage,
+                personas: selectedPeople,
+                extras: Object.entries(selectedExtras)
+                    .filter(([extra, cantidad]) => cantidad > 0)
+                    .map(([extra, cantidad]) => ({ extra, cantidad })),
+                metodo_pago: metodoPago,
+                totales: reservationData.totales
+            };
+            
+            // Deshabilitar botón de confirmación
+            const confirmBtn = document.getElementById('confirm-btn');
+            confirmBtn.disabled = true;
+            confirmBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando...';
+            
+            // Enviar reserva
+            fetch('/api/procesar-reserva', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(reservaData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Guardar ID de reserva
+                    reservationData.reserva_id = data.reserva_id;
+                    
+                    // Mostrar confirmación
+                    showConfirmation(data);
+                } else {
+                    alert('Error: ' + data.error);
+                    confirmBtn.disabled = false;
+                    confirmBtn.innerHTML = '<i class="fas fa-lock"></i> Confirmar y Pagar';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error de conexión. Por favor, intenta nuevamente.');
+                confirmBtn.disabled = false;
+                confirmBtn.innerHTML = '<i class="fas fa-lock"></i> Confirmar y Pagar';
+            });
+        }
+        
+        // Mostrar confirmación
+        function showConfirmation(data) {
+            // Actualizar datos de confirmación
+            document.getElementById('confirmation-id').textContent = data.reserva_id;
+            document.getElementById('confirmation-date').textContent = selectedDate;
+            document.getElementById('confirmation-time').textContent = selectedTime;
+            document.getElementById('confirmation-package').textContent = 
+                selectedPackage === 'familiar' ? 'Familiar' :
+                selectedPackage === 'lunada' ? 'Lunada' :
+                selectedPackage === 'amanecer' ? 'Amanecer' : 'Personalizado';
+            document.getElementById('confirmation-people').textContent = selectedPeople;
+            document.getElementById('confirmation-total').textContent = 
+                `$${reservationData.totales.total.toLocaleString()} MXN`;
+            
+            // Mostrar paso 5
+            showStep(5);
+            
+            // También mostrar step 5 (el contenedor está oculto inicialmente)
+            document.getElementById('step5').style.display = 'block';
+        }
+        
+        // Imprimir confirmación
+        function printConfirmation() {
+            window.print();
+        }
+        
+        // Reenviar email de confirmación
+        function sendConfirmationEmail() {
+            alert('Email de confirmación reenviado.');
+        }
+        
+        // Scroll a FAQ
+        function scrollToFAQ() {
+            document.querySelector('.faq-section').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+        
+        // Validar Step 2 (placeholder)
+        function validateStep2() {
+            return true; // Siempre válido para este ejemplo
+        }
+    </script>
+</body>
+</html>

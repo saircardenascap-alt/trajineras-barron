@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* ============================================
+           HEADER - ESTILOS
+           ============================================ */
+        :root {
+            --primary-color: #2c5530;
+            --secondary-color: #4a8c5e;
+            --accent-color: #f8b500;
+            --text-dark: #333;
+            --text-light: #fff;
+            --light-color: #f8f9fa;
+            --dark-color: #1e3a28;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header principal */
+        .main-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+            color: var(--text-light);
+            padding: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        /* Barra superior con contacto */
+        .top-bar {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 8px 0;
+            font-size: 0.9rem;
+        }
+
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-item i {
+            color: var(--accent-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            color: var(--text-light);
+            transition: color 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: var(--accent-color);
+        }
+
+        /* Navegación principal */
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        /* Logo */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: var(--text-light);
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            line-height: 1;
+            margin: 0;
+        }
+
+        .logo-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        /* Navegación */
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 30px;
+        }
+
+        .main-nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 8px 0;
+            position: relative;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .main-nav a:hover {
+            color: var(--accent-color);
+        }
+
+        .main-nav a.active {
+            color: var(--accent-color);
+        }
+
+        .main-nav a.active:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--accent-color);
+            border-radius: 1px;
+        }
+
+        /* Botón reservar en header */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .btn-reserva {
+            background: var(--accent-color);
+            color: var(--dark-color);
+            padding: 10px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--accent-color);
+        }
+
+        .btn-reserva:hover {
+            background: transparent;
+            color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(248, 181, 0, 0.3);
+        }
+
+        /* Menú móvil */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        /* Indicador ecológico */
+        .eco-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(76, 175, 80, 0.2);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            margin-left: 5px;
+        }
+
+        .eco-indicator i {
+            color: #4caf50;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .main-nav ul {
+                gap: 20px;
+            }
+            
+            .main-nav a {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar {
+                display: none;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .main-nav {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: var(--dark-color);
+                padding: 20px;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+                box-shadow: var(--shadow);
+            }
+            
+            .main-nav.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            .main-nav ul {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .main-nav li {
+                width: 100%;
+            }
+            
+            .main-nav a {
+                padding: 15px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            .main-nav a:after {
+                content: '›';
+                font-size: 1.2rem;
+            }
+            
+            .nav-content {
+                padding: 10px 0;
+            }
+            
+            .header-actions {
+                display: none;
+            }
+            
+            .logo-title {
+                font-size: 1.5rem;
+            }
+            
+            .logo-icon {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-text {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <!-- Barra superior con contacto -->
+        <div class="top-bar">
+            <div class="top-bar-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+52 55 1234 5678</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@trajinerasbarron.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>9:00 AM - 7:00 PM</span>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="#" class="social-link" title="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-link" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-link" title="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link" title="TripAdvisor">
+                        <i class="fab fa-tripadvisor"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navegación principal -->
+        <div class="nav-container">
+            <div class="nav-content">
+                <!-- Logo -->
+                <a href="{{ url_for('inicio') }}" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-ship"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1 class="logo-title">Trajineras Barrón</h1>
+                        <p class="logo-subtitle">Xochimilco desde 1950</p>
+                    </div>
+                </a>
+
+                <!-- Navegación -->
+                <nav class="main-nav" id="mainNav">
+                    <ul>
+                        <li><a href="{{ url_for('inicio') }}" {% if request.endpoint == 'inicio' %}class="active"{% endif %}>
+                            <i class="fas fa-home"></i> Inicio
+                        </a></li>
+                        <li><a href="{{ url_for('servicios') }}" {% if request.endpoint == 'servicios' %}class="active"{% endif %}>
+                            <i class="fas fa-concierge-bell"></i> Servicios
+                        </a></li>
+                        <li><a href="{{ url_for('reservaciones') }}" {% if request.endpoint == 'reservaciones' %}class="active"{% endif %}>
+                            <i class="fas fa-calendar-alt"></i> Reservaciones
+                        </a></li>
+                        <li><a href="{{ url_for('reserva_ecologica') }}" {% if request.endpoint == 'reserva_ecologica' %}class="active"{% endif %}>
+                            <i class="fas fa-leaf"></i> Reserva Ecológica
+                            <span class="eco-indicator">
+                                <i class="fas fa-seedling"></i> Eco
+                            </span>
+                        </a></li>
+                        <li><a href="{{ url_for('galeria') }}" {% if request.endpoint == 'galeria' %}class="active"{% endif %}>
+                            <i class="fas fa-images"></i> Galería
+                        </a></li>
+                        <li><a href="{{ url_for('contacto') }}" {% if request.endpoint == 'contacto' %}class="active"{% endif %}>
+                            <i class="fas fa-envelope"></i> Contacto
+                        </a></li>
+                    </ul>
+                </nav>
+
+                <!-- Acciones del header -->
+                <div class="header-actions">
+                    <a href="{{ url_for('reservaciones') }}" class="btn-reserva">
+                        <i class="fas fa-calendar-check"></i> Reservar Ahora
+                    </a>
+                </div>
+
+                <!-- Menú móvil -->
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <script>
+        // Menú móvil
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menuToggle');
+            const mainNav = document.getElementById('mainNav');
+            
+            menuToggle.addEventListener('click', function() {
+                mainNav.classList.toggle('active');
+                menuToggle.innerHTML = mainNav.classList.contains('active') 
+                    ? '<i class="fas fa-times"></i>' 
+                    : '<i class="fas fa-bars"></i>';
+            });
+            
+            // Cerrar menú al hacer clic en un enlace
+            const navLinks = mainNav.querySelectorAll('a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mainNav.classList.remove('active');
+                    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                });
+            });
+            
+            // Cerrar menú al hacer clic fuera
+            document.addEventListener('click', (e) => {
+                if (!mainNav.contains(e.target) && !menuToggle.contains(e.target)) {
+                    mainNav.classList.remove('active');
+                    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+# Trajineras Barrón - Dependencias para Producción
+
+# Framework Web
+Flask==3.0.0
+Werkzeug==3.0.1
+Jinja2==3.1.2
+MarkupSafe==2.1.3
+itsdangerous==2.1.2
+click==8.1.7
+
+# Servidor WSGI para producción
+gunicorn==21.2.0
+
+# Utilidades
+python-dateutil==2.8.2
+pytz==2023.3
