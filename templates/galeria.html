@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 </head>
+
 <body>
     {% include 'header.html' %}
 
@@ -18,12 +20,14 @@
         <div class="video-background">
             <div class="video-overlay"></div>
             <video autoplay muted loop playsinline>
-                <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-canal-in-xochimilco-49558-large.mp4" type="video/mp4">
+                <source
+                    src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-canal-in-xochimilco-49558-large.mp4"
+                    type="video/mp4">
                 <!-- Video de respaldo -->
                 Tu navegador no soporta videos HTML5.
             </video>
         </div>
-        
+
         <div class="hero-content">
             <div class="container">
                 <h1 class="hero-title">
@@ -31,9 +35,10 @@
                 </h1>
                 <p class="hero-subtitle">Donde Cada Recuerdo se Convierte en Arte</p>
                 <p class="hero-description">
-                    Explora momentos reales capturados por nuestros visitantes y déjate inspirar por la magia de Xochimilco.
+                    Explora momentos reales capturados por nuestros visitantes y déjate inspirar por la magia de
+                    Xochimilco.
                 </p>
-                
+
                 <div class="hero-stats">
                     <div class="stat-item">
                         <i class="fas fa-images"></i>
@@ -56,18 +61,9 @@
                         <span class="stat-label">Visitantes</span>
                     </div>
                 </div>
-                
-                <div class="hero-actions">
-                    <a href="#galeria" class="btn btn-primary">
-                        <i class="fas fa-images"></i> Explorar Galería
-                    </a>
-                    <a href="#subir-foto" class="btn btn-outline">
-                        <i class="fas fa-upload"></i> Subir Tu Foto
-                    </a>
-                </div>
             </div>
         </div>
-        
+
         <div class="scroll-indicator">
             <i class="fas fa-chevron-down"></i>
         </div>
@@ -84,7 +80,7 @@
                     Filtra por categoría y descubre momentos únicos
                 </p>
             </div>
-            
+
             <!-- Filtros de categoría -->
             <div class="gallery-filters">
                 <div class="filters-container">
@@ -93,7 +89,7 @@
                     </button>
                     <!-- Los filtros se cargarán dinámicamente -->
                 </div>
-                
+
                 <div class="filter-info">
                     <span id="filter-count">Cargando...</span>
                     <div class="view-toggle">
@@ -106,7 +102,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Grid de imágenes -->
             <div class="gallery-grid" id="gallery-grid">
                 <!-- Las imágenes se cargarán dinámicamente -->
@@ -115,21 +111,21 @@
                     <p>Cargando galería...</p>
                 </div>
             </div>
-            
+
             <!-- Modal para imagen ampliada -->
             <div class="image-modal" id="image-modal">
                 <div class="modal-content">
                     <button class="modal-close" onclick="closeModal()">
                         <i class="fas fa-times"></i>
                     </button>
-                    
+
                     <div class="modal-image-container">
                         <img id="modal-image" src="" alt="">
                         <div class="image-loader">
                             <i class="fas fa-spinner fa-spin"></i>
                         </div>
                     </div>
-                    
+
                     <div class="modal-info">
                         <div class="image-meta">
                             <div class="author-info">
@@ -141,7 +137,7 @@
                                     <p id="modal-date">Fecha</p>
                                 </div>
                             </div>
-                            
+
                             <div class="image-stats">
                                 <button class="stat-btn like-btn" onclick="likeImage()">
                                     <i class="far fa-heart"></i>
@@ -157,12 +153,12 @@
                                 </button>
                             </div>
                         </div>
-                        
+
                         <div class="image-description">
                             <h4>Descripción</h4>
                             <p id="modal-description">Cargando descripción...</p>
                         </div>
-                        
+
                         <div class="image-tags">
                             <h4>Etiquetas</h4>
                             <div class="tags-container" id="modal-tags">
@@ -172,7 +168,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Botón para cargar más -->
             <div class="load-more-container">
                 <button class="btn btn-outline" id="load-more-btn" onclick="loadMoreImages()">
@@ -193,19 +189,13 @@
                     Descubre Xochimilco a través de los ojos de nuestros visitantes
                 </p>
             </div>
-            
+
             <div class="videos-grid" id="videos-grid">
                 <!-- Los videos se cargarán dinámicamente -->
                 <div class="loading-videos">
                     <i class="fas fa-spinner fa-spin"></i>
                     <p>Cargando videos...</p>
                 </div>
-            </div>
-            
-            <div class="text-center" style="margin-top: 40px;">
-                <a href="#mas-videos" class="btn btn-primary">
-                    <i class="fas fa-film"></i> Ver Más Videos
-                </a>
             </div>
         </div>
     </section>
@@ -221,19 +211,19 @@
                     Descubre los rincones más mágicos de Xochimilco
                 </p>
             </div>
-            
+
             <!-- Carrusel de experiencias -->
             <div class="swiper experiences-swiper">
                 <div class="swiper-wrapper" id="experiences-carousel">
                     <!-- Las experiencias se cargarán dinámicamente -->
                 </div>
-                
+
                 <!-- Navegación del carrusel -->
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-pagination"></div>
             </div>
-            
+
             <!-- Descripción expandida -->
             <div class="experience-details" id="experience-details">
                 <!-- Se llenará dinámicamente cuando se seleccione una experiencia -->
@@ -241,29 +231,7 @@
         </div>
     </section>
 
-    <!-- 5. ÁLBUMES POR PAQUETE -->
-    <section class="section albums-section" style="background-color: var(--light-color);">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">
-                    <i class="fas fa-book"></i> Álbumes por Paquete
-                </h2>
-                <p class="section-subtitle">
-                    Explora las experiencias organizadas por tipo de paquete
-                </p>
-            </div>
-            
-            <div class="albums-grid" id="albums-grid">
-                <!-- Los álbumes se cargarán dinámicamente -->
-                <div class="loading-albums">
-                    <i class="fas fa-spinner fa-spin"></i>
-                    <p>Cargando álbumes...</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 6. GALERÍA HISTÓRICA -->
+    <!-- 5. GALERÍA HISTÓRICA -->
     <section class="section historical-gallery">
         <div class="container">
             <div class="section-header">
@@ -274,15 +242,15 @@
                     Un viaje en el tiempo a través de Xochimilco
                 </p>
             </div>
-            
+
             <div class="timeline-container">
                 <div class="timeline-line"></div>
-                
+
                 <div class="timeline-items" id="timeline-items">
                     <!-- Los items históricos se cargarán dinámicamente -->
                 </div>
             </div>
-            
+
             <div class="before-after-container" id="before-after-gallery">
                 <!-- Comparaciones antes/después se cargarán dinámicamente -->
             </div>
@@ -300,7 +268,7 @@
                     <p class="cta-subtitle">
                         Comparte tus momentos y sé parte de nuestra comunidad
                     </p>
-                    
+
                     <div class="cta-features">
                         <div class="feature-item">
                             <i class="fas fa-check-circle"></i>
@@ -315,12 +283,12 @@
                             <span>Reconocimiento como fotógrafo destacado</span>
                         </div>
                     </div>
-                    
+
                     <div class="hashtag-container">
                         <h4>Usa nuestro hashtag oficial:</h4>
                         <div class="hashtag-tag">
                             <i class="fas fa-hashtag"></i>
-                            <span>XochimilcoBarron</span>
+                            <span>TrajinerasBarron</span>
                             <button class="copy-hashtag" onclick="copyHashtag()">
                                 <i class="far fa-copy"></i> Copiar
                             </button>
@@ -330,80 +298,6 @@
                         </p>
                     </div>
                 </div>
-                
-                <div class="cta-form">
-                    <div class="upload-container">
-                        <div class="upload-area" id="upload-area">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                            <h4>Sube tu foto</h4>
-                            <p>Arrastra y suelta o haz clic para seleccionar</p>
-                            <input type="file" id="photo-upload" accept="image/*" hidden>
-                            <button class="btn btn-outline" onclick="document.getElementById('photo-upload').click()">
-                                <i class="fas fa-folder-open"></i> Seleccionar archivo
-                            </button>
-                        </div>
-                        
-                        <div class="upload-form" id="upload-form" style="display: none;">
-                            <h4>Información de la foto</h4>
-                            
-                            <div class="form-group">
-                                <label for="photo-title">Título (opcional)</label>
-                                <input type="text" id="photo-title" placeholder="Ej: Mi día en Xochimilco">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="photo-description">Descripción</label>
-                                <textarea id="photo-description" rows="3" placeholder="Cuéntanos sobre esta foto..."></textarea>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="photo-category">Categoría</label>
-                                <select id="photo-category">
-                                    <option value="">Seleccionar categoría</option>
-                                    <option value="familiar">Familiar</option>
-                                    <option value="romantico">Romántico</option>
-                                    <option value="eventos">Eventos</option>
-                                    <option value="naturaleza">Naturaleza</option>
-                                </select>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="photo-hashtag">Hashtags</label>
-                                <input type="text" id="photo-hashtag" value="#XochimilcoBarron" readonly>
-                            </div>
-                            
-                            <div class="form-group checkbox-group">
-                                <input type="checkbox" id="photo-terms" required>
-                                <label for="photo-terms">
-                                    Acepto que esta foto puede ser publicada en la galería
-                                </label>
-                            </div>
-                            
-                            <div class="form-actions">
-                                <button class="btn btn-outline" onclick="cancelUpload()">
-                                    Cancelar
-                                </button>
-                                <button class="btn btn-primary" onclick="submitPhoto()">
-                                    <i class="fas fa-upload"></i> Subir Foto
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <div class="upload-preview" id="upload-preview" style="display: none;">
-                            <!-- Vista previa de la imagen -->
-                        </div>
-                    </div>
-                    
-                    <div class="upload-note">
-                        <p><i class="fas fa-info-circle"></i> Las fotos serán revisadas antes de ser publicadas. Recibirás un email de confirmación.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="cta-button-container">
-                <a href="/reservaciones" class="btn btn-primary btn-large">
-                    <i class="fas fa-calendar-check"></i> Reserva Tu Experiencia y Comparte Tus Fotos
-                </a>
             </div>
         </div>
     </section>
@@ -415,7 +309,7 @@
                 <div class="footer-section">
                     <h3><i class="fas fa-camera"></i> Galería Trajineras Barrón</h3>
                     <p>Un archivo visual de experiencias inolvidables en Xochimilco desde 2024</p>
-                    
+
                     <div class="social-gallery">
                         <h4>Síguenos para más fotos:</h4>
                         <div class="social-links">
@@ -431,33 +325,7 @@
                         </div>
                     </div>
                 </div>
-                
-                <div class="footer-section">
-                    <h3><i class="fas fa-link"></i> Enlaces de Galería</h3>
-                    <ul class="footer-links">
-                        <li><a href="#galeria">Galería Principal</a></li>
-                        <li><a href="#videos">Videos</a></li>
-                        <li><a href="#experiencias">Experiencias</a></li>
-                        <li><a href="#albumes">Álbumes</a></li>
-                        <li><a href="#historico">Galería Histórica</a></li>
-                        <li><a href="#subir-foto">Subir Foto</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3><i class="fas fa-user-tie"></i> Para Fotógrafos</h3>
-                    <p>¿Eres fotógrafo profesional? Colabora con nosotros</p>
-                    
-                    <div class="photographer-form" id="photographer-form">
-                        <input type="email" id="photographer-email" placeholder="tu@email.com">
-                        <button class="btn btn-outline btn-small" onclick="submitPhotographerRequest()">
-                            <i class="fas fa-paper-plane"></i> Solicitar Info
-                        </button>
-                    </div>
-                    
-                    <p class="small-note">Te contactaremos para oportunidades de colaboración</p>
-                </div>
-                
+
                 <div class="footer-section">
                     <h3><i class="fas fa-file-contract"></i> Uso de Imágenes</h3>
                     <ul class="legal-links">
@@ -466,7 +334,7 @@
                         <li><a href="/privacidad">Privacidad de Fotografías</a></li>
                         <li><a href="/terminos">Términos de Publicación</a></li>
                     </ul>
-                    
+
                     <div class="copyright">
                         <p>&copy; 2024 Trajineras Barrón. Todas las fotos son propiedad de sus respectivos autores.</p>
                     </div>
@@ -475,20 +343,16 @@
         </div>
     </footer>
 
+    {% include 'footer.html' %}
+
     <!-- Botones flotantes -->
     <div class="floating-buttons">
-        <button class="floating-btn upload-btn" onclick="openUpload()">
-            <i class="fas fa-upload"></i>
-            <span class="floating-tooltip">Subir Foto</span>
-        </button>
-        <button class="floating-btn filter-btn" onclick="scrollToFilters()">
-            <i class="fas fa-filter"></i>
-            <span class="floating-tooltip">Filtros</span>
-        </button>
-        <button class="floating-btn instagram-btn" onclick="openInstagram()">
-            <i class="fab fa-instagram"></i>
-            <span class="floating-tooltip">Instagram</span>
-        </button>
+        <a href="https://wa.me/525560094568" class="floating-btn whatsapp-btn" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="tel:+525560094568" class="floating-btn phone-btn">
+            <i class="fas fa-phone-alt"></i>
+        </a>
     </div>
 
     <!-- Scripts -->
@@ -501,94 +365,112 @@
         let isLoading = false;
         let selectedImage = null;
         let uploadedPhoto = null;
-        
+
         // Datos de ejemplo para la galería
         const galleryImages = [
             // Eventos
-            { id: 1, category: 'eventos', url: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed', 
-              author: 'Juan Pérez', likes: 45, date: '2024-03-15', description: 'Celebración de XV años en trajinera',
-              tags: ['#XVaños', '#fiesta', '#trajineras'] },
-            { id: 2, category: 'eventos', url: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09', 
-              author: 'María García', likes: 32, date: '2024-02-28', description: 'Boda en los canales de Xochimilco',
-              tags: ['#boda', '#romantico', '#xochimilco'] },
-            
+            {
+                id: 1, category: 'eventos', url: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed',
+                author: 'Juan Pérez', likes: 45, date: '2024-03-15', description: 'Celebración de XV años en trajinera',
+                tags: ['#XVaños', '#fiesta', '#trajineras']
+            },
+            {
+                id: 2, category: 'eventos', url: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09',
+                author: 'María García', likes: 32, date: '2024-02-28', description: 'Boda en los canales de Xochimilco',
+                tags: ['#boda', '#romantico', '#xochimilco']
+            },
+
             // Familiar
-            { id: 3, category: 'familiar', url: 'https://images.unsplash.com/photo-1566073771259-6a8506099945', 
-              author: 'Familia Rodríguez', likes: 89, date: '2024-03-10', description: 'Día familiar en Xochimilco',
-              tags: ['#familia', '#disfrute', '#paseo'] },
-            { id: 4, category: 'familiar', url: 'https://images.unsplash.com/photo-1528433556524-74e7e3bfa599', 
-              author: 'Ana Martínez', likes: 56, date: '2024-03-05', description: 'Los niños disfrutando del recorrido',
-              tags: ['#niños', '#alegria', '#recorrido'] },
-            
+            {
+                id: 3, category: 'familiar', url: 'https://images.unsplash.com/photo-1566073771259-6a8506099945',
+                author: 'Familia Rodríguez', likes: 89, date: '2024-03-10', description: 'Día familiar en Xochimilco',
+                tags: ['#familia', '#disfrute', '#paseo']
+            },
+            {
+                id: 4, category: 'familiar', url: 'https://images.unsplash.com/photo-1528433556524-74e7e3bfa599',
+                author: 'Ana Martínez', likes: 56, date: '2024-03-05', description: 'Los niños disfrutando del recorrido',
+                tags: ['#niños', '#alegria', '#recorrido']
+            },
+
             // Romántico
-            { id: 5, category: 'romantico', url: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3', 
-              author: 'Carlos y Sofía', likes: 67, date: '2024-02-14', description: 'Cena romántica al atardecer',
-              tags: ['#romantico', '#atardecer', '#cena'] },
-            
+            {
+                id: 5, category: 'romantico', url: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3',
+                author: 'Carlos y Sofía', likes: 67, date: '2024-02-14', description: 'Cena romántica al atardecer',
+                tags: ['#romantico', '#atardecer', '#cena']
+            },
+
             // Amanecer/Atardecer
-            { id: 6, category: 'amanecer', url: 'https://images.unsplash.com/photo-1501854140801-50d01698950b', 
-              author: 'Fotógrafo Anónimo', likes: 78, date: '2024-03-01', description: 'Amanecer en los canales',
-              tags: ['#amanecer', '#naturaleza', '#paisaje'] },
-            
+            {
+                id: 6, category: 'amanecer', url: 'https://images.unsplash.com/photo-1501854140801-50d01698950b',
+                author: 'Fotógrafo Anónimo', likes: 78, date: '2024-03-01', description: 'Amanecer en los canales',
+                tags: ['#amanecer', '#naturaleza', '#paisaje']
+            },
+
             // Gastronomía
-            { id: 7, category: 'gastronomia', url: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187', 
-              author: 'Chef Miguel', likes: 42, date: '2024-03-12', description: 'Comida tradicional mexicana',
-              tags: ['#comida', '#mexicana', '#tradicion'] },
-            
+            {
+                id: 7, category: 'gastronomia', url: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187',
+                author: 'Chef Miguel', likes: 42, date: '2024-03-12', description: 'Comida tradicional mexicana',
+                tags: ['#comida', '#mexicana', '#tradicion']
+            },
+
             // Música
-            { id: 8, category: 'musica', url: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d', 
-              author: 'Grupo Musical', likes: 53, date: '2024-03-08', description: 'Mariachi en trajinera',
-              tags: ['#musica', '#mariachi', '#fiesta'] },
-            
+            {
+                id: 8, category: 'musica', url: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d',
+                author: 'Grupo Musical', likes: 53, date: '2024-03-08', description: 'Mariachi en trajinera',
+                tags: ['#musica', '#mariachi', '#fiesta']
+            },
+
             // Naturaleza
-            { id: 9, category: 'naturaleza', url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4', 
-              author: 'Ecologista', likes: 91, date: '2024-03-03', description: 'Flora y fauna de Xochimilco',
-              tags: ['#naturaleza', '#ecologia', '#chinampas'] }
+            {
+                id: 9, category: 'naturaleza', url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4',
+                author: 'Ecologista', likes: 91, date: '2024-03-03', description: 'Flora y fauna de Xochimilco',
+                tags: ['#naturaleza', '#ecologia', '#chinampas']
+            }
         ];
-        
+
         // Inicialización
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Cargar datos de la galería
             loadGalleryData();
-            
+
             // Inicializar carrusel de experiencias
             initExperiencesCarousel();
-            
+
             // Inicializar eventos
             initEventListeners();
-            
+
             // Cargar imágenes iniciales
             loadImages();
         });
-        
+
         // Cargar datos de la galería desde el servidor
         async function loadGalleryData() {
             try {
                 const response = await fetch('/api/galeria/datos');
                 const data = await response.json();
-                
+
                 // Cargar categorías
                 loadCategories(data.categorias);
-                
+
                 // Cargar videos
                 loadVideos(data.videos);
-                
+
                 // Cargar experiencias
                 loadExperiences(data.experiencias);
-                
+
                 // Cargar álbumes
                 loadAlbums(data.albumes);
-                
+
                 // Cargar histórico
                 loadHistorical(data.historico);
-                
+
             } catch (error) {
                 console.error('Error cargando datos:', error);
                 // Usar datos por defecto
                 loadDefaultData();
             }
         }
-        
+
         // Cargar datos por defecto
         function loadDefaultData() {
             const defaultCategories = [
@@ -600,19 +482,19 @@
                 { id: "musica", nombre: "🎵 Música y Fiesta", icono: "fas fa-music", contador: 41 },
                 { id: "naturaleza", nombre: "🌿 Naturaleza", icono: "fas fa-leaf", contador: 63 }
             ];
-            
+
             loadCategories(defaultCategories);
         }
-        
+
         // Cargar categorías en los filtros
         function loadCategories(categorias) {
             const filtersContainer = document.querySelector('.filters-container');
-            
+
             // Crear botón "Todas"
             const allButton = document.querySelector('.filter-btn[data-filter="all"]');
             const totalImages = galleryImages.length;
             allButton.innerHTML = `<i class="fas fa-border-all"></i> Todas (${totalImages})`;
-            
+
             // Crear botones para cada categoría
             categorias.forEach(categoria => {
                 const count = galleryImages.filter(img => img.category === categoria.id).length;
@@ -623,24 +505,24 @@
                     button.innerHTML = `
                         <i class="${categoria.icono}"></i> ${categoria.nombre} (${count})
                     `;
-                    
-                    button.addEventListener('click', function() {
+
+                    button.addEventListener('click', function () {
                         setFilter(categoria.id);
                     });
-                    
+
                     filtersContainer.appendChild(button);
                 }
             });
-            
+
             // Actualizar contador inicial
             updateFilterCount();
         }
-        
+
         // Establecer filtro
         function setFilter(filterId) {
             currentFilter = filterId;
             currentPage = 1;
-            
+
             // Actualizar botones activos
             document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.classList.remove('active');
@@ -648,29 +530,29 @@
                     btn.classList.add('active');
                 }
             });
-            
+
             // Recargar imágenes
             loadImages();
             updateFilterCount();
-            
+
             // Scroll suave a la galería
             document.getElementById('galeria').scrollIntoView({ behavior: 'smooth' });
         }
-        
+
         // Actualizar contador de filtro
         function updateFilterCount() {
             const countElement = document.getElementById('filter-count');
-            const filteredImages = currentFilter === 'all' 
-                ? galleryImages 
+            const filteredImages = currentFilter === 'all'
+                ? galleryImages
                 : galleryImages.filter(img => img.category === currentFilter);
-            
+
             countElement.textContent = `${filteredImages.length} fotos`;
         }
-        
+
         // Cargar imágenes
         function loadImages() {
             const grid = document.getElementById('gallery-grid');
-            
+
             // Mostrar loading
             grid.innerHTML = `
                 <div class="loading-gallery">
@@ -678,31 +560,31 @@
                     <p>Cargando fotos...</p>
                 </div>
             `;
-            
+
             // Simular carga
             setTimeout(() => {
                 renderImages();
             }, 500);
         }
-        
+
         // Renderizar imágenes
         function renderImages() {
             const grid = document.getElementById('gallery-grid');
-            
+
             // Filtrar imágenes
-            const filteredImages = currentFilter === 'all' 
-                ? galleryImages 
+            const filteredImages = currentFilter === 'all'
+                ? galleryImages
                 : galleryImages.filter(img => img.category === currentFilter);
-            
+
             // Calcular imágenes a mostrar (paginación simple)
             const imagesPerPage = 9;
             const startIndex = (currentPage - 1) * imagesPerPage;
             const endIndex = Math.min(startIndex + imagesPerPage, filteredImages.length);
             const imagesToShow = filteredImages.slice(startIndex, endIndex);
-            
+
             // Crear HTML
             let html = '';
-            
+
             imagesToShow.forEach(image => {
                 html += `
                     <div class="gallery-item" data-category="${image.category}" data-id="${image.id}">
@@ -745,9 +627,9 @@
                     </div>
                 `;
             });
-            
+
             grid.innerHTML = html;
-            
+
             // Configurar botón de cargar más
             const loadMoreBtn = document.getElementById('load-more-btn');
             if (endIndex < filteredImages.length) {
@@ -756,16 +638,16 @@
                 loadMoreBtn.style.display = 'none';
             }
         }
-        
+
         // Cargar más imágenes
         function loadMoreImages() {
             currentPage++;
             isLoading = true;
-            
+
             const loadMoreBtn = document.getElementById('load-more-btn');
             loadMoreBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Cargando...';
             loadMoreBtn.disabled = true;
-            
+
             setTimeout(() => {
                 renderImages();
                 isLoading = false;
@@ -773,49 +655,49 @@
                 loadMoreBtn.disabled = false;
             }, 1000);
         }
-        
+
         // Abrir modal de imagen
         function openImageModal(imageId) {
             const image = galleryImages.find(img => img.id === imageId);
             if (!image) return;
-            
+
             selectedImage = image;
-            
+
             const modal = document.getElementById('image-modal');
             const modalImage = document.getElementById('modal-image');
             const loader = document.querySelector('.image-loader');
-            
+
             // Mostrar modal
             modal.style.display = 'block';
             document.body.style.overflow = 'hidden';
-            
+
             // Mostrar loader
             loader.style.display = 'flex';
             modalImage.style.display = 'none';
-            
+
             // Cargar imagen
             modalImage.src = image.url;
             modalImage.alt = image.description;
-            
+
             // Cuando la imagen cargue
-            modalImage.onload = function() {
+            modalImage.onload = function () {
                 loader.style.display = 'none';
                 modalImage.style.display = 'block';
-                
+
                 // Actualizar información
                 document.getElementById('modal-author').textContent = image.author;
                 document.getElementById('modal-date').textContent = `Publicado: ${image.date}`;
                 document.getElementById('modal-likes').textContent = image.likes;
                 document.getElementById('modal-description').textContent = image.description;
-                
+
                 // Actualizar tags
                 const tagsContainer = document.getElementById('modal-tags');
-                tagsContainer.innerHTML = image.tags.map(tag => 
+                tagsContainer.innerHTML = image.tags.map(tag =>
                     `<span class="tag">${tag}</span>`
                 ).join('');
             };
         }
-        
+
         // Cerrar modal
         function closeModal() {
             const modal = document.getElementById('image-modal');
@@ -823,20 +705,20 @@
             document.body.style.overflow = 'auto';
             selectedImage = null;
         }
-        
+
         // Dar like a imagen
         function toggleLike(imageId) {
             const image = galleryImages.find(img => img.id === imageId);
             if (!image) return;
-            
+
             image.likes++;
-            
+
             // Actualizar UI
             const likeElement = document.querySelector(`[data-id="${imageId}"] .image-likes span`);
             if (likeElement) {
                 likeElement.textContent = image.likes;
             }
-            
+
             // Enviar like al servidor
             fetch('/api/galeria/like', {
                 method: 'POST',
@@ -845,16 +727,16 @@
                 },
                 body: JSON.stringify({ imagen_id: imageId })
             });
-            
+
             // Mostrar feedback
             showNotification('¡Like registrado!', 'success');
         }
-        
+
         // Compartir imagen
         function shareImage(imageId) {
             const image = galleryImages.find(img => img.id === imageId);
             if (!image) return;
-            
+
             if (navigator.share) {
                 navigator.share({
                     title: 'Foto de Trajineras Barrón',
@@ -867,11 +749,11 @@
                 showNotification('Enlace copiado al portapapeles', 'info');
             }
         }
-        
+
         // Cargar videos
         function loadVideos(videos) {
             const videosGrid = document.getElementById('videos-grid');
-            
+
             if (!videos || videos.length === 0) {
                 videosGrid.innerHTML = `
                     <div class="no-videos">
@@ -881,9 +763,9 @@
                 `;
                 return;
             }
-            
+
             let html = '';
-            
+
             videos.forEach(video => {
                 html += `
                     <div class="video-card">
@@ -912,16 +794,16 @@
                     </div>
                 `;
             });
-            
+
             videosGrid.innerHTML = html;
         }
-        
+
         // Reproducir video
         function playVideo(videoId) {
             // En una implementación real, esto abriría un reproductor de video
             alert(`Reproduciendo video: ${videoId}`);
         }
-        
+
         // Inicializar carrusel de experiencias
         function initExperiencesCarousel() {
             const swiper = new Swiper('.experiences-swiper', {
@@ -942,15 +824,15 @@
                 }
             });
         }
-        
+
         // Cargar experiencias
         function loadExperiences(experiencias) {
             const carousel = document.getElementById('experiences-carousel');
-            
+
             if (!experiencias || experiencias.length === 0) return;
-            
+
             let html = '';
-            
+
             experiencias.forEach(exp => {
                 html += `
                     <div class="swiper-slide">
@@ -972,15 +854,15 @@
                     </div>
                 `;
             });
-            
+
             carousel.innerHTML = html;
-            
+
             // Reinicializar Swiper
             setTimeout(() => {
                 initExperiencesCarousel();
             }, 100);
         }
-        
+
         // Mostrar detalles de experiencia
         function showExperienceDetails(expId) {
             // En una implementación real, esto cargaría más detalles
@@ -991,18 +873,18 @@
                     <p>Cargando información detallada...</p>
                 </div>
             `;
-            
+
             detailsContainer.scrollIntoView({ behavior: 'smooth' });
         }
-        
+
         // Cargar álbumes
         function loadAlbums(albumes) {
             const albumsGrid = document.getElementById('albums-grid');
-            
+
             if (!albumes || albumes.length === 0) return;
-            
+
             let html = '';
-            
+
             albumes.forEach(album => {
                 html += `
                     <div class="album-card">
@@ -1025,17 +907,17 @@
                     </div>
                 `;
             });
-            
+
             albumsGrid.innerHTML = html;
         }
-        
+
         // Cargar histórico
         function loadHistorical(historico) {
             const timeline = document.getElementById('timeline-items');
             const beforeAfter = document.getElementById('before-after-gallery');
-            
+
             if (!historico || historico.length === 0) return;
-            
+
             // Timeline
             let timelineHtml = '';
             historico.forEach((item, index) => {
@@ -1047,7 +929,7 @@
                 `;
             });
             timeline.innerHTML = timelineHtml;
-            
+
             // Before/After
             let beforeAfterHtml = '<h3>Comparación Antes/Después</h3>';
             historico.forEach(item => {
@@ -1076,30 +958,30 @@
                     </div>
                 `;
             });
-            
+
             beforeAfter.innerHTML = beforeAfterHtml;
         }
-        
+
         // Subir foto
-        document.getElementById('photo-upload').addEventListener('change', function(e) {
+        document.getElementById('photo-upload').addEventListener('change', function (e) {
             const file = e.target.files[0];
             if (!file) return;
-            
+
             if (!file.type.match('image.*')) {
                 showNotification('Por favor, selecciona solo imágenes', 'error');
                 return;
             }
-            
+
             if (file.size > 5 * 1024 * 1024) { // 5MB
                 showNotification('La imagen es muy grande. Máximo 5MB.', 'error');
                 return;
             }
-            
+
             uploadedPhoto = file;
-            
+
             // Mostrar vista previa
             const reader = new FileReader();
-            reader.onload = function(e) {
+            reader.onload = function (e) {
                 const preview = document.getElementById('upload-preview');
                 preview.innerHTML = `
                     <img src="${e.target.result}" alt="Vista previa">
@@ -1110,12 +992,12 @@
                 preview.style.display = 'block';
             };
             reader.readAsDataURL(file);
-            
+
             // Mostrar formulario
             document.getElementById('upload-area').style.display = 'none';
             document.getElementById('upload-form').style.display = 'block';
         });
-        
+
         // Eliminar vista previa
         function removePreview() {
             uploadedPhoto = null;
@@ -1123,7 +1005,7 @@
             document.getElementById('upload-preview').innerHTML = '';
             document.getElementById('photo-upload').value = '';
         }
-        
+
         // Cancelar subida
         function cancelUpload() {
             uploadedPhoto = null;
@@ -1134,30 +1016,30 @@
             document.getElementById('photo-upload').value = '';
             document.getElementById('photo-form').reset();
         }
-        
+
         // Enviar foto
         async function submitPhoto() {
             if (!uploadedPhoto) {
                 showNotification('Por favor, selecciona una foto', 'error');
                 return;
             }
-            
+
             const title = document.getElementById('photo-title').value;
             const description = document.getElementById('photo-description').value;
             const category = document.getElementById('photo-category').value;
             const hashtag = document.getElementById('photo-hashtag').value;
             const terms = document.getElementById('photo-terms').checked;
-            
+
             if (!terms) {
                 showNotification('Debes aceptar los términos de publicación', 'error');
                 return;
             }
-            
+
             if (!description.trim()) {
                 showNotification('Por favor, añade una descripción', 'error');
                 return;
             }
-            
+
             // Simular envío
             try {
                 const response = await fetch('/api/galeria/subir', {
@@ -1172,36 +1054,36 @@
                         hashtag: hashtag
                     })
                 });
-                
+
                 const data = await response.json();
-                
+
                 if (data.success) {
                     showNotification('¡Foto enviada exitosamente! Será revisada pronto.', 'success');
                     cancelUpload();
                 } else {
                     showNotification('Error al enviar la foto: ' + data.error, 'error');
                 }
-                
+
             } catch (error) {
                 showNotification('Error de conexión. Intenta nuevamente.', 'error');
             }
         }
-        
+
         // Copiar hashtag
         function copyHashtag() {
             navigator.clipboard.writeText('#XochimilcoBarron');
             showNotification('Hashtag copiado al portapapeles', 'success');
         }
-        
+
         // Solicitud para fotógrafos
         async function submitPhotographerRequest() {
             const email = document.getElementById('photographer-email').value;
-            
+
             if (!email || !email.includes('@')) {
                 showNotification('Por favor, ingresa un email válido', 'error');
                 return;
             }
-            
+
             try {
                 const response = await fetch('/api/galeria/fotografos', {
                     method: 'POST',
@@ -1212,50 +1094,50 @@
                         email: email
                     })
                 });
-                
+
                 const data = await response.json();
-                
+
                 if (data.success) {
                     showNotification('Solicitud enviada. Te contactaremos pronto.', 'success');
                     document.getElementById('photographer-email').value = '';
                 }
-                
+
             } catch (error) {
                 showNotification('Error al enviar solicitud', 'error');
             }
         }
-        
+
         // Inicializar event listeners
         function initEventListeners() {
             // Cerrar modal con ESC
-            document.addEventListener('keydown', function(e) {
+            document.addEventListener('keydown', function (e) {
                 if (e.key === 'Escape') {
                     closeModal();
                 }
             });
-            
+
             // Cerrar modal haciendo clic fuera
-            document.getElementById('image-modal').addEventListener('click', function(e) {
+            document.getElementById('image-modal').addEventListener('click', function (e) {
                 if (e.target === this) {
                     closeModal();
                 }
             });
-            
+
             // Cambiar vista (grid/masonry)
             document.querySelectorAll('.view-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
+                btn.addEventListener('click', function () {
                     const view = this.dataset.view;
-                    
+
                     document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
-                    
+
                     currentView = view;
                     const grid = document.getElementById('gallery-grid');
                     grid.className = view === 'grid' ? 'gallery-grid' : 'gallery-grid masonry';
                 });
             });
         }
-        
+
         // Funciones auxiliares
         function showNotification(message, type = 'info') {
             // Crear notificación
@@ -1265,30 +1147,19 @@
                 <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
                 <span>${message}</span>
             `;
-            
+
             document.body.appendChild(notification);
-            
+
             // Mostrar
             setTimeout(() => notification.classList.add('show'), 10);
-            
+
             // Ocultar después de 3 segundos
             setTimeout(() => {
                 notification.classList.remove('show');
                 setTimeout(() => notification.remove(), 300);
             }, 3000);
         }
-        
-        function openUpload() {
-            document.getElementById('subir-foto').scrollIntoView({ behavior: 'smooth' });
-        }
-        
-        function scrollToFilters() {
-            document.querySelector('.gallery-filters').scrollIntoView({ behavior: 'smooth' });
-        }
-        
-        function openInstagram() {
-            window.open('https://instagram.com/trajinerasbarron', '_blank');
-        }
     </script>
 </body>
+
 </html>
