@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
     {% include 'header.html' %}
 
@@ -17,7 +19,7 @@
         <div class="hero-content">
             <h1>Vive la magia de Xochimilco</h1>
             <p class="hero-subtitle">Tradición y Cultura en cada recorrido</p>
-            <p class="hero-discount">🎉 20% descuento en tu primera reserva 🎉</p>
+            <p class="hero-discount">🎉 21% descuento en tu primera reserva 🎉</p>
             <div class="hero-buttons">
                 <a href="/reservaciones" class="btn btn-primary">
                     <i class="fas fa-calendar-check"></i> Reserva ahora
@@ -43,7 +45,9 @@
                 </div>
                 <div class="video-text">
                     <h2 class="section-title">Xochimilco, Patrimonio de la Humanidad</h2>
-                    <p>Navega en trajineras tradicionales con música, comida y cultura viva. Descubre la esencia de México en cada rincón de los canales más emblemáticos de la Ciudad de México. Una experiencia que combina tradición, naturaleza y alegría en un entorno único.</p>
+                    <p>Navega en trajineras tradicionales con música, comida y cultura viva. Descubre la esencia de
+                        México en cada rincón de los canales más emblemáticos de la Ciudad de México. Una experiencia
+                        que combina tradición, naturaleza y alegría en un entorno único.</p>
                     <ul class="video-features">
                         <li><i class="fas fa-check"></i> Experiencia 100% auténtica</li>
                         <li><i class="fas fa-check"></i> Guías certificados</li>
@@ -60,11 +64,12 @@
         <div class="container">
             <h2 class="section-title">Paquetes Destacados</h2>
             <p class="section-subtitle">Elige la experiencia perfecta para ti y tu familia</p>
-            
+
             <div class="packages-grid">
                 {% for key, package in packages.items() %}
                 <div class="package-card">
-                    <div class="package-image" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400') center/cover;">
+                    <div class="package-image"
+                        style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400') center/cover;">
                         <div class="package-badge">
                             {% if key == 'familiar' %}
                             <span class="badge popular">Más Popular</span>
@@ -83,7 +88,8 @@
                             <div class="price-current">${{ package.price }} MXN</div>
                             {% if package.original_price > package.price %}
                             <div class="price-original">${{ package.original_price }} MXN</div>
-                            <div class="price-discount">Ahorra {{ ((package.original_price - package.price) / package.original_price * 100)|int }}%</div>
+                            <div class="price-discount">Ahorra {{ ((package.original_price - package.price) /
+                                package.original_price * 100)|int }}%</div>
                             {% endif %}
                             {% else %}
                             <div class="price-current">Cotizar</div>
@@ -106,7 +112,7 @@
                 </div>
                 {% endfor %}
             </div>
-            
+
             <div class="text-center" style="margin-top: 40px;">
                 <a href="/servicios" class="btn btn-outline">
                     <i class="fas fa-list"></i> Ver todos los paquetes
@@ -120,14 +126,15 @@
         <div class="container">
             <h2 class="section-title">Tradiciones de Xochimilco</h2>
             <p class="section-subtitle">Descubre la riqueza cultural que nos hace únicos</p>
-            
+
             <div class="traditions-grid">
                 <div class="tradition-card">
                     <div class="tradition-icon">
                         <i class="fas fa-guitar"></i>
                     </div>
                     <h3>Música de Mariachi</h3>
-                    <p>Disfruta de los mejores mariachis mientras navegas por los canales, creando una atmósfera festiva y auténtica.</p>
+                    <p>Disfruta de los mejores mariachis mientras navegas por los canales, creando una atmósfera festiva
+                        y auténtica.</p>
                 </div>
                 <div class="tradition-card">
                     <div class="tradition-icon">
@@ -141,7 +148,8 @@
                         <i class="fas fa-utensils"></i>
                     </div>
                     <h3>Gastronomía Ancestral</h3>
-                    <p>Prueba los sabores auténticos de México con platillos tradicionales preparados con recetas centenarias.</p>
+                    <p>Prueba los sabores auténticos de México con platillos tradicionales preparados con recetas
+                        centenarias.</p>
                 </div>
                 <div class="tradition-card">
                     <div class="tradition-icon">
@@ -159,7 +167,7 @@
         <div class="container">
             <h2 class="section-title">Galería de Experiencias</h2>
             <p class="section-subtitle">Momentos únicos capturados por nuestros visitantes</p>
-            
+
             <div class="gallery-filters">
                 <button class="filter-btn active" data-filter="all">Todas</button>
                 <button class="filter-btn" data-filter="familiar">
@@ -175,16 +183,18 @@
                     <i class="fas fa-tree"></i> Naturaleza
                 </button>
             </div>
-            
+
             <div class="gallery-grid">
                 <div class="gallery-item" data-category="familiar">
-                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400" alt="Familia en trajinera">
+                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400"
+                        alt="Familia en trajinera">
                     <div class="gallery-overlay">
                         <p>Familia disfrutando del paseo</p>
                     </div>
                 </div>
                 <div class="gallery-item" data-category="romantico">
-                    <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w-400" alt="Pareja en trajinera">
+                    <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w-400"
+                        alt="Pareja en trajinera">
                     <div class="gallery-overlay">
                         <p>Pareja al atardecer</p>
                     </div>
@@ -202,10 +212,11 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="user-gallery">
                 <h3>¡Comparte tu experiencia!</h3>
-                <p>Usa <strong>#XochimilcoBarron</strong> en Instagram y etiqueta @trajinerasbarron para aparecer en nuestra galería</p>
+                <p>Usa <strong>#XochimilcoBarron</strong> en Instagram y etiqueta @trajinerasbarron para aparecer en
+                    nuestra galería</p>
                 <div class="social-tags">
                     <span class="social-tag">#TrajinerasBarrón</span>
                     <span class="social-tag">#Xochimilco</span>
@@ -220,7 +231,7 @@
         <div class="container">
             <h2 class="section-title">Lo que dicen nuestros clientes</h2>
             <p class="section-subtitle">Experiencias reales, sonrisas genuinas</p>
-            
+
             <div class="testimonials-grid">
                 <div class="testimonial-card">
                     <div class="testimonial-header">
@@ -233,19 +244,20 @@
                         </div>
                         <div class="rating">5/5</div>
                     </div>
-                    <p class="testimonial-text">"Una experiencia increíble! La trajinera estaba hermosa y el mariachi hizo que todo fuera perfecto. Totalmente recomendado para familias."</p>
+                    <p class="testimonial-text">"Una experiencia increíble! La trajinera estaba hermosa y el mariachi
+                        hizo que todo fuera perfecto. Totalmente recomendado para familias."</p>
                     <div class="testimonial-author">
                         <div class="author-avatar">MG</div>
                         <div class="author-info">
                             <p class="author-name">María González</p>
                             <p class="testimonial-meta">
-                                <i class="far fa-calendar"></i> 15 dic 2024 • 
+                                <i class="far fa-calendar"></i> 15 dic 2024 •
                                 <i class="fas fa-gift"></i> Paquete Familiar
                             </p>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="testimonial-card">
                     <div class="testimonial-header">
                         <div class="stars">
@@ -257,19 +269,20 @@
                         </div>
                         <div class="rating">5/5</div>
                     </div>
-                    <p class="testimonial-text">"La lunada fue mágica. El ambiente, la comida y la atención fueron excepcionales. Una noche que nunca olvidaremos."</p>
+                    <p class="testimonial-text">"La lunada fue mágica. El ambiente, la comida y la atención fueron
+                        excepcionales. Una noche que nunca olvidaremos."</p>
                     <div class="testimonial-author">
                         <div class="author-avatar">CS</div>
                         <div class="author-info">
                             <p class="author-name">Carlos y Sofía</p>
                             <p class="testimonial-meta">
-                                <i class="far fa-calendar"></i> 8 ene 2025 • 
+                                <i class="far fa-calendar"></i> 8 ene 2025 •
                                 <i class="fas fa-moon"></i> Paquete Lunada
                             </p>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="testimonial-card">
                     <div class="testimonial-header">
                         <div class="stars">
@@ -281,20 +294,21 @@
                         </div>
                         <div class="rating">5/5</div>
                     </div>
-                    <p class="testimonial-text">"Celebramos los 15 años de mi hija y fue perfecto. La decoración, el pastel y todo el servicio superó nuestras expectativas."</p>
+                    <p class="testimonial-text">"Celebramos los 15 años de mi hija y fue perfecto. La decoración, el
+                        pastel y todo el servicio superó nuestras expectativas."</p>
                     <div class="testimonial-author">
                         <div class="author-avatar">AR</div>
                         <div class="author-info">
                             <p class="author-name">Ana Ramírez</p>
                             <p class="testimonial-meta">
-                                <i class="far fa-calendar"></i> 20 dic 2024 • 
+                                <i class="far fa-calendar"></i> 20 dic 2024 •
                                 <i class="fas fa-birthday-cake"></i> Paquete Cumpleaños
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <div class="text-center" style="margin-top: 30px;">
                 <a href="/contacto#testimonios" class="btn btn-outline">
                     <i class="fas fa-comment-alt"></i> Ver más testimonios
@@ -308,16 +322,17 @@
         <div class="container">
             <h2 class="section-title">¿Por qué elegirnos?</h2>
             <p class="section-subtitle">La mejor experiencia en Xochimilco</p>
-            
+
             <div class="why-us-grid">
                 <div class="why-us-card">
                     <div class="why-us-icon">
                         <i class="fas fa-shield-alt"></i>
                     </div>
                     <h3>Seguridad Garantizada</h3>
-                    <p>Trajineras certificadas, seguros incluidos y protocolos de seguridad estrictos para tu tranquilidad.</p>
+                    <p>Trajineras certificadas, seguros incluidos y protocolos de seguridad estrictos para tu
+                        tranquilidad.</p>
                 </div>
-                
+
                 <div class="why-us-card">
                     <div class="why-us-icon">
                         <i class="fas fa-user-graduate"></i>
@@ -325,7 +340,7 @@
                     <h3>Guías Certificados</h3>
                     <p>Personal capacitado y profesional que conoce cada rincón de Xochimilco y sus historias.</p>
                 </div>
-                
+
                 <div class="why-us-card">
                     <div class="why-us-icon">
                         <i class="fas fa-tag"></i>
@@ -333,7 +348,7 @@
                     <h3>Precios Transparentes</h3>
                     <p>Sin costos ocultos ni sorpresas. Todo está claro desde el principio.</p>
                 </div>
-                
+
                 <div class="why-us-card">
                     <div class="why-us-icon">
                         <i class="fas fa-laptop"></i>
@@ -341,7 +356,7 @@
                     <h3>Reserva 100% en Línea</h3>
                     <p>Fácil, rápido y seguro. Reserva en minutos desde cualquier dispositivo.</p>
                 </div>
-                
+
                 <div class="why-us-card">
                     <div class="why-us-icon">
                         <i class="fas fa-trophy"></i>
@@ -358,7 +373,7 @@
         <div class="container">
             <h2 class="section-title">Cómo llegar</h2>
             <p class="section-subtitle">Encuéntranos fácilmente</p>
-            
+
             <div class="map-container">
                 <div class="map-wrapper">
                     <div class="map-placeholder">
@@ -372,7 +387,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="location-info">
                     <h3>Opciones de Transporte</h3>
                     <div class="transport-options">
@@ -385,7 +400,7 @@
                                 <p>Línea 2 hasta Tasqueña, luego taxi o Uber hasta el embarcadero</p>
                             </div>
                         </div>
-                        
+
                         <div class="transport-option">
                             <div class="transport-icon">
                                 <i class="fas fa-car"></i>
@@ -395,7 +410,7 @@
                                 <p>Estacionamiento disponible ($50 MXN por evento)</p>
                             </div>
                         </div>
-                        
+
                         <div class="transport-option">
                             <div class="transport-icon">
                                 <i class="fas fa-taxi"></i>
@@ -405,7 +420,7 @@
                                 <p>Buscar "Trajineras Barrón" o "Embarcadero Puente de Urrutia"</p>
                             </div>
                         </div>
-                        
+
                         <div class="transport-option">
                             <div class="transport-icon">
                                 <i class="fas fa-bus"></i>
@@ -416,7 +431,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="hours-info">
                         <h4><i class="far fa-clock"></i> Horarios de Atención</h4>
                         <ul>
@@ -436,7 +451,7 @@
         <div class="container">
             <h2 class="section-title">Preguntas Frecuentes</h2>
             <p class="section-subtitle">Resuelve tus dudas rápidamente</p>
-            
+
             <div class="faq-list">
                 <div class="faq-item">
                     <div class="faq-question">
@@ -444,61 +459,75 @@
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Recomendamos llevar protector solar, sombrero o gorra, ropa cómoda, zapatos cerrados y una cámara fotográfica. En época de lluvias, también sugerimos un paraguas o impermeable ligero. No olvides tu identificación oficial.</p>
+                        <p>Recomendamos llevar protector solar, sombrero o gorra, ropa cómoda, zapatos cerrados y una
+                            cámara fotográfica. En época de lluvias, también sugerimos un paraguas o impermeable ligero.
+                            No olvides tu identificación oficial.</p>
                     </div>
                 </div>
-                
+
                 <div class="faq-item">
                     <div class="faq-question">
                         <span>¿Qué pasa si llueve el día de mi reserva?</span>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Nuestras trajineras cuentan con techos resistentes que te protegen de la lluvia ligera. En caso de lluvia intensa o condiciones climáticas peligrosas, puedes reprogramar tu visita sin costo adicional con 24 horas de anticipación. Te recomendamos verificar el pronóstico del tiempo antes de tu visita.</p>
+                        <p>Nuestras trajineras cuentan con techos resistentes que te protegen de la lluvia ligera. En
+                            caso de lluvia intensa o condiciones climáticas peligrosas, puedes reprogramar tu visita sin
+                            costo adicional con 24 horas de anticipación. Te recomendamos verificar el pronóstico del
+                            tiempo antes de tu visita.</p>
                     </div>
                 </div>
-                
+
                 <div class="faq-item">
                     <div class="faq-question">
                         <span>¿Se puede cancelar o reprogramar la reserva?</span>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Sí, puedes cancelar con 48 horas de anticipación para un reembolso del 70%. El depósito del 30% no es reembolsable. Para reprogramaciones, puedes hacerlo sin costo con 24 horas de anticipación, sujeto a disponibilidad. En caso de emergencias, contáctanos inmediatamente.</p>
+                        <p>Sí, puedes cancelar con 48 horas de anticipación para un reembolso del 70%. El depósito del
+                            30% no es reembolsable. Para reprogramaciones, puedes hacerlo sin costo con 24 horas de
+                            anticipación, sujeto a disponibilidad. En caso de emergencias, contáctanos inmediatamente.
+                        </p>
                     </div>
                 </div>
-                
+
                 <div class="faq-item">
                     <div class="faq-question">
                         <span>¿Se permiten mascotas en las trajineras?</span>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>¡Sí! Tus mascotas son bienvenidas sin costo adicional. Solo asegúrate de que estén cómodas en el agua y traigas su correa. Te recomendamos traer agua y comida para ellas, y bolsas para desechos. Por seguridad, las mascotas deben estar bajo tu supervisión en todo momento.</p>
+                        <p>¡Sí! Tus mascotas son bienvenidas sin costo adicional. Solo asegúrate de que estén cómodas en
+                            el agua y traigas su correa. Te recomendamos traer agua y comida para ellas, y bolsas para
+                            desechos. Por seguridad, las mascotas deben estar bajo tu supervisión en todo momento.</p>
                     </div>
                 </div>
-                
+
                 <div class="faq-item">
                     <div class="faq-question">
                         <span>¿Cuál es la capacidad máxima de las trajineras?</span>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Nuestras trajineras tienen una capacidad máxima de 20 personas para garantizar la comodidad y seguridad de todos. Para grupos mayores, podemos asignar trajineras adicionales. La capacidad incluye niños de todas las edades.</p>
+                        <p>Nuestras trajineras tienen una capacidad máxima de 20 personas para garantizar la comodidad y
+                            seguridad de todos. Para grupos mayores, podemos asignar trajineras adicionales. La
+                            capacidad incluye niños de todas las edades.</p>
                     </div>
                 </div>
-                
+
                 <div class="faq-item">
                     <div class="faq-question">
                         <span>¿Se puede llevar comida y bebida propia?</span>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Sí, puedes llevar tu propia comida y bebida sin costo adicional. También ofrecemos servicios de catering con menús especiales (consulta disponibilidad y precios). No permitimos bebidas alcohólicas en exceso por seguridad.</p>
+                        <p>Sí, puedes llevar tu propia comida y bebida sin costo adicional. También ofrecemos servicios
+                            de catering con menús especiales (consulta disponibilidad y precios). No permitimos bebidas
+                            alcohólicas en exceso por seguridad.</p>
                     </div>
                 </div>
             </div>
-            
+
             <div class="text-center" style="margin-top: 30px;">
                 <p>¿No encontraste tu respuesta?</p>
                 <a href="/contacto#faq" class="btn btn-outline">
@@ -513,7 +542,7 @@
         <div class="container">
             <h2 class="section-title">¿Listo para reservar?</h2>
             <p class="section-subtitle">Comienza tu aventura en Xochimilco</p>
-            
+
             <div class="reservation-form-container">
                 <form class="reservation-form" method="POST" action="{{ url_for('contacto') }}">
                     <div class="form-grid">
@@ -521,34 +550,30 @@
                             <label for="nombre">
                                 <i class="fas fa-user"></i> Nombre completo *
                             </label>
-                            <input type="text" id="nombre" name="nombre" required 
-                                   placeholder="Ej: Juan Pérez García">
+                            <input type="text" id="nombre" name="nombre" required placeholder="Ej: Juan Pérez García">
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="correo">
                                 <i class="fas fa-envelope"></i> Correo electrónico *
                             </label>
-                            <input type="email" id="correo" name="correo" required 
-                                   placeholder="ejemplo@email.com">
+                            <input type="email" id="correo" name="correo" required placeholder="ejemplo@email.com">
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="telefono">
                                 <i class="fas fa-phone"></i> Teléfono *
                             </label>
-                            <input type="tel" id="telefono" name="telefono" required 
-                                   placeholder="55 1234 5678">
+                            <input type="tel" id="telefono" name="telefono" required placeholder="55 1234 5678">
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="fecha">
                                 <i class="fas fa-calendar-alt"></i> Fecha deseada *
                             </label>
-                            <input type="date" id="fecha" name="fecha" required 
-                                   min="{{ today }}">
+                            <input type="date" id="fecha" name="fecha" required min="{{ today }}">
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="paquete">
                                 <i class="fas fa-gift"></i> Paquete de interés *
@@ -562,51 +587,52 @@
                                 <option value="cotizar">Necesito cotización especial</option>
                             </select>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="personas">
                                 <i class="fas fa-users"></i> Número de personas *
                             </label>
                             <div class="personas-selector">
                                 <button type="button" class="personas-btn" onclick="decrementPersonas()">-</button>
-                                <input type="number" id="personas" name="personas" 
-                                       min="1" max="20" value="10" readonly>
+                                <input type="number" id="personas" name="personas" min="1" max="20" value="10" readonly>
                                 <button type="button" class="personas-btn" onclick="incrementPersonas()">+</button>
                             </div>
                             <small>Capacidad máxima: 20 personas</small>
                         </div>
                     </div>
-                    
+
                     <div class="form-group full-width">
                         <label for="mensaje">
                             <i class="fas fa-comment"></i> Mensaje adicional (opcional)
                         </label>
-                        <textarea id="mensaje" name="mensaje" rows="4" 
-                                  placeholder="¿Alguna solicitud especial? Ej: Decoración, música, alimentos especiales..."></textarea>
+                        <textarea id="mensaje" name="mensaje" rows="4"
+                            placeholder="¿Alguna solicitud especial? Ej: Decoración, música, alimentos especiales..."></textarea>
                     </div>
-                    
+
                     <div class="form-terms">
                         <label class="checkbox-label">
                             <input type="checkbox" name="terminos" required>
-                            <span>Acepto los <a href="/terminos">Términos y Condiciones</a> y la <a href="/privacidad">Política de Privacidad</a></span>
+                            <span>Acepto los <a href="/terminos">Términos y Condiciones</a> y la <a
+                                    href="/privacidad">Política de Privacidad</a></span>
                         </label>
-                        
+
                         <label class="checkbox-label">
                             <input type="checkbox" name="newsletter">
                             <span>Deseo recibir ofertas especiales y noticias sobre experiencias en Xochimilco</span>
                         </label>
                     </div>
-                    
+
                     <div class="form-actions">
                         <button type="submit" class="btn btn-primary btn-large">
                             <i class="fas fa-search"></i> Ver disponibilidad y precios
                         </button>
                         <p class="form-note">
-                            <i class="fas fa-info-circle"></i> Te contactaremos en menos de 24 horas para confirmar disponibilidad
+                            <i class="fas fa-info-circle"></i> Te contactaremos en menos de 24 horas para confirmar
+                            disponibilidad
                         </p>
                     </div>
                 </form>
-                
+
                 <div class="form-sidebar">
                     <h3><i class="fas fa-bolt"></i> Reserva Rápida</h3>
                     <p>¿Prefieres hacerlo por teléfono?</p>
@@ -615,14 +641,14 @@
                         <a href="tel:+525560094568">+52 55 6009 4568</a>
                     </div>
                     <p class="phone-hours">Disponible 7:00 AM - 10:00 PM</p>
-                    
+
                     <div class="whatsapp-contact">
                         <a href="https://wa.me/525560094568" class="btn btn-whatsapp" target="_blank">
                             <i class="fab fa-whatsapp"></i> WhatsApp
                         </a>
                         <p>Respuesta inmediata</p>
                     </div>
-                    
+
                     <div class="info-box">
                         <h4><i class="fas fa-lightbulb"></i> Tips para tu reserva</h4>
                         <ul>
@@ -661,7 +687,7 @@
                 input.value = value + 1;
             }
         }
-        
+
         function decrementPersonas() {
             const input = document.getElementById('personas');
             let value = parseInt(input.value);
@@ -669,23 +695,23 @@
                 input.value = value - 1;
             }
         }
-        
+
         function openGoogleMaps() {
             window.open('https://goo.gl/maps/ejemplo', '_blank');
         }
-        
+
         // FAQ interactivo
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const faqQuestions = document.querySelectorAll('.faq-question');
             faqQuestions.forEach(question => {
                 question.addEventListener('click', () => {
                     const answer = question.nextElementSibling;
                     const icon = question.querySelector('i');
-                    
+
                     answer.classList.toggle('active');
                     icon.classList.toggle('fa-chevron-down');
                     icon.classList.toggle('fa-chevron-up');
-                    
+
                     // Cerrar otras respuestas
                     faqQuestions.forEach(otherQuestion => {
                         if (otherQuestion !== question) {
@@ -701,4 +727,5 @@
         });
     </script>
 </body>
+
 </html>
