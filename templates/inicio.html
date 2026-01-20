@@ -363,19 +363,26 @@
     <section class="section map-section">
         <div class="container">
             <h2 class="section-title">Cómo llegar</h2>
-            <p class="section-subtitle">Encuéntranos fácilmente</p>
+            <p class="section-subtitle">Encuéntranos fácilmente en Nuevo Embarcadero Puente de Urrutia</p>
 
             <div class="map-container">
                 <div class="map-wrapper">
-                    <div class="map-placeholder">
-                        <div class="map-overlay">
-                            <i class="fas fa-map-marked-alt"></i>
-                            <h3>Mapa Interactivo</h3>
-                            <p>Nuevo Embarcadero Puente de Urrutia</p>
-                            <button class="btn btn-outline" onclick="https://maps.app.goo.gl/wwc42fhofXrsgEWH7">
-                                <i class="fas fa-directions"></i> Abrir en Google Maps
-                            </button>
-                        </div>
+                    <div class="map-iframe">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3143.6534502765526!2d-99.07824752478997!3d19.26065498198226!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce03b35e8c304d%3A0x7f3bf14e52b5d53d!2sTrajineras%20Barr%C3%B3n%20(Nuevo%20Embarcadero%20puente%20de%20Urrutia)!5e1!3m2!1ses!2smx!4v1768928383398!5m2!1ses!2smx"
+                            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                    <div class="map-actions">
+                        <a href="https://maps.app.goo.gl/wwc42fhofXrsgEWH7" target="_blank" class="btn btn-outline">
+                            <i class="fas fa-directions"></i> Abrir en Google Maps
+                        </a>
+                        <p class="map-address">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <strong>Dirección:</strong> Nuevo Embarcadero Puente de Urrutia, Xochimilco, Ciudad de
+                            México
+                        </p>
                     </div>
                 </div>
 
@@ -587,7 +594,7 @@
                             </label>
                             <div class="personas-selector">
                                 <button type="button" class="personas-btn" onclick="decrementPersonas()">-</button>
-                                <input type="number" id="personas" name="personas" min="1" max="18" value="10" readonly>
+                                <input type="number" id="personas" name="personas" min="1" max="18" value="4" readonly>
                                 <button type="button" class="personas-btn" onclick="incrementPersonas()">+</button>
                             </div>
                             <small>Capacidad máxima: 18 personas</small>
