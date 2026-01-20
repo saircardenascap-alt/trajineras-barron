@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <style>
         /* ============================================
@@ -424,11 +425,11 @@
             .main-footer {
                 padding: 40px 0 0;
             }
-            
+
             .footer-content {
                 padding: 0 15px;
             }
-            
+
             .whatsapp-float {
                 bottom: 20px;
                 right: 20px;
@@ -436,7 +437,7 @@
                 height: 50px;
                 font-size: 1.5rem;
             }
-            
+
             .back-to-top {
                 bottom: 80px;
                 right: 20px;
@@ -447,6 +448,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Footer principal -->
     <footer class="main-footer">
@@ -456,29 +458,30 @@
                 <h3><i class="fas fa-info-circle"></i> Información</h3>
                 <div class="footer-logo">
                     <h4>Trajineras Barrón</h4>
-                    <p>Más de 70 años de experiencia navegando los canales de Xochimilco. Patrimonio cultural vivo de México.</p>
+                    <p>Más de 20 años de experiencia navegando los canales de Xochimilco. Patrimonio cultural vivo de
+                        México.</p>
                 </div>
-                
+
                 <ul class="contact-list">
                     <li>
                         <i class="fas fa-map-marker-alt"></i>
                         <div class="contact-text">
                             <span class="contact-label">Dirección:</span>
-                            <p>Embarcadero Cuemanco, Xochimilco, CDMX</p>
+                            <p>Embarcadero, Puente de Urrutia, Caltongo, Xochimilco, 16600 Ciudad de México, CDMX</p>
                         </div>
                     </li>
                     <li>
                         <i class="fas fa-phone"></i>
                         <div class="contact-text">
                             <span class="contact-label">Teléfono:</span>
-                            <p>+52 55 1234 5678</p>
+                            <p>+52 55 6009 4568</p>
                         </div>
                     </li>
                     <li>
                         <i class="fas fa-envelope"></i>
                         <div class="contact-text">
-                            <span class="contact-label">Email:</span>
-                            <p>info@trajinerasbarron.com</p>
+                            <span class="contact-label">Correo electrónico:</span>
+                            <p>trajinerasbarron@gmail.com</p>
                         </div>
                     </li>
                 </ul>
@@ -490,12 +493,13 @@
                 <ul class="quick-links">
                     <li><a href="{{ url_for('inicio') }}"><i class="fas fa-chevron-right"></i> Inicio</a></li>
                     <li><a href="{{ url_for('servicios') }}"><i class="fas fa-chevron-right"></i> Servicios</a></li>
-                    <li><a href="{{ url_for('reservaciones') }}"><i class="fas fa-chevron-right"></i> Reservaciones</a></li>
-                    <li><a href="{{ url_for('reserva_ecologica') }}"><i class="fas fa-chevron-right"></i> Reserva Ecológica</a></li>
+                    <li><a href="{{ url_for('reservaciones') }}"><i class="fas fa-chevron-right"></i> Reservaciones</a>
+                    </li>
+                    <li><a href="{{ url_for('reserva_ecologica') }}"><i class="fas fa-chevron-right"></i> Reserva
+                            Ecológica</a></li>
                     <li><a href="{{ url_for('galeria') }}"><i class="fas fa-chevron-right"></i> Galería</a></li>
                     <li><a href="{{ url_for('contacto') }}"><i class="fas fa-chevron-right"></i> Contacto</a></li>
                     <li><a href="#"><i class="fas fa-chevron-right"></i> Preguntas Frecuentes</a></li>
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> Términos y Condiciones</a></li>
                 </ul>
             </div>
 
@@ -509,57 +513,47 @@
                     </li>
                     <li>
                         <span class="schedule-day">Sábados</span>
-                        <span class="schedule-hours">8:00 - 20:00</span>
+                        <span class="schedule-hours">8:00 - 18:00</span>
                     </li>
                     <li>
                         <span class="schedule-day">Domingos</span>
-                        <span class="schedule-hours">8:00 - 20:00</span>
+                        <span class="schedule-hours">8:00 - 18:00</span>
                     </li>
                     <li>
                         <span class="schedule-day">Festivos</span>
-                        <span class="schedule-hours">9:00 - 20:00</span>
+                        <span class="schedule-hours">9:00 - 18:00</span>
                     </li>
                 </ul>
-                
-                <div class="footer-eco">
-                    <h4><i class="fas fa-leaf"></i> Compromiso Ecológico</h4>
-                    <p>El 5% de cada reserva ecológica se destina a la conservación de chinampas y protección del ajolote mexicano.</p>
-                </div>
             </div>
 
             <!-- Columna 4: Newsletter y redes -->
             <div class="footer-column">
-                <h3><i class="fas fa-newspaper"></i> Newsletter</h3>
-                <p>Suscríbete para recibir ofertas especiales y novedades sobre nuestros tours ecológicos.</p>
-                
+                <h3><i class="fas fa-newspaper"></i> Boletin Informativo</h3>
+                <p>Suscríbete para recibir ofertas especiales y novedades sobre nuestros tours y recorridos.</p>
+
                 <form class="newsletter-form" id="newsletterForm">
                     <input type="email" class="newsletter-input" placeholder="Tu correo electrónico" required>
                     <button type="submit" class="btn-newsletter">
                         <i class="fas fa-paper-plane"></i> Suscribirse
                     </button>
                 </form>
-                
+
                 <div class="social-footer">
                     <h4>Síguenos</h4>
                     <div class="social-links-footer">
-                        <a href="#" class="social-link-footer" title="Facebook">
+                        <a href="https://www.facebook.com/share/17dhXuewiJ/" class="social-link-footer"
+                            title="Facebook">
                             <i class="fab fa-facebook-f"></i>
                         </a>
                         <a href="#" class="social-link-footer" title="Instagram">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="#" class="social-link-footer" title="Twitter">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="social-link-footer" title="YouTube">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                        <a href="#" class="social-link-footer" title="TripAdvisor">
-                            <i class="fab fa-tripadvisor"></i>
+                        <a href="https://wa.me/525560094568" class="social-link-footer" title="whatsapp">
+                            <i class="fab fa-whatsapp"></i>
                         </a>
                     </div>
                 </div>
-                
+
                 <div class="certifications">
                     <div class="certification-item">
                         <i class="fas fa-award"></i> Turismo Sustentable
@@ -573,8 +567,9 @@
 
         <!-- Mapa -->
         <div class="footer-map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3765.591581371609!2d-99.10220972433314!3d19.301332542041097!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce01d2c0c8d36b%3A0x6e1018e6b7c9afb8!2sEmbarcadero%20Cuemanco%2C%20Xochimilco!5e0!3m2!1ses!2smx!4v1699834567890!5m2!1ses!2smx" 
-                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3143.6534502765526!2d-99.07824752478997!3d19.26065498198226!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce03b35e8c304d%3A0x7f3bf14e52b5d53d!2sTrajineras%20Barr%C3%B3n%20(Nuevo%20Embarcadero%20puente%20de%20Urrutia)!5e1!3m2!1ses!2smx!4v1768928383398!5m2!1ses!2smx"
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
             </iframe>
         </div>
 
@@ -582,21 +577,15 @@
         <div class="footer-bottom">
             <div class="footer-bottom-content">
                 <p class="copyright">
-                    © 2024 Trajineras Barrón. Todos los derechos reservados.
+                    © 2026 Trajineras Barrón. Todos los derechos reservados.
                 </p>
-                <div class="footer-links">
-                    <a href="#">Política de Privacidad</a>
-                    <a href="#">Términos de Servicio</a>
-                    <a href="#">Aviso Legal</a>
-                    <a href="#">Mapa del Sitio</a>
-                </div>
             </div>
         </div>
     </footer>
 
     <!-- Botón de WhatsApp flotante -->
-    <a href="https://wa.me/525512345678?text=Hola,%20me%20interesa%20reservar%20una%20trajinera" 
-       class="whatsapp-float" target="_blank" title="WhatsApp">
+    <a href="https://wa.me/525512345678?text=Hola,%20me%20interesa%20reservar%20una%20trajinera" class="whatsapp-float"
+        target="_blank" title="WhatsApp">
         <i class="fab fa-whatsapp"></i>
         <span class="whatsapp-text">¿Necesitas ayuda?</span>
     </a>
@@ -608,32 +597,32 @@
 
     <script>
         // Botón de ir arriba
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const backToTop = document.getElementById('backToTop');
-            
-            window.addEventListener('scroll', function() {
+
+            window.addEventListener('scroll', function () {
                 if (window.pageYOffset > 300) {
                     backToTop.classList.add('visible');
                 } else {
                     backToTop.classList.remove('visible');
                 }
             });
-            
-            backToTop.addEventListener('click', function(e) {
+
+            backToTop.addEventListener('click', function (e) {
                 e.preventDefault();
                 window.scrollTo({
                     top: 0,
                     behavior: 'smooth'
                 });
             });
-            
+
             // Newsletter
             const newsletterForm = document.getElementById('newsletterForm');
             if (newsletterForm) {
-                newsletterForm.addEventListener('submit', function(e) {
+                newsletterForm.addEventListener('submit', function (e) {
                     e.preventDefault();
                     const email = this.querySelector('.newsletter-input').value;
-                    
+
                     // Aquí iría la lógica para enviar el email al servidor
                     alert(`¡Gracias por suscribirte con: ${email}! Recibirás nuestras novedades pronto.`);
                     this.reset();
@@ -642,4 +631,5 @@
         });
     </script>
 </body>
+
 </html>

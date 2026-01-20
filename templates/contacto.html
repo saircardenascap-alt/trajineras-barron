@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
+
 <body>
     {% include 'header.html' %}
 
@@ -17,7 +19,8 @@
     <section class="contact-banner">
         <div class="container">
             <h1><i class="fas fa-headset"></i> ¿Necesitas ayuda?</h1>
-            <p class="banner-subtitle">Contáctanos al <a href="tel:+525560094568" class="phone-link">+52 55 6009 4568</a></p>
+            <p class="banner-subtitle">Contáctanos al <a href="tel:+525560094568" class="phone-link">+52 55 6009
+                    4568</a></p>
             <div class="contact-menu">
                 <a href="#contacto" class="btn btn-outline">
                     <i class="fas fa-envelope"></i> Contacto
@@ -28,9 +31,6 @@
                 <a href="/reservaciones" class="btn btn-primary">
                     <i class="fas fa-calendar-check"></i> Reservar
                 </a>
-                <a href="#faq" class="btn btn-outline">
-                    <i class="fas fa-question-circle"></i> FAQ
-                </a>
             </div>
         </div>
     </section>
@@ -40,7 +40,7 @@
         <div class="container">
             <h2 class="section-title">Contacto Inmediato</h2>
             <p class="section-subtitle">Múltiples formas de comunicarte con nosotros</p>
-            
+
             <div class="contact-methods-grid">
                 <div class="contact-method-card emergency">
                     <div class="contact-icon">
@@ -48,12 +48,11 @@
                     </div>
                     <h3>Teléfono Principal</h3>
                     <p class="contact-detail">+52 55 6009 4568</p>
-                    <p class="contact-info">24/7 para emergencias</p>
                     <a href="tel:+525560094568" class="btn btn-outline">
                         <i class="fas fa-phone"></i> Llamar ahora
                     </a>
                 </div>
-                
+
                 <div class="contact-method-card whatsapp">
                     <div class="contact-icon">
                         <i class="fab fa-whatsapp"></i>
@@ -65,31 +64,19 @@
                         <i class="fab fa-whatsapp"></i> Abrir chat
                     </a>
                 </div>
-                
+
                 <div class="contact-method-card email">
                     <div class="contact-icon">
                         <i class="fas fa-envelope"></i>
                     </div>
                     <h3>Correo Electrónico</h3>
-                    <p class="contact-detail">trajinerasBarronurrutia@gmail.com</p>
-                    <p class="contact-info">Respuesta en &lt;24 horas</p>
-                    <a href="mailto:trajinerasBarronurrutia@gmail.com" class="btn btn-outline">
+                    <p class="contact-detail">trajinerasbarron@gmail.com</p>
+                    <p class="contact-info">Respuesta en &lt;12 horas</p>
+                    <a href="mailto:trajinerasbarron@gmail.com" class="btn btn-outline">
                         <i class="fas fa-paper-plane"></i> Enviar email
                     </a>
                 </div>
-                
-                <div class="contact-method-card chat">
-                    <div class="contact-icon">
-                        <i class="fas fa-comments"></i>
-                    </div>
-                    <h3>Chat en Vivo</h3>
-                    <p class="contact-detail">Disponible ahora</p>
-                    <p class="contact-info">8:00 AM - 10:00 PM</p>
-                    <button class="btn btn-primary open-chat">
-                        <i class="fas fa-comment-dots"></i> Abrir chat
-                    </button>
-                </div>
-                
+
                 <div class="contact-method-card social">
                     <div class="contact-icon">
                         <i class="fas fa-hashtag"></i>
@@ -115,59 +102,41 @@
         <div class="container">
             <h2 class="section-title">Formulario de Contacto Inteligente</h2>
             <p class="section-subtitle">Cuéntanos cómo podemos ayudarte</p>
-            
+
             <form class="smart-contact-form" method="POST" action="{{ url_for('contacto') }}">
                 <div class="form-row">
                     <div class="form-group">
                         <label for="contact-nombre">
                             <i class="fas fa-user"></i> Nombre completo *
                         </label>
-                        <input type="text" id="contact-nombre" name="nombre" required 
-                               placeholder="Ej: Ana García Rodríguez">
+                        <input type="text" id="contact-nombre" name="nombre" required
+                            placeholder="Ej: Ana García Rodríguez">
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="contact-email">
                             <i class="fas fa-envelope"></i> Correo electrónico *
                         </label>
-                        <input type="email" id="contact-email" name="email" required 
-                               placeholder="ana@ejemplo.com">
+                        <input type="email" id="contact-email" name="email" required placeholder="ana@ejemplo.com">
                     </div>
                 </div>
-                
+
                 <div class="form-row">
                     <div class="form-group">
                         <label for="contact-telefono">
                             <i class="fas fa-phone"></i> Teléfono *
                         </label>
-                        <input type="tel" id="contact-telefono" name="telefono" required 
-                               placeholder="55 1234 5678">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="contact-asunto">
-                            <i class="fas fa-tag"></i> Asunto *
-                        </label>
-                        <select id="contact-asunto" name="asunto" required>
-                            <option value="">Selecciona una opción</option>
-                            <option value="reserva">Reserva o disponibilidad</option>
-                            <option value="pregunta">Pregunta general</option>
-                            <option value="grupo">Grupo/Evento especial</option>
-                            <option value="queja">Queja o sugerencia</option>
-                            <option value="cotizacion">Cotización personalizada</option>
-                            <option value="prensa">Prensa/Colaboraciones</option>
-                        </select>
+                        <input type="tel" id="contact-telefono" name="telefono" required placeholder="55 1234 5678">
                     </div>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="contact-fecha">
                         <i class="fas fa-calendar-alt"></i> Fecha de interés
                     </label>
-                    <input type="date" id="contact-fecha" name="fecha" 
-                           min="{{ today }}">
+                    <input type="date" id="contact-fecha" name="fecha" min="{{ today }}">
                 </div>
-                
+
                 <div class="form-row">
                     <div class="form-group">
                         <label for="contact-personas">
@@ -182,7 +151,7 @@
                             <option value="20+">Más de 20</option>
                         </select>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="contact-paquete">
                             <i class="fas fa-gift"></i> Paquete de interés
@@ -196,27 +165,22 @@
                         </select>
                     </div>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="contact-mensaje">
                         <i class="fas fa-comment"></i> Mensaje *
                     </label>
-                    <textarea id="contact-mensaje" name="mensaje" rows="5" required 
-                              placeholder="Describe tu consulta con detalle..."></textarea>
+                    <textarea id="contact-mensaje" name="mensaje" rows="5" required
+                        placeholder="Describe tu consulta con detalle..."></textarea>
                 </div>
-                
+
                 <div class="form-options">
                     <label class="checkbox-label">
                         <input type="checkbox" name="ofertas" checked>
                         <span>Acepto recibir ofertas exclusivas y novedades (opcional)</span>
                     </label>
-                    
-                    <label class="checkbox-label">
-                        <input type="checkbox" name="terminos" required>
-                        <span>Acepto la <a href="/privacidad">Política de Privacidad</a> *</span>
-                    </label>
                 </div>
-                
+
                 <div class="form-actions">
                     <button type="submit" class="btn btn-primary btn-large">
                         <i class="fas fa-paper-plane"></i> Enviar mensaje
@@ -233,19 +197,35 @@
     <section class="section location-section" id="ubicacion">
         <div class="container">
             <h2 class="section-title">Ubicación Principal</h2>
-            <p class="section-subtitle">Visítanos en nuestro embarcadero</p>
-            
+            <p class="section-subtitle">Visítanos en el Nuevo Embarcadero Puente de Urrutia</p>
+
             <div class="location-container">
-                <div class="map-container" id="map">
-                    <!-- Mapa se cargará aquí con JavaScript -->
+                <div class="map-wrapper">
+                    <div class="map-iframe">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3143.6534502765526!2d-99.07824752478997!3d19.26065498198226!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce03b35e8c304d%3A0x7f3bf14e52b5d53d!2sTrajineras%20Barr%C3%B3n%20(Nuevo%20Embarcadero%20puente%20de%20Urrutia)!5e1!3m2!1ses!2smx!4v1768928383398!5m2!1ses!2smx"
+                            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                    <div class="map-actions">
+                        <a href="https://maps.app.goo.gl/wwc42fhofXrsgEWH7" target="_blank" class="btn btn-outline">
+                            <i class="fas fa-directions"></i> Abrir en Google Maps
+                        </a>
+                        <p class="map-address">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <strong>Dirección:</strong> Nuevo Embarcadero Puente de Urrutia, Xochimilco, Ciudad de
+                            México
+                        </p>
+                    </div>
                 </div>
-                
+
                 <div class="location-details">
                     <h3><i class="fas fa-map-pin"></i> Dirección Oficial</h3>
                     <p class="address">Trajineras Barrón<br>
-                    Nuevo Embarcadero Puente de Urrutia<br>
-                    Xochimilco, Ciudad de México</p>
-                    
+                        Nuevo Embarcadero Puente de Urrutia<br>
+                        Xochimilco, Ciudad de México</p>
+
                     <div class="location-info-grid">
                         <div class="info-card">
                             <div class="info-icon">
@@ -253,22 +233,21 @@
                             </div>
                             <div>
                                 <h4>Horario de Embarcadero</h4>
-                                <p>Lunes a Domingo: 8:00 AM - 6:00 PM</p>
-                                <p>Recorridos: 24 horas con reservación</p>
+                                <p>Lunes a Domingo: 8:00 AM - 7:00 PM</p>
+                                <p>Recorridos: Diario con o sin reservación</p>
                             </div>
                         </div>
-                        
+
                         <div class="info-card">
                             <div class="info-icon">
                                 <i class="fas fa-phone"></i>
                             </div>
                             <div>
                                 <h4>Atención Telefónica</h4>
-                                <p>7:00 AM - 10:00 PM</p>
-                                <p>Emergencias: 24/7</p>
+                                <p>7:00 AM - 7:00 PM</p>
                             </div>
                         </div>
-                        
+
                         <div class="info-card">
                             <div class="info-icon">
                                 <i class="fas fa-parking"></i>
@@ -276,10 +255,10 @@
                             <div>
                                 <h4>Estacionamiento</h4>
                                 <p>Disponible en el embarcadero</p>
-                                <p>$50 MXN por evento</p>
+                                <p>$50 MXN tiempo libre</p>
                             </div>
                         </div>
-                        
+
                         <div class="info-card">
                             <div class="info-icon">
                                 <i class="fas fa-wheelchair"></i>
@@ -287,19 +266,19 @@
                             <div>
                                 <h4>Accesibilidad</h4>
                                 <p>Acceso para sillas de ruedas</p>
-                                <p>Rampas disponibles</p>
+                                <p>Adultos Mayores</p>
+                                <p>Discapacitados</p>
+                                <p>Mascotas</p>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="location-features">
                         <h4><i class="fas fa-star"></i> Instalaciones</h4>
                         <ul>
-                            <li><i class="fas fa-check"></i> Baños públicos</li>
-                            <li><i class="fas fa-check"></i> Área de espera con sombra</li>
+                            <li><i class="fas fa-check"></i> Baños públicos limpios</li>
+                            <li><i class="fas fa-check"></i> Área verde</li>
                             <li><i class="fas fa-check"></i> Tienda de souvenirs</li>
-                            <li><i class="fas fa-check"></i> Punto de primeros auxilios</li>
-                            <li><i class="fas fa-check"></i> WiFi gratuito</li>
                         </ul>
                     </div>
                 </div>
@@ -312,7 +291,7 @@
         <div class="container">
             <h2 class="section-title">¿Cómo llegar?</h2>
             <p class="section-subtitle">Encuentra la mejor ruta</p>
-            
+
             <div class="directions-accordion">
                 <div class="accordion-item active">
                     <div class="accordion-header">
@@ -323,13 +302,15 @@
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="accordion-content">
-                        <p><strong>Metrobús:</strong> Línea 4 hacia Terminal San Lázaro → Estación Hidalgo → Línea 2 hacia Tasqueña</p>
+                        <p><strong>Metrobús:</strong> Línea 4 hacia Terminal San Lázaro → linea 5 estacion prepa 1</p>
                         <p><strong>Metro:</strong> Línea 2 dirección Tasqueña → Estación Tasqueña</p>
-                        <p><strong>Final:</strong> Taxi o Uber desde Tasqueña al embarcadero (15 min aprox.)</p>
+                        <p><strong>Tren ligero:</strong> Línea 2 dirección Tasqueña → Estación Xochimilco</p>
+                        <p><strong>Final:</strong> Taxi o Uber desde Xochimilco o pepra 1 al nuevo embarcadero puente de
+                            Urrutia (15 min aprox.)</p>
                         <p class="time-estimate"><i class="far fa-clock"></i> Tiempo total: 45-60 minutos</p>
                     </div>
                 </div>
-                
+
                 <div class="accordion-item">
                     <div class="accordion-header">
                         <div class="accordion-icon">
@@ -340,12 +321,15 @@
                     </div>
                     <div class="accordion-content">
                         <p><strong>Opción 1:</strong> Uber/Didi directo (más conveniente)</p>
-                        <p><strong>Opción 2:</strong> Metro Línea 5 → Pantitlán → Línea 1 → Pino Suárez → Línea 2 → Tasqueña</p>
-                        <p><strong>Final:</strong> Taxi desde Tasqueña</p>
+                        <p><strong>Opción 2:</strong> Metro Línea 5 → Pantitlán → Línea 1 → Pino Suárez → Línea 2 →
+                            Tasqueña</p>
+                        <p><strong>Tren ligero:</strong> Línea 2 dirección Tasqueña → Estación Xochimilco</p>
+                        <p><strong>Final:</strong> Taxi desde Xochimilco o pepra 1 al nuevo embarcadero puente de
+                            Urrutia (15 min aprox.)</p>
                         <p class="time-estimate"><i class="far fa-clock"></i> Tiempo total: 60-90 minutos</p>
                     </div>
                 </div>
-                
+
                 <div class="accordion-item">
                     <div class="accordion-header">
                         <div class="accordion-icon">
@@ -358,20 +342,22 @@
                         <p><strong>Waze/Google Maps:</strong> "Trajineras Barrón" o "Embarcadero Puente de Urrutia"</p>
                         <p><strong>Ruta recomendada:</strong> Periférico → Calz. México-Xochimilco → Av. Nuevo León</p>
                         <p><strong>Estacionamiento:</strong> $50 MXN por evento, vigilado</p>
-                        <p class="time-estimate"><i class="far fa-clock"></i> Desde Polanco: 50 min | Desde Santa Fe: 70 min</p>
+                        <p class="time-estimate"><i class="far fa-clock"></i> Desde Polanco: 50 min | Desde Santa Fe: 70
+                            min</p>
                     </div>
                 </div>
-                
+
                 <div class="accordion-item">
                     <div class="accordion-header">
                         <div class="accordion-icon">
                             <i class="fas fa-taxi"></i>
                         </div>
-                        <h3>En Uber/Didi/Ride-sharing</h3>
+                        <h3>En Uber/Didi/in drive</h3>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="accordion-content">
-                        <p><strong>Dirección en app:</strong> "Trajineras Barrón (Nuevo Embarcadero Puente de Urrutia)"</p>
+                        <p><strong>Dirección en app:</strong> "Trajineras Barrón (Nuevo Embarcadero Puente de Urrutia)"
+                        </p>
                         <p><strong>Punto de referencia:</strong> Puente de Urrutia sobre canal principal</p>
                         <p><strong>Costo aproximado:</strong> Desde Centro: $150-200 MXN</p>
                         <p class="time-estimate"><i class="far fa-clock"></i> Solicita el servicio 30 min antes</p>
@@ -388,28 +374,26 @@
                 <div class="newsletter-content">
                     <h2><i class="fas fa-users"></i> Únete a la Comunidad Barrón</h2>
                     <p class="newsletter-subtitle">Recibe beneficios exclusivos y mantente informado</p>
-                    
+
                     <ul class="benefits-list">
                         <li><i class="fas fa-gift"></i> Ofertas exclusivas para suscriptores</li>
-                        <li><i class="fas fa-map-marked-alt"></i> Guías de Xochimilco y secretos locales</li>
                         <li><i class="fas fa-calendar-star"></i> Acceso prioritario a eventos especiales</li>
                         <li><i class="fas fa-leaf"></i> Consejos de ecología y conservación</li>
-                        <li><i class="fas fa-camera"></i> Descuentos en fotografía y extras</li>
                     </ul>
                 </div>
-                
+
                 <div class="newsletter-form">
                     <form id="newsletter-form">
                         <div class="form-group">
                             <label for="newsletter-nombre">Nombre</label>
                             <input type="text" id="newsletter-nombre" placeholder="Tu nombre">
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="newsletter-email">Correo electrónico *</label>
                             <input type="email" id="newsletter-email" required placeholder="tucorreo@ejemplo.com">
                         </div>
-                        
+
                         <div class="form-group">
                             <label>Intereses (opcional)</label>
                             <div class="interests-grid">
@@ -422,27 +406,16 @@
                                     <span>Eventos culturales</span>
                                 </label>
                                 <label class="checkbox-label small">
-                                    <input type="checkbox" name="interes" value="tips">
-                                    <span>Tips de viaje</span>
-                                </label>
-                                <label class="checkbox-label small">
                                     <input type="checkbox" name="interes" value="ecologia">
                                     <span>Ecología y conservación</span>
                                 </label>
                             </div>
                         </div>
-                        
-                        <div class="form-group">
-                            <label class="checkbox-label">
-                                <input type="checkbox" required>
-                                <span>Acepto la <a href="/privacidad">Política de Privacidad</a></span>
-                            </label>
-                        </div>
-                        
+
                         <button type="submit" class="btn btn-primary btn-block">
                             <i class="fas fa-paper-plane"></i> Suscribirme
                         </button>
-                        
+
                         <p class="privacy-note">
                             <i class="fas fa-lock"></i> Tus datos están seguros. No compartimos tu información.
                         </p>
@@ -459,15 +432,16 @@
                 <div class="quick-reservation-content">
                     <h2><i class="fas fa-bolt"></i> ¿Listo para reservar?</h2>
                     <p class="quick-subtitle">Comienza tu aventura ahora mismo</p>
-                    <p>Simplifica tu reserva con nuestro formulario rápido. Te enviaremos disponibilidad y precios en minutos.</p>
-                    
+                    <p>Simplifica tu reserva con nuestro formulario rápido. Te enviaremos disponibilidad y precios en
+                        minutos.</p>
+
                     <div class="quick-features">
                         <p><i class="fas fa-check-circle"></i> Sin compromiso inicial</p>
                         <p><i class="fas fa-check-circle"></i> Respuesta en menos de 1 hora</p>
                         <p><i class="fas fa-check-circle"></i> Precios garantizados</p>
                     </div>
                 </div>
-                
+
                 <div class="quick-reservation-form">
                     <form id="quick-reserve-form">
                         <div class="form-row">
@@ -475,7 +449,7 @@
                                 <label for="quick-fecha">Fecha deseada *</label>
                                 <input type="date" id="quick-fecha" required min="{{ today }}">
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="quick-personas">Personas *</label>
                                 <select id="quick-personas" required>
@@ -487,21 +461,21 @@
                                 </select>
                             </div>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="quick-email">Correo para respuesta *</label>
                             <input type="email" id="quick-email" required placeholder="tu@correo.com">
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="quick-telefono">Teléfono (opcional)</label>
                             <input type="tel" id="quick-telefono" placeholder="55 1234 5678">
                         </div>
-                        
+
                         <button type="submit" class="btn btn-primary btn-block">
                             <i class="fas fa-search"></i> Ver disponibilidad y precios
                         </button>
-                        
+
                         <p class="form-note">
                             <i class="fas fa-arrow-right"></i> Serás redirigido a la página de reservas
                         </p>
@@ -516,7 +490,7 @@
         <div class="container">
             <h2 class="section-title">Preguntas Frecuentes de Contacto</h2>
             <p class="section-subtitle">Respuestas rápidas a tus dudas</p>
-            
+
             <div class="faq-grid">
                 <div class="faq-item">
                     <div class="faq-question">
@@ -524,152 +498,121 @@
                         <i class="fas fa-plus"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Recomendamos llegar <strong>30 minutos antes</strong> de tu horario reservado. Esto te da tiempo para estacionar, pagar si es necesario, y acomodarte en la trajinera. Las horas más tranquilas son entre semana por la mañana (9-11 AM).</p>
+                        <p>Recomendamos llegar <strong>30 minutos antes</strong> de tu horario reservado. Esto te da
+                            tiempo para estacionar, pagar si es necesario, y acomodarte en la trajinera. Las horas más
+                            tranquilas son entre semana por la mañana (9-11 AM).</p>
                     </div>
                 </div>
-                
+
                 <div class="faq-item">
                     <div class="faq-question">
                         <h3>¿Qué pasa si llego tarde a mi reservación?</h3>
                         <i class="fas fa-plus"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Entendemos que pueden surgir imprevistos. Si llegarás tarde, <strong>llámanos inmediatamente</strong> al +52 55 6009 4568. Haremos nuestro mejor esfuerzo por acomodarte, pero ten en cuenta que tu tiempo de recorrido podría reducirse según la disponibilidad.</p>
+                        <p>Entendemos que pueden surgir imprevistos. Si llegarás tarde, <strong>llámanos
+                                inmediatamente</strong> al +52 55 6009 4568. Haremos nuestro mejor esfuerzo por
+                            acomodarte.</p>
                     </div>
                 </div>
-                
+
                 <div class="faq-item">
                     <div class="faq-question">
                         <h3>¿Puedo cambiar mi reserva por teléfono?</h3>
                         <i class="fas fa-plus"></i>
                     </div>
                     <div class="faq-answer">
-                        <p><strong>¡Sí!</strong> Puedes realizar cambios llamando al +52 55 6009 4568 o por WhatsApp. Necesitaremos tu nombre, fecha original y el nuevo horario deseado. Los cambios son gratuitos con 24 horas de anticipación.</p>
+                        <p><strong>¡Sí!</strong> Puedes realizar cambios llamando al +52 55 6009 4568 o por WhatsApp.
+                            Necesitaremos tu nombre, fecha original y el nuevo horario deseado. Los cambios son
+                            gratuitos con 24 horas de anticipación.</p>
                     </div>
                 </div>
-                
+
                 <div class="faq-item">
                     <div class="faq-question">
                         <h3>¿Aceptan pagos en efectivo en el embarcadero?</h3>
                         <i class="fas fa-plus"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Sí, aceptamos <strong>efectivo, tarjetas de crédito/débito (Visa, MasterCard)</strong> y transferencias electrónicas. El pago total se realiza al llegar, a menos que hayas hecho un depósito previo. Tenemos terminal punto de venta disponible.</p>
+                        <p>Sí, aceptamos <strong>efectivo, tarjetas de crédito/débito (Visa, MasterCard)</strong> y
+                            transferencias electrónicas. El pago total se realiza al llegar, a menos que hayas hecho un
+                            depósito previo. Tenemos terminal punto de venta disponible.</p>
                     </div>
                 </div>
-                
+
                 <div class="faq-item">
                     <div class="faq-question">
                         <h3>¿Hay baños públicos en el embarcadero?</h3>
                         <i class="fas fa-plus"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Sí, contamos con <strong>baños públicos limpios y mantenidos</strong> en el embarcadero. Te recomendamos usarlos antes de subir a la trajinera, ya que durante el recorrido no hay baños disponibles a bordo.</p>
+                        <p>Sí, contamos con <strong>baños públicos limpios y mantenidos</strong> en el embarcadero. Te
+                            recomendamos usarlos antes de subir a la trajinera, ya que durante el recorrido no hay baños
+                            disponibles a bordo.</p>
                     </div>
                 </div>
-                
+
                 <div class="faq-item">
                     <div class="faq-question">
                         <h3>¿Puedo llevar mi propia comida y bebida?</h3>
                         <i class="fas fa-plus"></i>
                     </div>
                     <div class="faq-answer">
-                        <p><strong>¡Absolutamente!</strong> Puedes traer tu propia comida y bebida sin costo adicional. También ofrecemos servicios de catering con menús especiales. No permitimos vidrio por seguridad.</p>
+                        <p><strong>¡Absolutamente!</strong>Sí, puedes llevar tu propia comida y bebida sin costo
+                            adicional. Tambien te ofrcemos un
+                            anafre para que puedas cocinar tu carne asada en la trajinera. También ofrecemos servicios
+                            de bebida y antojitos Mexicanos puedes ver nuestro catalogo (consulta disponibilidad y
+                            precios).</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Sección 8: Equipo de atención -->
-    <section class="section team-section">
-        <div class="container">
-            <h2 class="section-title">Nuestro Equipo de Atención</h2>
-            <p class="section-subtitle">Conoce a quienes harán de tu experiencia algo inolvidable</p>
-            
-            <div class="team-grid">
-                <div class="team-member">
-                    <div class="member-photo" style="background-color: #4CAF50;">
-                        <span>AG</span>
-                    </div>
-                    <h3>Ana García</h3>
-                    <p class="member-role">Gerente de Reservaciones</p>
-                    <p class="member-bio">Con 5 años de experiencia en turismo, Ana asegura que cada reserva sea perfecta.</p>
-                    <p class="member-contact">
-                        <i class="fas fa-envelope"></i> ana@trajinerasbarron.com
-                    </p>
-                </div>
-                
-                <div class="team-member">
-                    <div class="member-photo" style="background-color: #2196F3;">
-                        <span>LM</span>
-                    </div>
-                    <h3>Luis Martínez</h3>
-                    <p class="member-role">Coordinador de Logística</p>
-                    <p class="member-bio">Luis organiza cada detalle para que tu experiencia sea fluida y segura.</p>
-                    <p class="member-contact">
-                        <i class="fas fa-phone"></i> Ext. 102
-                    </p>
-                </div>
-                
-                <div class="team-member">
-                    <div class="member-photo" style="background-color: #FF9800;">
-                        <span>CR</span>
-                    </div>
-                    <h3>Carlos Ramírez</h3>
-                    <p class="member-role">Guía Principal</p>
-                    <p class="member-bio">Conoce cada canal y cada historia de Xochimilco. ¡Sus tours son legendarios!</p>
-                    <p class="member-contact">
-                        <i class="fas fa-comments"></i> Disponible en recorridos
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección 9: Contacto para prensa -->
+    <!-- Sección 8: Contacto para prensa lo dejo a espera de ser borrado -->
     <section class="section press-section">
         <div class="container">
             <div class="press-container">
                 <div class="press-content">
                     <h2><i class="fas fa-newspaper"></i> Contacto para Prensa y Colaboraciones</h2>
-                    <p>¿Eres periodista, influencer o representas una empresa interesada en colaborar? Tenemos un equipo especializado para atenderte.</p>
-                    
+                    <p>¿Eres periodista, influencer o representas una empresa interesada en colaborar? Tenemos un equipo
+                        especializado para atenderte.</p>
+
                     <div class="press-contacts">
                         <div class="press-contact">
                             <h4><i class="fas fa-envelope-open-text"></i> Correo de Prensa</h4>
                             <p>prensa@trajinerasbarron.com</p>
                         </div>
-                        
+
                         <div class="press-contact">
                             <h4><i class="fas fa-handshake"></i> Colaboraciones</h4>
                             <p>colaboraciones@trajinerasbarron.com</p>
                         </div>
-                        
+
                         <div class="press-contact">
                             <h4><i class="fas fa-users"></i> Eventos Corporativos</h4>
                             <p>eventos@trajinerasbarron.com</p>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="press-form">
                     <form id="press-form">
                         <div class="form-group">
                             <label for="press-nombre">Nombre completo *</label>
                             <input type="text" id="press-nombre" required>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="press-empresa">Empresa/Medio *</label>
                             <input type="text" id="press-empresa" required>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="press-email">Correo electrónico *</label>
                             <input type="email" id="press-email" required>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="press-tipo">Tipo de consulta *</label>
                             <select id="press-tipo" required>
@@ -681,12 +624,12 @@
                                 <option value="otro">Otro</option>
                             </select>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="press-mensaje">Mensaje *</label>
                             <textarea id="press-mensaje" rows="4" required></textarea>
                         </div>
-                        
+
                         <button type="submit" class="btn btn-primary">
                             <i class="fas fa-paper-plane"></i> Enviar solicitud
                         </button>
@@ -740,19 +683,19 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
         // Inicializar mapa
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Mapa de Xochimilco
             const map = L.map('map').setView([19.2650, -99.1060], 15);
-            
+
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '© OpenStreetMap contributors'
             }).addTo(map);
-            
+
             // Marcador del embarcadero
             L.marker([19.2650, -99.1060]).addTo(map)
                 .bindPopup('<b>Trajineras Barrón</b><br>Embarcadero Puente de Urrutia')
                 .openPopup();
-            
+
             // Acordeón de direcciones
             const accordionItems = document.querySelectorAll('.accordion-item');
             accordionItems.forEach(item => {
@@ -764,12 +707,12 @@
                             otherItem.classList.remove('active');
                         }
                     });
-                    
+
                     // Abrir/cerrar este item
                     item.classList.toggle('active');
                 });
             });
-            
+
             // FAQ interactivo
             const faqItems = document.querySelectorAll('.contact-faq .faq-item');
             faqItems.forEach(item => {
@@ -781,51 +724,52 @@
                             otherItem.classList.remove('active');
                         }
                     });
-                    
+
                     // Abrir/cerrar este item
                     item.classList.toggle('active');
                 });
             });
-            
+
             // Formulario de newsletter
             const newsletterForm = document.getElementById('newsletter-form');
-            newsletterForm.addEventListener('submit', function(e) {
+            newsletterForm.addEventListener('submit', function (e) {
                 e.preventDefault();
                 const email = document.getElementById('newsletter-email').value;
-                
+
                 // Simular envío
                 alert(`¡Gracias por suscribirte! Te hemos enviado un correo de confirmación a ${email}`);
                 newsletterForm.reset();
             });
-            
+
             // Formulario de reserva rápida
             const quickForm = document.getElementById('quick-reserve-form');
-            quickForm.addEventListener('submit', function(e) {
+            quickForm.addEventListener('submit', function (e) {
                 e.preventDefault();
                 const fecha = document.getElementById('quick-fecha').value;
                 const personas = document.getElementById('quick-personas').value;
-                
+
                 // Redirigir a reservaciones con parámetros
                 window.location.href = `/reservaciones?fecha=${fecha}&personas=${personas}`;
             });
         });
-        
+
         // Funciones para el chat
         function openChat() {
             document.getElementById('chat-widget').classList.add('open');
         }
-        
+
         function closeChat() {
             document.getElementById('chat-widget').classList.remove('open');
         }
-        
+
         // Formulario de prensa
         const pressForm = document.getElementById('press-form');
-        pressForm.addEventListener('submit', function(e) {
+        pressForm.addEventListener('submit', function (e) {
             e.preventDefault();
             alert('¡Gracias por tu interés! Te contactaremos en menos de 48 horas.');
             pressForm.reset();
         });
     </script>
 </body>
+
 </html>
