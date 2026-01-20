@@ -124,8 +124,8 @@ body {
 
 /* 1. BANNER PRINCIPAL */
 .hero-banner {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600&auto=format&fit=crop') center/cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600&auto=format&fit=crop') center/cover;
     height: 85vh;
     min-height: 600px;
     display: flex;
@@ -167,9 +167,17 @@ body {
 }
 
 @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 .hero-buttons {
@@ -1032,11 +1040,12 @@ body {
 
 /* Responsive */
 @media (max-width: 1024px) {
+
     .video-container,
     .map-container {
         grid-template-columns: 1fr;
     }
-    
+
     .reservation-form-container {
         grid-template-columns: 1fr;
     }
@@ -1046,33 +1055,33 @@ body {
     .section {
         padding: 60px 0;
     }
-    
+
     .section-title {
         font-size: 2rem;
     }
-    
+
     .hero-content h1 {
         font-size: 2.5rem;
     }
-    
+
     .form-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .hero-buttons {
         flex-direction: column;
         align-items: center;
     }
-    
+
     .packages-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .floating-buttons {
         bottom: 20px;
         right: 20px;
     }
-    
+
     .floating-btn {
         width: 50px;
         height: 50px;
@@ -1084,12 +1093,110 @@ body {
     .hero-content h1 {
         font-size: 2rem;
     }
-    
+
     .hero-subtitle {
         font-size: 1.2rem;
     }
-    
+
     .section-title {
         font-size: 1.8rem;
+    }
+}
+
+/* Estilos para la sección final CTA */
+.final-cta-section {
+    background: linear-gradient(135deg, #2c5530 0%, #4a8c5a 100%);
+    color: white;
+    padding: 60px 0;
+    margin-top: 60px;
+}
+
+.final-cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.cta-title {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.cta-title i {
+    margin-right: 10px;
+}
+
+.cta-description {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    opacity: 0.95;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+.cta-btn-primary {
+    background: white;
+    color: #2c5530;
+    font-weight: bold;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cta-btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.cta-btn-secondary {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.cta-btn-secondary:hover {
+    background: white;
+    color: #2c5530;
+}
+
+.cta-quote {
+    font-style: italic;
+    opacity: 0.9;
+    margin-top: 20px;
+    font-size: 1.1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .cta-title {
+        font-size: 1.8rem;
+    }
+
+    .cta-description {
+        font-size: 1.1rem;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cta-btn-primary,
+    .cta-btn-secondary {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
     }
 }

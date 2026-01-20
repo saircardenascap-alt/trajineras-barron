@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <style>
         /* ============================================
@@ -222,7 +223,7 @@
             .main-nav ul {
                 gap: 20px;
             }
-            
+
             .main-nav a {
                 font-size: 1rem;
             }
@@ -232,11 +233,11 @@
             .top-bar {
                 display: none;
             }
-            
+
             .menu-toggle {
                 display: block;
             }
-            
+
             .main-nav {
                 position: fixed;
                 top: 70px;
@@ -250,22 +251,22 @@
                 transition: all 0.3s ease;
                 box-shadow: var(--shadow);
             }
-            
+
             .main-nav.active {
                 transform: translateY(0);
                 opacity: 1;
                 visibility: visible;
             }
-            
+
             .main-nav ul {
                 flex-direction: column;
                 gap: 0;
             }
-            
+
             .main-nav li {
                 width: 100%;
             }
-            
+
             .main-nav a {
                 padding: 15px;
                 border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -273,24 +274,24 @@
                 justify-content: space-between;
                 align-items: center;
             }
-            
+
             .main-nav a:after {
                 content: '›';
                 font-size: 1.2rem;
             }
-            
+
             .nav-content {
                 padding: 10px 0;
             }
-            
+
             .header-actions {
                 display: none;
             }
-            
+
             .logo-title {
                 font-size: 1.5rem;
             }
-            
+
             .logo-icon {
                 font-size: 2rem;
             }
@@ -303,6 +304,7 @@
         }
     </style>
 </head>
+
 <body>
     <header class="main-header">
         <!-- Barra superior con contacto -->
@@ -311,22 +313,22 @@
                 <div class="contact-info">
                     <div class="contact-item">
                         <i class="fas fa-phone"></i>
-                        <span>+52 55 1234 5678</span>
+                        <span>+52 55 6009 4568</span>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-envelope"></i>
-                        <span>info@trajinerasbarron.com</span>
+                        <span>trajinerasbarron@gmail.com</span>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-clock"></i>
-                        <span>9:00 AM - 7:00 PM</span>
+                        <span>8:00 AM - 7:00 PM, horarios especiales para amaneceres y lunadas</span>
                     </div>
                 </div>
                 <div class="social-links">
-                    <a href="#" class="social-link" title="Facebook">
+                    <a href="https://www.facebook.com/share/17dhXuewiJ/" class="social-link" title="Facebook">
                         <i class="fab fa-facebook-f"></i>
                     </a>
-                    <a href="#" class="social-link" title="Instagram">
+                    <a href="" class="social-link" title="Instagram">
                         <i class="fab fa-instagram"></i>
                     </a>
                     <a href="#" class="social-link" title="Twitter">
@@ -349,43 +351,42 @@
                     </div>
                     <div class="logo-text">
                         <h1 class="logo-title">Trajineras Barrón</h1>
-                        <p class="logo-subtitle">Xochimilco desde 1950</p>
+                        <p class="logo-subtitle">Xochimilco desde 2000</p>
                     </div>
                 </a>
 
                 <!-- Navegación -->
                 <nav class="main-nav" id="mainNav">
                     <ul>
-                        <li><a href="{{ url_for('inicio') }}" {% if request.endpoint == 'inicio' %}class="active"{% endif %}>
-                            <i class="fas fa-home"></i> Inicio
-                        </a></li>
-                        <li><a href="{{ url_for('servicios') }}" {% if request.endpoint == 'servicios' %}class="active"{% endif %}>
-                            <i class="fas fa-concierge-bell"></i> Servicios
-                        </a></li>
-                        <li><a href="{{ url_for('reservaciones') }}" {% if request.endpoint == 'reservaciones' %}class="active"{% endif %}>
-                            <i class="fas fa-calendar-alt"></i> Reservaciones
-                        </a></li>
-                        <li><a href="{{ url_for('reserva_ecologica') }}" {% if request.endpoint == 'reserva_ecologica' %}class="active"{% endif %}>
-                            <i class="fas fa-leaf"></i> Reserva Ecológica
-                            <span class="eco-indicator">
-                                <i class="fas fa-seedling"></i> Eco
-                            </span>
-                        </a></li>
-                        <li><a href="{{ url_for('galeria') }}" {% if request.endpoint == 'galeria' %}class="active"{% endif %}>
-                            <i class="fas fa-images"></i> Galería
-                        </a></li>
-                        <li><a href="{{ url_for('contacto') }}" {% if request.endpoint == 'contacto' %}class="active"{% endif %}>
-                            <i class="fas fa-envelope"></i> Contacto
-                        </a></li>
+                        <li><a href="{{ url_for('inicio') }}" {% if request.endpoint=='inicio' %}class="active" {% endif
+                                %}>
+                                <i class="fas fa-home"></i> Inicio
+                            </a></li>
+                        <li><a href="{{ url_for('servicios') }}" {% if request.endpoint=='servicios' %}class="active" {%
+                                endif %}>
+                                <i class="fas fa-concierge-bell"></i> Servicios
+                            </a></li>
+                        <li><a href="{{ url_for('reservaciones') }}" {% if request.endpoint=='reservaciones'
+                                %}class="active" {% endif %}>
+                                <i class="fas fa-calendar-alt"></i> Reservaciones
+                            </a></li>
+                        <li><a href="{{ url_for('reserva_ecologica') }}" {% if request.endpoint=='reserva_ecologica'
+                                %}class="active" {% endif %}>
+                                <i class="fas fa-leaf"></i> Reserva Ecológica
+                                <span class="eco-indicator">
+                                    <i class="fas fa-seedling"></i> Eco
+                                </span>
+                            </a></li>
+                        <li><a href="{{ url_for('galeria') }}" {% if request.endpoint=='galeria' %}class="active" {%
+                                endif %}>
+                                <i class="fas fa-images"></i> Galería
+                            </a></li>
+                        <li><a href="{{ url_for('contacto') }}" {% if request.endpoint=='contacto' %}class="active" {%
+                                endif %}>
+                                <i class="fas fa-envelope"></i> Contacto
+                            </a></li>
                     </ul>
                 </nav>
-
-                <!-- Acciones del header -->
-                <div class="header-actions">
-                    <a href="{{ url_for('reservaciones') }}" class="btn-reserva">
-                        <i class="fas fa-calendar-check"></i> Reservar Ahora
-                    </a>
-                </div>
 
                 <!-- Menú móvil -->
                 <button class="menu-toggle" id="menuToggle">
@@ -397,17 +398,17 @@
 
     <script>
         // Menú móvil
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const menuToggle = document.getElementById('menuToggle');
             const mainNav = document.getElementById('mainNav');
-            
-            menuToggle.addEventListener('click', function() {
+
+            menuToggle.addEventListener('click', function () {
                 mainNav.classList.toggle('active');
-                menuToggle.innerHTML = mainNav.classList.contains('active') 
-                    ? '<i class="fas fa-times"></i>' 
+                menuToggle.innerHTML = mainNav.classList.contains('active')
+                    ? '<i class="fas fa-times"></i>'
                     : '<i class="fas fa-bars"></i>';
             });
-            
+
             // Cerrar menú al hacer clic en un enlace
             const navLinks = mainNav.querySelectorAll('a');
             navLinks.forEach(link => {
@@ -416,7 +417,7 @@
                     menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
                 });
             });
-            
+
             // Cerrar menú al hacer clic fuera
             document.addEventListener('click', (e) => {
                 if (!mainNav.contains(e.target) && !menuToggle.contains(e.target)) {
@@ -427,4 +428,5 @@
         });
     </script>
 </body>
+
 </html>
