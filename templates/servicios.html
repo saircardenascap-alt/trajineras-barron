@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
     {% include 'header.html' %}
 
@@ -28,10 +30,6 @@
                             <i class="far fa-clock"></i>
                             <span>Duración mínima: 1 hora</span>
                         </div>
-                        <div class="stat-item">
-                            <i class="fas fa-shield-alt"></i>
-                            <span>Seguro incluido</span>
-                        </div>
                     </div>
                     <a href="#reserva" class="btn btn-primary btn-large">
                         <i class="fas fa-calendar-check"></i> Reserva Ahora
@@ -46,7 +44,7 @@
         <div class="container">
             <div class="capacity-card">
                 <h2 class="section-title"><i class="fas fa-info-circle"></i> Detalles de Nuestras Trajineras</h2>
-                
+
                 <div class="capacity-details">
                     <div class="capacity-item">
                         <div class="capacity-icon">
@@ -58,7 +56,7 @@
                             <p class="capacity-note">Incluye niños de todas las edades</p>
                         </div>
                     </div>
-                    
+
                     <div class="capacity-item">
                         <div class="capacity-icon">
                             <i class="fas fa-gift"></i>
@@ -67,14 +65,12 @@
                             <h3>Incluye en Todos los Paquetes</h3>
                             <ul>
                                 <li><i class="fas fa-check"></i> Conductor/guía certificado</li>
-                                <li><i class="fas fa-check"></i> Seguro básico de viaje</li>
-                                <li><i class="fas fa-check"></i> Manteles y servilletas</li>
-                                <li><i class="fas fa-check"></i> Hielo y agua potable</li>
-                                <li><i class="fas fa-check"></i> Mesa y sillas plegables</li>
+                                <li><i class="fas fa-check"></i> Manteles</li>
+                                <li><i class="fas fa-check"></i> Mesa y sillas</li>
                             </ul>
                         </div>
                     </div>
-                    
+
                     <div class="capacity-item">
                         <div class="capacity-icon">
                             <i class="far fa-clock"></i>
@@ -82,15 +78,11 @@
                         <div>
                             <h3>Duración y Horarios</h3>
                             <p><strong>Duración mínima:</strong> 1 hora</p>
-                            <p><strong>Horarios disponibles:</strong> 8:00 AM - 6:00 PM</p>
-                            <p><strong>Recorridos nocturnos:</strong> Con reservación previa</p>
+                            <p><strong>Horarios disponibles:</strong> 8:00 AM - 7:00 PM</p>
+                            <p><strong>Recorridos Lunadas:</strong> Con reservación previa</p>
+                            <p><strong>Recorridos Amanecer:</strong> Con reservación previa</p>
                         </div>
                     </div>
-                </div>
-                
-                <div class="safety-notice">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <p><strong>Importante:</strong> Por seguridad, todas las trajineras cuentan con chalecos salvavidas para adultos y niños. El consumo excesivo de alcohol no está permitido.</p>
                 </div>
             </div>
         </div>
@@ -101,7 +93,7 @@
         <div class="container">
             <h2 class="section-title"><i class="fas fa-crown"></i> Paquetes Destacados</h2>
             <p class="section-subtitle">Experiencias diseñadas para momentos especiales</p>
-            
+
             <div class="packages-grid">
                 {% for key, package in packages.items() %}
                 <div class="package-card premium">
@@ -110,7 +102,7 @@
                         <i class="fas fa-fire"></i> Más Popular
                     </div>
                     {% endif %}
-                    
+
                     <div class="package-header">
                         <div class="package-icon">
                             {% if key == 'familiar' %}
@@ -125,7 +117,7 @@
                         </div>
                         <h3 class="package-name">{{ package.name }}</h3>
                     </div>
-                    
+
                     <div class="package-body">
                         <div class="package-price">
                             {% if package.price > 0 %}
@@ -140,7 +132,8 @@
                                 <span class="strike">${{ package.original_price }} MXN</span>
                             </div>
                             <div class="discount-badge">
-                                <i class="fas fa-percentage"></i> Ahorra {{ ((package.original_price - package.price) / package.original_price * 100)|int }}%
+                                <i class="fas fa-percentage"></i> Ahorra {{ ((package.original_price - package.price) /
+                                package.original_price * 100)|int }}%
                             </div>
                             {% endif %}
                             {% else %}
@@ -149,11 +142,11 @@
                             </div>
                             {% endif %}
                         </div>
-                        
+
                         <div class="package-duration">
                             <i class="far fa-clock"></i> {{ package.duration }}
                         </div>
-                        
+
                         <div class="package-features">
                             <h4><i class="fas fa-check-circle"></i> Incluye:</h4>
                             <ul>
@@ -162,7 +155,7 @@
                                 {% endfor %}
                             </ul>
                         </div>
-                        
+
                         <div class="package-ideal">
                             <h4><i class="fas fa-heart"></i> Ideal para:</h4>
                             <p>
@@ -178,7 +171,7 @@
                             </p>
                         </div>
                     </div>
-                    
+
                     <div class="package-footer">
                         <a href="#personalizar" class="btn btn-primary" data-package="{{ key }}">
                             <i class="fas fa-shopping-cart"></i> Seleccionar
@@ -193,133 +186,12 @@
         </div>
     </section>
 
-    <!-- 4. COMPARADOR DE PAQUETES -->
-    <section class="section comparison-section">
-        <div class="container">
-            <h2 class="section-title"><i class="fas fa-balance-scale"></i> Comparador de Paquetes</h2>
-            <p class="section-subtitle">Encuentra el paquete perfecto para ti</p>
-            
-            <div class="comparison-table-container">
-                <table class="comparison-table">
-                    <thead>
-                        <tr>
-                            <th>Paquete</th>
-                            <th>Duración</th>
-                            <th>Precio Original</th>
-                            <th>Precio con Descuento</th>
-                            <th>Incluye Básico</th>
-                            <th>Ideal Para</th>
-                            <th>Acción</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <strong>Cumpleaños</strong>
-                                <span class="table-tag">🎂 Especial</span>
-                            </td>
-                            <td>2 horas</td>
-                            <td><span class="price-original">$1,500 MXN</span></td>
-                            <td><span class="price-discount">$1,250 MXN</span></td>
-                            <td>
-                                <ul class="table-features">
-                                    <li>Decoración festiva</li>
-                                    <li>Pastel personalizado</li>
-                                    <li>Playlist personalizada</li>
-                                </ul>
-                            </td>
-                            <td>Fiestas, XV años</td>
-                            <td>
-                                <button class="btn btn-sm btn-primary" onclick="selectPackage('cumpleaños')">
-                                    <i class="fas fa-check"></i> Elegir
-                                </button>
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td>
-                                <strong>Amaneceres</strong>
-                                <span class="table-tag">🌅 Nuevo</span>
-                            </td>
-                            <td>3 horas</td>
-                            <td><span class="price-original">$2,500 MXN</span></td>
-                            <td><span class="price-discount">$2,250 MXN</span></td>
-                            <td>
-                                <ul class="table-features">
-                                    <li>Desayuno mexicano</li>
-                                    <li>Café de olla</li>
-                                    <li>Fotografía del amanecer</li>
-                                </ul>
-                            </td>
-                            <td>Familias, fotógrafos</td>
-                            <td>
-                                <button class="btn btn-sm btn-primary" onclick="selectPackage('amanecer')">
-                                    <i class="fas fa-check"></i> Elegir
-                                </button>
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td>
-                                <strong>Lunadas</strong>
-                                <span class="table-tag">🌙 Romántico</span>
-                            </td>
-                            <td>2 horas</td>
-                            <td><span class="price-original">$1,500 MXN</span></td>
-                            <td><span class="price-discount">$1,250 MXN</span></td>
-                            <td>
-                                <ul class="table-features">
-                                    <li>Cena ligera</li>
-                                    <li>Bebidas calientes</li>
-                                    <li>Iluminación especial</li>
-                                </ul>
-                            </td>
-                            <td>Parejas, amigos</td>
-                            <td>
-                                <button class="btn btn-sm btn-primary" onclick="selectPackage('lunada')">
-                                    <i class="fas fa-check"></i> Elegir
-                                </button>
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td>
-                                <strong>Familiar</strong>
-                                <span class="table-tag">👨‍👩‍👧‍👦 Popular</span>
-                            </td>
-                            <td>3 horas</td>
-                            <td><span class="price-original">$2,500 MXN</span></td>
-                            <td><span class="price-discount">$1,800 MXN</span></td>
-                            <td>
-                                <ul class="table-features">
-                                    <li>Botanas típicas</li>
-                                    <li>Refrescos ilimitados</li>
-                                    <li>Música ambiental</li>
-                                </ul>
-                            </td>
-                            <td>Familias, reuniones</td>
-                            <td>
-                                <button class="btn btn-sm btn-primary" onclick="selectPackage('familiar')">
-                                    <i class="fas fa-check"></i> Elegir
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            
-            <div class="comparison-notes">
-                <p><i class="fas fa-info-circle"></i> <strong>Nota:</strong> Todos los precios incluyen IVA. Descuentos aplican con reservación mínima de 48 horas de anticipación.</p>
-            </div>
-        </div>
-    </section>
-
     <!-- 5. PERSONALIZA TU PAQUETE -->
     <section class="section personalization-section" id="personalizar" style="background-color: var(--light-color);">
         <div class="container">
             <h2 class="section-title"><i class="fas fa-sliders-h"></i> Personaliza Tu Paquete</h2>
             <p class="section-subtitle">Crea la experiencia perfecta para tu evento</p>
-            
+
             <div class="personalization-wizard">
                 <!-- Paso 1: Elegir paquete base -->
                 <div class="wizard-step active" id="step1">
@@ -327,7 +199,7 @@
                         <div class="step-number">1</div>
                         <h3>Elige tu Paquete Base</h3>
                     </div>
-                    
+
                     <div class="step-content">
                         <div class="package-selector">
                             {% for key, package in packages.items() %}
@@ -366,14 +238,14 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Paso 2: Personalizar comida -->
                 <div class="wizard-step" id="step2">
                     <div class="step-header">
                         <div class="step-number">2</div>
                         <h3>Personaliza Comida y Bebida</h3>
                     </div>
-                    
+
                     <div class="step-content">
                         <div class="catering-categories">
                             <!-- Comidas Fuertes -->
@@ -384,7 +256,8 @@
                                         <div class="option-info">
                                             <h5>Tradicional Mexicana</h5>
                                             <p>Tacos, quesadillas, sopes con guarnición</p>
-                                            <span class="option-tag veggie"><i class="fas fa-leaf"></i> Opción vegetariana</span>
+                                            <span class="option-tag veggie"><i class="fas fa-leaf"></i> Opción
+                                                vegetariana</span>
                                         </div>
                                         <div class="option-price">
                                             <span>$300 MXN</span>
@@ -395,7 +268,7 @@
                                             <label for="comida-tradicional"></label>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="catering-option">
                                         <div class="option-info">
                                             <h5>Premium Especial</h5>
@@ -412,7 +285,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <!-- Bebidas -->
                             <div class="category-card">
                                 <h4><i class="fas fa-glass-cheers"></i> Bebidas</h4>
@@ -431,7 +304,7 @@
                                             <label for="bebidas-basico"></label>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="catering-option">
                                         <div class="option-info">
                                             <h5>Paquete Premium</h5>
@@ -448,7 +321,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <!-- Botanas -->
                             <div class="category-card">
                                 <h4><i class="fas fa-cookie-bite"></i> Botanas</h4>
@@ -467,7 +340,7 @@
                                             <label for="botanas-tradicional"></label>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="catering-option">
                                         <div class="option-info">
                                             <h5>Botana Gourmet</h5>
@@ -487,14 +360,14 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Paso 3: Agregar extras -->
                 <div class="wizard-step" id="step3">
                     <div class="step-header">
                         <div class="step-number">3</div>
                         <h3>Agrega Extras Especiales</h3>
                     </div>
-                    
+
                     <div class="step-content">
                         <div class="extras-grid">
                             <div class="extra-card">
@@ -509,7 +382,7 @@
                                     <label for="extra-mariachi">Agregar</label>
                                 </div>
                             </div>
-                            
+
                             <div class="extra-card">
                                 <div class="extra-icon">
                                     <i class="fas fa-music"></i>
@@ -522,7 +395,7 @@
                                     <label for="extra-trio">Agregar</label>
                                 </div>
                             </div>
-                            
+
                             <div class="extra-card">
                                 <div class="extra-icon">
                                     <i class="fas fa-volume-up"></i>
@@ -535,7 +408,7 @@
                                     <label for="extra-bocina">Agregar</label>
                                 </div>
                             </div>
-                            
+
                             <div class="extra-card">
                                 <div class="extra-icon">
                                     <i class="fas fa-palette"></i>
@@ -548,7 +421,7 @@
                                     <label for="extra-decoracion">Agregar</label>
                                 </div>
                             </div>
-                            
+
                             <div class="extra-card">
                                 <div class="extra-icon">
                                     <i class="fas fa-camera"></i>
@@ -561,7 +434,7 @@
                                     <label for="extra-fotografo">Agregar</label>
                                 </div>
                             </div>
-                            
+
                             <div class="extra-card">
                                 <div class="extra-icon">
                                     <i class="fas fa-edit"></i>
@@ -577,54 +450,56 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Paso 4: Resumen y total -->
                 <div class="wizard-step" id="step4">
                     <div class="step-header">
                         <div class="step-number">4</div>
                         <h3>Revisa y Confirma</h3>
                     </div>
-                    
+
                     <div class="step-content">
                         <div class="summary-container">
                             <div class="summary-details">
                                 <h4><i class="fas fa-file-alt"></i> Resumen de tu Experiencia</h4>
-                                
+
                                 <div class="summary-item">
                                     <h5>Paquete Base</h5>
                                     <div class="summary-content" id="summary-paquete">
                                         <p>No seleccionado</p>
                                     </div>
                                 </div>
-                                
+
                                 <div class="summary-item">
                                     <h5>Catering Seleccionado</h5>
                                     <div class="summary-content" id="summary-catering">
                                         <p>Sin catering adicional</p>
                                     </div>
                                 </div>
-                                
+
                                 <div class="summary-item">
                                     <h5>Extras Especiales</h5>
                                     <div class="summary-content" id="summary-extras">
                                         <p>Sin extras adicionales</p>
                                     </div>
                                 </div>
-                                
+
                                 <div class="summary-item">
                                     <h5>Número de Personas</h5>
                                     <div class="personas-selector">
-                                        <button type="button" class="personas-btn" onclick="adjustPersonas(-1)">-</button>
+                                        <button type="button" class="personas-btn"
+                                            onclick="adjustPersonas(-1)">-</button>
                                         <input type="number" id="summary-personas" value="10" min="1" max="20" readonly>
-                                        <button type="button" class="personas-btn" onclick="adjustPersonas(1)">+</button>
+                                        <button type="button" class="personas-btn"
+                                            onclick="adjustPersonas(1)">+</button>
                                         <small>Capacidad máxima: 20</small>
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="summary-total">
                                 <h4><i class="fas fa-calculator"></i> Total Estimado</h4>
-                                
+
                                 <div class="total-breakdown">
                                     <div class="breakdown-item">
                                         <span>Paquete Base:</span>
@@ -643,7 +518,7 @@
                                         <span id="total-final"><strong>$0 MXN</strong></span>
                                     </div>
                                 </div>
-                                
+
                                 <div class="summary-actions">
                                     <button class="btn btn-primary" onclick="calculateTotal()">
                                         <i class="fas fa-calculator"></i> Calcular Total
@@ -655,15 +530,16 @@
                                         <i class="fas fa-arrow-right"></i> Continuar a Reservar
                                     </a>
                                 </div>
-                                
+
                                 <div class="summary-note">
-                                    <p><i class="fas fa-info-circle"></i> Este es un presupuesto estimado. El precio final será confirmado al realizar la reserva.</p>
+                                    <p><i class="fas fa-info-circle"></i> Este es un presupuesto estimado. El precio
+                                        final será confirmado al realizar la reserva.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Navegación del wizard -->
                 <div class="wizard-navigation">
                     <button class="btn btn-outline" id="prev-btn" onclick="prevStep()">
@@ -688,7 +564,7 @@
         <div class="container">
             <h2 class="section-title"><i class="fas fa-plus-circle"></i> Servicios Adicionales</h2>
             <p class="section-subtitle">Mejora tu experiencia con estos extras</p>
-            
+
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">
@@ -708,12 +584,14 @@
                         </div>
                         <div class="price-option">
                             <h4>DJ/Bocina</h4>
-                            <p class="price">$500 MXN</p>
+                            <p class="price">$400 MXN 1 hora</p>
+                            <p class="price">$700 MXN 2 horas</p>
+                            <p class="price">$900 MXN 3 horas</p>
                             <p class="desc">Sistema de sonido profesional</p>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-camera"></i>
@@ -723,16 +601,16 @@
                         <div class="price-option">
                             <h4>Fotógrafo Profesional</h4>
                             <p class="price">$1,500 MXN</p>
-                            <p class="desc">2 horas, 50+ fotos editadas</p>
+                            <p class="desc">2 horas, 30+ fotos editadas</p>
                         </div>
                         <div class="price-option">
                             <h4>Sesión Básica</h4>
-                            <p class="price">$800 MXN</p>
-                            <p class="desc">1 hora, 25+ fotos</p>
+                            <p class="price">$1,000 MXN</p>
+                            <p class="desc">1 hora, 15+ fotos</p>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-palette"></i>
@@ -760,7 +638,7 @@
         <div class="container">
             <h2 class="section-title"><i class="fas fa-question-circle"></i> Preguntas Frecuentes</h2>
             <p class="section-subtitle">Resuelve tus dudas sobre nuestros servicios</p>
-            
+
             <div class="faq-grid">
                 <div class="faq-card">
                     <div class="faq-question">
@@ -768,57 +646,67 @@
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p><strong>¡Sí!</strong> Puedes llevar tu propia comida y bebida sin costo adicional. Solo te pedimos que no lleves vidrio por seguridad. También ofrecemos servicios de catering con menús especiales que puedes agregar a tu paquete.</p>
+                        <p><strong>¡Sí!</strong>Puedes llevar tu propia comida y bebida sin costo adicional. Tambien te
+                            ofrcemos un
+                            anafre para que puedas cocinar tu carne asada en la trajinera. También ofrecemos servicios
+                            de bebida y antojitos Mexicanos puedes ver nuestro catalogo (consulta disponibilidad y
+                            precios).</p>
                     </div>
                 </div>
-                
+
                 <div class="faq-card">
                     <div class="faq-question">
                         <h4><i class="fas fa-calendar-alt"></i> ¿Puedo cambiar mi reservación?</h4>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Sí, puedes cambiar tu reservación con <strong>48 horas de anticipación</strong> sin costo adicional, sujeto a disponibilidad. Para cambios con menos tiempo, contáctanos al +52 55 6009 4568 y haremos nuestro mejor esfuerzo por acomodarte.</p>
+                        <p>Sí, puedes cambiar tu reservación con <strong>48 horas de anticipación</strong> sin costo
+                            adicional.</p>
                     </div>
                 </div>
-                
+
                 <div class="faq-card">
                     <div class="faq-question">
                         <h4><i class="fas fa-paw"></i> ¿Aceptan mascotas?</h4>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p><strong>¡Por supuesto!</strong> Tus mascotas son bienvenidas sin costo adicional. Solo asegúrate de que estén cómodas en el agua y traigas su correa. Te recomendamos traer agua y comida para ellas.</p>
+                        <p><strong>¡Por supuesto!</strong> Tus mascotas son bienvenidas sin costo adicional. Solo
+                            asegúrate de que estén cómodas y traigas su correa. Te recomendamos traer agua y comida para
+                            ellas.</p>
                     </div>
                 </div>
-                
+
                 <div class="faq-card">
                     <div class="faq-question">
                         <h4><i class="fas fa-users"></i> ¿Qué pasa si somos más de 20 personas?</h4>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Para grupos mayores a 20 personas, podemos asignar <strong>trajineras adicionales</strong> que navegarán juntas. Contáctanos para grupos grandes y te ayudaremos a organizar la mejor experiencia.</p>
+                        <p>Para grupos mayores a 20 personas, podemos asignar <strong>trajineras adicionales</strong>
+                            que navegarán juntas. Contáctanos para grupos grandes y te ayudaremos a organizar la mejor
+                            experiencia.</p>
                     </div>
                 </div>
-                
+
                 <div class="faq-card">
                     <div class="faq-question">
                         <h4><i class="fas fa-credit-card"></i> ¿Qué métodos de pago aceptan?</h4>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Aceptamos <strong>efectivo, tarjetas de crédito/débito (Visa, MasterCard)</strong>, transferencias electrónicas y depósitos bancarios. Para reservar, se requiere un depósito del 30%.</p>
+                        <p>Aceptamos <strong>efectivo</strong>, transferencias electrónicas y depósitos bancarios.</p>
                     </div>
                 </div>
-                
+
                 <div class="faq-card">
                     <div class="faq-question">
                         <h4><i class="fas fa-car"></i> ¿Hay estacionamiento disponible?</h4>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Sí, contamos con <strong>estacionamiento vigilado</strong> disponible por $50 MXN por evento. El espacio es limitado, así que te recomendamos llegar con tiempo.</p>
+                        <p>Sí, contamos con <strong>estacionamiento vigilado</strong> disponible por $50 MXN TIEMPO
+                            LIBRE. Espacio disponible para 30 autos.</p>
                     </div>
                 </div>
             </div>
@@ -830,7 +718,7 @@
         <div class="container">
             <h2 class="section-title"><i class="fas fa-list-ol"></i> Proceso de Reserva</h2>
             <p class="section-subtitle">Así de fácil es reservar tu experiencia</p>
-            
+
             <div class="process-steps">
                 <div class="process-step">
                     <div class="step-circle">1</div>
@@ -844,7 +732,7 @@
                         </ul>
                     </div>
                 </div>
-                
+
                 <div class="process-step">
                     <div class="step-circle">2</div>
                     <div class="step-content">
@@ -852,39 +740,19 @@
                         <p>Confirma los detalles de tu experiencia y realiza el depósito inicial del 30%.</p>
                         <ul class="step-features">
                             <li><i class="fas fa-check"></i> Confirmación inmediata</li>
-                            <li><i class="fas fa-check"></i> Pagos seguros en línea</li>
-                            <li><i class="fas fa-check"></i> Facturación disponible</li>
                         </ul>
                     </div>
                 </div>
-                
+
                 <div class="process-step">
                     <div class="step-circle">3</div>
                     <div class="step-content">
                         <h3>Recibe Confirmación</h3>
-                        <p>Te enviaremos por correo la confirmación e instrucciones para el día de tu evento.</p>
+                        <p>Te enviaremos un mensaje a tu telefono con la confirmación.</p>
                         <ul class="step-features">
                             <li><i class="fas fa-check"></i> Instrucciones detalladas</li>
-                            <li><i class="fas fa-check"></i> Contacto de tu guía</li>
-                            <li><i class="fas fa-check"></i> Recordatorio 24h antes</li>
                         </ul>
                     </div>
-                </div>
-            </div>
-            
-            <div class="process-timeline">
-                <div class="timeline-line"></div>
-                <div class="timeline-item" style="left: 0;">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-label">Reserva Online</div>
-                </div>
-                <div class="timeline-item" style="left: 50%; transform: translateX(-50%);">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-label">Confirmación</div>
-                </div>
-                <div class="timeline-item" style="right: 0;">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-label">¡Disfruta!</div>
                 </div>
             </div>
         </div>
@@ -895,7 +763,7 @@
         <div class="container">
             <h2 class="section-title"><i class="fas fa-comment-alt"></i> Testimonios por Paquete</h2>
             <p class="section-subtitle">Lo que dicen nuestros clientes sobre cada experiencia</p>
-            
+
             <div class="testimonial-tabs">
                 <div class="tab-buttons">
                     <button class="tab-btn active" data-tab="familiar">Familiar</button>
@@ -903,7 +771,7 @@
                     <button class="tab-btn" data-tab="amanecer">Amanecer</button>
                     <button class="tab-btn" data-tab="personalizado">Personalizado</button>
                 </div>
-                
+
                 <div class="tab-content active" id="tab-familiar">
                     <div class="testimonial-grid">
                         <div class="testimonial-card">
@@ -914,7 +782,8 @@
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                             </div>
-                            <p class="testimonial-text">"El paquete familiar fue perfecto para celebrar el cumpleaños de mi mamá. Los niños disfrutaron mucho y la atención fue excepcional."</p>
+                            <p class="testimonial-text">"El paquete familiar fue perfecto para celebrar el cumpleaños de
+                                mi mamá. Los niños disfrutaron mucho y la atención fue excepcional."</p>
                             <div class="testimonial-author">
                                 <div class="author-avatar">
                                     <i class="fas fa-user"></i>
@@ -925,7 +794,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="testimonial-card">
                             <div class="testimonial-rating">
                                 <i class="fas fa-star"></i>
@@ -934,7 +803,8 @@
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star-half-alt"></i>
                             </div>
-                            <p class="testimonial-text">"Celebramos la reunión familiar anual y fue increíble. La trajinera estaba impecable y el guía conocía todas las historias de Xochimilco."</p>
+                            <p class="testimonial-text">"Celebramos la reunión familiar anual y fue increíble. La
+                                trajinera estaba impecable y el guía conocía todas las historias de Xochimilco."</p>
                             <div class="testimonial-author">
                                 <div class="author-avatar">
                                     <i class="fas fa-user"></i>
@@ -947,7 +817,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="tab-content" id="tab-lunada">
                     <div class="testimonial-grid">
                         <div class="testimonial-card">
@@ -958,7 +828,9 @@
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                             </div>
-                            <p class="testimonial-text">"La cena romántica al atardecer fue inolvidable. El servicio y la atención al detalle superaron nuestras expectativas. ¡Perfecto para aniversarios!"</p>
+                            <p class="testimonial-text">"La cena romántica al atardecer fue inolvidable. El servicio y
+                                la atención al detalle superaron nuestras expectativas. ¡Perfecto para aniversarios!"
+                            </p>
                             <div class="testimonial-author">
                                 <div class="author-avatar">
                                     <i class="fas fa-user-friends"></i>
@@ -971,7 +843,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="tab-content" id="tab-amanecer">
                     <div class="testimonial-grid">
                         <div class="testimonial-card">
@@ -982,7 +854,9 @@
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                             </div>
-                            <p class="testimonial-text">"El paquete amanecer fue mágico. Ver el sol salir sobre los canales mientras desayunábamos fue una experiencia única. Las fotos quedaron espectaculares."</p>
+                            <p class="testimonial-text">"El paquete amanecer fue mágico. Ver el sol salir sobre los
+                                canales mientras desayunábamos fue una experiencia única. Las fotos quedaron
+                                espectaculares."</p>
                             <div class="testimonial-author">
                                 <div class="author-avatar">
                                     <i class="fas fa-camera"></i>
@@ -995,7 +869,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="tab-content" id="tab-personalizado">
                     <div class="testimonial-grid">
                         <div class="testimonial-card">
@@ -1006,7 +880,8 @@
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                             </div>
-                            <p class="testimonial-text">"El paquete cumpleaños fue perfecto para mis 15 años. La decoración estaba hermosa y el mariachi hizo todo mágico. ¡Super recomendado!"</p>
+                            <p class="testimonial-text">"El paquete cumpleaños fue perfecto para mis 15 años. La
+                                decoración estaba hermosa y el mariachi hizo todo mágico. ¡Super recomendado!"</p>
                             <div class="testimonial-author">
                                 <div class="author-avatar">
                                     <i class="fas fa-birthday-cake"></i>
@@ -1024,13 +899,16 @@
     </section>
 
     <!-- 10. LLAMADO A LA ACCIÓN -->
-    <section class="section cta-section" id="reserva" style="background: linear-gradient(135deg, var(--primary-color), var(--dark-color));">
+    <section class="section cta-section" id="reserva"
+        style="background: linear-gradient(135deg, var(--primary-color), var(--dark-color));">
         <div class="container">
             <div class="cta-container">
                 <div class="cta-content">
-                    <h2 style="color: white;"><i class="fas fa-rocket"></i> ¿Listo para personalizar tu experiencia?</h2>
-                    <p style="color: rgba(255, 255, 255, 0.9); font-size: 1.2rem; margin: 20px 0;">Crea la experiencia perfecta para tu celebración</p>
-                    
+                    <h2 style="color: white;"><i class="fas fa-rocket"></i> ¿Listo para personalizar tu experiencia?
+                    </h2>
+                    <p style="color: rgba(255, 255, 255, 0.9); font-size: 1.2rem; margin: 20px 0;">Crea la experiencia
+                        perfecta para tu celebración</p>
+
                     <div class="cta-features">
                         <div class="cta-feature">
                             <i class="fas fa-check-circle" style="color: var(--secondary-color);"></i>
@@ -1045,16 +923,18 @@
                             <span style="color: white;">Confirmación inmediata</span>
                         </div>
                     </div>
-                    
+
                     <div class="cta-contact">
                         <p style="color: white; font-size: 1.3rem; margin: 30px 0 20px;">
-                            <i class="fas fa-phone-alt"></i> Teléfono de asesoría: 
-                            <a href="tel:+525560094568" style="color: var(--secondary-color); font-weight: bold; text-decoration: none;">+52 55 6009 4568</a>
+                            <i class="fas fa-phone-alt"></i> Teléfono:
+                            <a href="tel:+525560094568"
+                                style="color: var(--secondary-color); font-weight: bold; text-decoration: none;">+52 55
+                                6009 4568</a>
                         </p>
-                        <p style="color: rgba(255, 255, 255, 0.8);">Disponible de 7:00 AM a 10:00 PM</p>
+                        <p style="color: rgba(255, 255, 255, 0.8);">Disponible de 7:00 AM a 8:00 PM</p>
                     </div>
                 </div>
-                
+
                 <div class="cta-buttons">
                     <a href="#personalizar" class="btn btn-warning btn-large">
                         <i class="fas fa-sliders-h"></i> Comienza tu personalización
@@ -1099,10 +979,10 @@
             document.querySelectorAll('.wizard-step').forEach(s => {
                 s.classList.remove('active');
             });
-            
+
             // Mostrar paso actual
             document.getElementById(`step${step}`).classList.add('active');
-            
+
             // Actualizar indicadores
             document.querySelectorAll('.step-indicator').forEach(indicator => {
                 indicator.classList.remove('active');
@@ -1110,16 +990,16 @@
                     indicator.classList.add('active');
                 }
             });
-            
+
             // Actualizar botones de navegación
             const prevBtn = document.getElementById('prev-btn');
             const nextBtn = document.getElementById('next-btn');
-            
+
             prevBtn.style.display = step > 1 ? 'block' : 'none';
             nextBtn.textContent = step < 4 ? 'Siguiente <i class="fas fa-arrow-right"></i>' : 'Finalizar';
-            
+
             currentStep = step;
-            
+
             // Actualizar resumen en paso 4
             if (step === 4) {
                 updateSummary();
@@ -1143,23 +1023,23 @@
 
         // Seleccionar paquete
         document.querySelectorAll('.select-package-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
+            btn.addEventListener('click', function () {
                 const packageCard = this.closest('.package-option');
                 selectedPackage = packageCard.dataset.package;
-                
+
                 // Remover selección anterior
                 document.querySelectorAll('.package-option').forEach(card => {
                     card.classList.remove('selected');
                 });
-                
+
                 // Marcar como seleccionado
                 packageCard.classList.add('selected');
-                
+
                 // Actualizar resumen
                 if (currentStep === 4) {
                     updateSummary();
                 }
-                
+
                 // Avanzar automáticamente al siguiente paso
                 setTimeout(() => nextStep(), 500);
             });
@@ -1167,10 +1047,10 @@
 
         // Manejar selección de catering
         document.querySelectorAll('.catering-option input[type="checkbox"]').forEach(checkbox => {
-            checkbox.addEventListener('change', function() {
+            checkbox.addEventListener('change', function () {
                 const name = this.id.replace('comida-', '').replace('bebidas-', '').replace('botanas-', '');
                 const price = parseInt(this.dataset.price);
-                
+
                 if (this.checked) {
                     selectedCatering.push({ name, price });
                 } else {
@@ -1181,10 +1061,10 @@
 
         // Manejar selección de extras
         document.querySelectorAll('.extra-select input[type="checkbox"]').forEach(checkbox => {
-            checkbox.addEventListener('change', function() {
+            checkbox.addEventListener('change', function () {
                 const name = this.id.replace('extra-', '');
                 const price = parseInt(this.dataset.price);
-                
+
                 if (this.checked) {
                     selectedExtras.push({ name, price });
                 } else {
@@ -1220,27 +1100,27 @@
             } else {
                 paqueteSummary.innerHTML = '<p>No seleccionado</p>';
             }
-            
+
             // Actualizar catering
             const cateringSummary = document.getElementById('summary-catering');
             if (selectedCatering.length > 0) {
-                cateringSummary.innerHTML = selectedCatering.map(item => 
+                cateringSummary.innerHTML = selectedCatering.map(item =>
                     `<p><strong>${item.name}</strong>: $${item.price} MXN pp</p>`
                 ).join('');
             } else {
                 cateringSummary.innerHTML = '<p>Sin catering adicional</p>';
             }
-            
+
             // Actualizar extras
             const extrasSummary = document.getElementById('summary-extras');
             if (selectedExtras.length > 0) {
-                extrasSummary.innerHTML = selectedExtras.map(item => 
+                extrasSummary.innerHTML = selectedExtras.map(item =>
                     `<p><strong>${item.name}</strong>: $${item.price} MXN</p>`
                 ).join('');
             } else {
                 extrasSummary.innerHTML = '<p>Sin extras adicionales</p>';
             }
-            
+
             // Calcular totales
             calculateTotal();
         }
@@ -1250,24 +1130,24 @@
             let totalPaquete = 0;
             let totalCatering = 0;
             let totalExtras = 0;
-            
+
             // Precio del paquete
             if (selectedPackage && packages[selectedPackage]) {
                 totalPaquete = packages[selectedPackage].price || 0;
             }
-            
+
             // Precio del catering
             selectedCatering.forEach(item => {
                 totalCatering += item.price * personas;
             });
-            
+
             // Precio de extras
             selectedExtras.forEach(item => {
                 totalExtras += item.price;
             });
-            
+
             const totalFinal = totalPaquete + totalCatering + totalExtras;
-            
+
             // Actualizar UI
             document.getElementById('total-paquete').textContent = `$${totalPaquete.toLocaleString()} MXN`;
             document.getElementById('total-catering').textContent = `$${totalCatering.toLocaleString()} MXN`;
@@ -1282,7 +1162,7 @@
                 showStep(1);
                 return;
             }
-            
+
             const personalizacion = {
                 paquete: selectedPackage,
                 personas: personas,
@@ -1290,7 +1170,7 @@
                 extras: selectedExtras,
                 fecha: new Date().toISOString()
             };
-            
+
             // Enviar al servidor
             fetch('/api/guardar-personalizacion', {
                 method: 'POST',
@@ -1299,20 +1179,20 @@
                 },
                 body: JSON.stringify(personalizacion)
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('¡Personalización guardada exitosamente! Tu ID es: ' + data.personalizacion_id);
-                    // Redirigir a reservaciones con los datos
-                    window.location.href = `/reservaciones?personalizacion=${data.personalizacion_id}`;
-                } else {
-                    alert('Error al guardar la personalización. Por favor, intenta nuevamente.');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Error de conexión. Por favor, intenta nuevamente.');
-            });
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('¡Personalización guardada exitosamente! Tu ID es: ' + data.personalizacion_id);
+                        // Redirigir a reservaciones con los datos
+                        window.location.href = `/reservaciones?personalizacion=${data.personalizacion_id}`;
+                    } else {
+                        alert('Error al guardar la personalización. Por favor, intenta nuevamente.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error de conexión. Por favor, intenta nuevamente.');
+                });
         }
 
         // Funciones auxiliares
@@ -1326,13 +1206,13 @@
 
         // Tabs de testimonios
         document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
+            btn.addEventListener('click', function () {
                 const tabId = this.dataset.tab;
-                
+
                 // Remover active de todos
                 document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
                 document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-                
+
                 // Agregar active al seleccionado
                 this.classList.add('active');
                 document.getElementById(`tab-${tabId}`).classList.add('active');
@@ -1341,10 +1221,10 @@
 
         // FAQ interactivo
         document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', function() {
+            question.addEventListener('click', function () {
                 const answer = this.nextElementSibling;
                 const icon = this.querySelector('i.fa-chevron-down');
-                
+
                 // Cerrar otros
                 document.querySelectorAll('.faq-answer').forEach(a => {
                     if (a !== answer) {
@@ -1353,7 +1233,7 @@
                         a.previousElementSibling.querySelector('i').classList.add('fa-chevron-down');
                     }
                 });
-                
+
                 // Abrir/cerrar este
                 if (answer.style.maxHeight) {
                     answer.style.maxHeight = null;
@@ -1368,10 +1248,10 @@
         });
 
         // Inicialización
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Inicializar wizard en paso 1
             showStep(1);
-            
+
             // Inicializar FAQ
             document.querySelectorAll('.faq-answer').forEach(answer => {
                 answer.style.maxHeight = null;
@@ -1379,4 +1259,5 @@
         });
     </script>
 </body>
+
 </html>
