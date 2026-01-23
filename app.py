@@ -352,7 +352,7 @@ def inicio():
 
 @app.route('/servicios')
 def servicios():
-    return render_template('servicios.html', packages=PACKAGES)
+    return render_template('servicios.html', packages=PACKAGES, comida=COMIDA_MEXICANA, servicios_extra=SERVICIOS_ADICIONALES)
 
 @app.route('/galeria')
 def galeria():

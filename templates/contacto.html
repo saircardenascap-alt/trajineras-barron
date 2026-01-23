@@ -10,6 +10,101 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        /* Variables Globales (copiadas de inicio.css para consistencia) */
+        :root {
+            --primary-color: #2E7D32;
+            --secondary-color: #FF9800;
+            --dark-color: #1B5E20;
+            --light-color: #E8F5E9;
+            --text-color: #333;
+            --white: #ffffff;
+            --gray: #f5f5f5;
+            --border-radius: 10px;
+            --transition: all 0.3s ease;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 8px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Estilos de Botones */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: 2px solid transparent;
+            font-size: 1rem;
+            gap: 8px;
+            font-family: inherit;
+            line-height: 1;
+        }
+
+        .btn-large {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--dark-color);
+            border-color: var(--dark-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+        }
+
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+            border: 2px solid #25D366;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #128C7E;
+            border-color: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Asegurar que el menú de contacto se vea bien */
+        .contact-menu {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .contact-menu .btn {
+            min-width: 140px;
+        }
+    </style>
 </head>
 
 <body>
@@ -73,7 +168,7 @@
                     <p class="contact-detail">trajinerasbarron@gmail.com</p>
                     <p class="contact-info">Respuesta en &lt;12 horas</p>
                     <a href="mailto:trajinerasbarron@gmail.com" class="btn btn-outline">
-                        <i class="fas fa-paper-plane"></i> Enviar email
+                        <i class="fas fa-paper-plane"></i> Enviar Correo electronico
                     </a>
                 </div>
 
@@ -564,76 +659,6 @@
                             de bebida y antojitos Mexicanos puedes ver nuestro catalogo (consulta disponibilidad y
                             precios).</p>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección 8: Contacto para prensa lo dejo a espera de ser borrado -->
-    <section class="section press-section">
-        <div class="container">
-            <div class="press-container">
-                <div class="press-content">
-                    <h2><i class="fas fa-newspaper"></i> Contacto para Prensa y Colaboraciones</h2>
-                    <p>¿Eres periodista, influencer o representas una empresa interesada en colaborar? Tenemos un equipo
-                        especializado para atenderte.</p>
-
-                    <div class="press-contacts">
-                        <div class="press-contact">
-                            <h4><i class="fas fa-envelope-open-text"></i> Correo de Prensa</h4>
-                            <p>prensa@trajinerasbarron.com</p>
-                        </div>
-
-                        <div class="press-contact">
-                            <h4><i class="fas fa-handshake"></i> Colaboraciones</h4>
-                            <p>colaboraciones@trajinerasbarron.com</p>
-                        </div>
-
-                        <div class="press-contact">
-                            <h4><i class="fas fa-users"></i> Eventos Corporativos</h4>
-                            <p>eventos@trajinerasbarron.com</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="press-form">
-                    <form id="press-form">
-                        <div class="form-group">
-                            <label for="press-nombre">Nombre completo *</label>
-                            <input type="text" id="press-nombre" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="press-empresa">Empresa/Medio *</label>
-                            <input type="text" id="press-empresa" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="press-email">Correo electrónico *</label>
-                            <input type="email" id="press-email" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="press-tipo">Tipo de consulta *</label>
-                            <select id="press-tipo" required>
-                                <option value="">Seleccionar</option>
-                                <option value="prensa">Material para prensa</option>
-                                <option value="colaboracion">Propuesta de colaboración</option>
-                                <option value="evento">Evento corporativo</option>
-                                <option value="fotografia">Sesión fotográfica</option>
-                                <option value="otro">Otro</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="press-mensaje">Mensaje *</label>
-                            <textarea id="press-mensaje" rows="4" required></textarea>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-paper-plane"></i> Enviar solicitud
-                        </button>
-                    </form>
                 </div>
             </div>
         </div>
