@@ -1,4 +1,19 @@
 /* galeria.css - Estilos específicos para la página de galería */
+:root {
+    --primary-color: #4AE600;
+    --secondary-color: #E6DB00;
+    --dark-color: #AAE600;
+    --light-color: #E6D16A;
+    --text-color: #333;
+    --white: #ffffff;
+    --gray: #f5f5f5;
+    --highlight-color: #B1E61E;
+    --accent-color: #E6C41E;
+    --border-radius: 10px;
+    --transition: all 0.3s ease;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
 
 /* Variables adicionales */
 :root {
@@ -38,10 +53,10 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, 
-        rgba(0, 0, 0, 0.7) 0%,
-        rgba(0, 0, 0, 0.5) 50%,
-        rgba(0, 0, 0, 0.7) 100%);
+    background: linear-gradient(135deg,
+            rgba(0, 0, 0, 0.7) 0%,
+            rgba(0, 0, 0, 0.5) 50%,
+            rgba(0, 0, 0, 0.7) 100%);
     z-index: 2;
 }
 
@@ -145,9 +160,22 @@
 }
 
 @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
-    40% { transform: translateY(-10px) translateX(-50%); }
-    60% { transform: translateY(-5px) translateX(-50%); }
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0) translateX(-50%);
+    }
+
+    40% {
+        transform: translateY(-10px) translateX(-50%);
+    }
+
+    60% {
+        transform: translateY(-5px) translateX(-50%);
+    }
 }
 
 /* 2. GALERÍA PRINCIPAL */
@@ -442,8 +470,15 @@
 }
 
 @keyframes modalFadeIn {
-    from { opacity: 0; transform: translateY(50px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .modal-close {
@@ -1062,11 +1097,13 @@
 }
 
 .image-container.old .image-label {
-    background: rgba(121, 85, 72, 0.8); /* Café para "antiguo" */
+    background: rgba(121, 85, 72, 0.8);
+    /* Café para "antiguo" */
 }
 
 .image-container.new .image-label {
-    background: rgba(46, 125, 50, 0.8); /* Verde para "nuevo" */
+    background: rgba(46, 125, 50, 0.8);
+    /* Verde para "nuevo" */
 }
 
 .comparison-divider {
@@ -1644,11 +1681,11 @@
     .hero-title {
         font-size: 2.8rem;
     }
-    
+
     .hero-stats {
         gap: 20px;
     }
-    
+
     .stat-item {
         min-width: 120px;
         padding: 20px;
@@ -1661,43 +1698,43 @@
         flex-direction: column;
         gap: 10px;
     }
-    
+
     .hero-subtitle {
         font-size: 1.4rem;
     }
-    
+
     .hero-description {
         font-size: 1.1rem;
     }
-    
+
     .gallery-filters {
         flex-direction: column;
         align-items: stretch;
     }
-    
+
     .filter-info {
         width: 100%;
         justify-content: space-between;
     }
-    
+
     .modal-content {
         margin: 20px;
     }
-    
+
     .modal-image-container {
         height: 50vh;
     }
-    
+
     .image-meta {
         flex-direction: column;
         align-items: stretch;
     }
-    
+
     .floating-buttons {
         bottom: 20px;
         right: 20px;
     }
-    
+
     .floating-btn {
         width: 50px;
         height: 50px;
@@ -1709,29 +1746,29 @@
     .hero-title {
         font-size: 1.8rem;
     }
-    
+
     .hero-stats {
         flex-direction: column;
         align-items: center;
     }
-    
+
     .stat-item {
         width: 100%;
         max-width: 250px;
     }
-    
+
     .gallery-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .videos-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .albums-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .cta-title {
         font-size: 1.8rem;
         flex-direction: column;

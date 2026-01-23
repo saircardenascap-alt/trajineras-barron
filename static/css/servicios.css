@@ -1,9 +1,24 @@
 /* servicios.css - Estilos específicos para la página de servicios */
+:root {
+    --primary-color: #4AE600;
+    --secondary-color: #E6DB00;
+    --dark-color: #AAE600;
+    --light-color: #E6D16A;
+    --text-color: #333;
+    --white: #ffffff;
+    --gray: #f5f5f5;
+    --highlight-color: #B1E61E;
+    --accent-color: #E6C41E;
+    --border-radius: 10px;
+    --transition: all 0.3s ease;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
 
 /* 1. HERO SECTION */
 .hero-services {
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600&auto=format&fit=crop') center/cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+        url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600&auto=format&fit=crop') center/cover;
     min-height: 70vh;
     display: flex;
     align-items: center;
@@ -452,8 +467,15 @@
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .step-header {
@@ -655,13 +677,13 @@
     transition: var(--transition);
 }
 
-.option-select input[type="checkbox"]:checked + label {
+.option-select input[type="checkbox"]:checked+label {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
     color: white;
 }
 
-.option-select input[type="checkbox"]:checked + label:after {
+.option-select input[type="checkbox"]:checked+label:after {
     content: "✓";
     font-weight: bold;
 }
@@ -738,7 +760,7 @@
     font-weight: 500;
 }
 
-.extra-select input[type="checkbox"]:checked + label {
+.extra-select input[type="checkbox"]:checked+label {
     background-color: var(--primary-color);
     color: white;
 }
@@ -756,13 +778,15 @@
     }
 }
 
-.summary-details, .summary-total {
+.summary-details,
+.summary-total {
     background: var(--light-color);
     border-radius: var(--border-radius);
     padding: 25px;
 }
 
-.summary-details h4, .summary-total h4 {
+.summary-details h4,
+.summary-total h4 {
     margin-bottom: 20px;
     color: var(--dark-color);
     display: flex;
@@ -1249,25 +1273,25 @@
         font-size: 2.2rem;
         flex-direction: column;
     }
-    
+
     .hero-stats {
         flex-direction: column;
         align-items: center;
     }
-    
+
     .comparison-table-container {
         margin: 20px -20px;
     }
-    
+
     .summary-container {
         grid-template-columns: 1fr;
     }
-    
+
     .cta-buttons {
         flex-direction: column;
         align-items: center;
     }
-    
+
     .cta-buttons .btn {
         width: 100%;
         max-width: 300px;
@@ -1275,6 +1299,7 @@
 }
 
 @media (max-width: 480px) {
+
     .packages-grid,
     .extras-grid,
     .services-grid,
@@ -1282,12 +1307,12 @@
     .testimonial-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .wizard-navigation {
         flex-direction: column;
         gap: 20px;
     }
-    
+
     .step-indicators {
         order: -1;
     }

@@ -1,4 +1,19 @@
 /* reservaciones.css - Estilos específicos para la página de reservaciones */
+:root {
+    --primary-color: #4AE600;
+    --secondary-color: #E6DB00;
+    --dark-color: #AAE600;
+    --light-color: #E6D16A;
+    --text-color: #333;
+    --white: #ffffff;
+    --gray: #f5f5f5;
+    --highlight-color: #B1E61E;
+    --accent-color: #E6C41E;
+    --border-radius: 10px;
+    --transition: all 0.3s ease;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
 
 /* Variables adicionales */
 :root {
@@ -152,8 +167,15 @@
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .step-header {
@@ -769,11 +791,11 @@
     border-radius: 50%;
 }
 
-.toggle-switch input:checked + label {
+.toggle-switch input:checked+label {
     background-color: var(--primary-color);
 }
 
-.toggle-switch input:checked + label:before {
+.toggle-switch input:checked+label:before {
     transform: translateX(30px);
 }
 
@@ -1162,11 +1184,11 @@
     transition: var(--transition);
 }
 
-.method-radio input[type="radio"]:checked + label {
+.method-radio input[type="radio"]:checked+label {
     border-color: var(--primary-color);
 }
 
-.method-radio input[type="radio"]:checked + label:after {
+.method-radio input[type="radio"]:checked+label:after {
     content: "";
     position: absolute;
     top: 50%;
@@ -1184,7 +1206,7 @@
 }
 
 .method-card:hover .method-details,
-.method-card input[type="radio"]:checked ~ .method-details {
+.method-card input[type="radio"]:checked~.method-details {
     display: block;
     animation: fadeIn 0.3s ease;
 }
@@ -1762,13 +1784,13 @@
         justify-content: center;
         gap: 20px;
     }
-    
+
     .progress-step {
         min-width: auto;
         flex: 1;
         justify-content: center;
     }
-    
+
     .progress-line {
         display: none;
     }
@@ -1778,40 +1800,40 @@
     .reservation-header {
         padding: 30px 0;
     }
-    
+
     .reservation-title h1 {
         font-size: 2rem;
         flex-direction: column;
         gap: 10px;
     }
-    
+
     .progress-step {
         padding: 10px;
         flex-direction: column;
         text-align: center;
         gap: 10px;
     }
-    
+
     .step-info {
         display: none;
     }
-    
+
     .reservation-step {
         padding: 25px;
     }
-    
+
     .date-time-selector {
         grid-template-columns: 1fr;
     }
-    
+
     .packages-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .confirmation-actions {
         flex-direction: column;
     }
-    
+
     .confirmation-actions .btn {
         width: 100%;
     }
@@ -1821,21 +1843,21 @@
     .reservation-title h1 {
         font-size: 1.8rem;
     }
-    
+
     .step-header h2 {
         font-size: 1.5rem;
         flex-direction: column;
         gap: 10px;
     }
-    
+
     .extras-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .details-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .instructions-grid {
         grid-template-columns: 1fr;
     }

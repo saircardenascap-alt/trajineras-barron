@@ -1,12 +1,15 @@
-/* Variables CSS */
 :root {
-    --primary-color: #2E7D32;
-    --secondary-color: #FF9800;
-    --dark-color: #1B5E20;
-    --light-color: #E8F5E9;
+    --primary-color: #4AE600;
+    --secondary-color: #E6DB00;
+    --dark-color: #AAE600;
+    --light-color: #E6D16A;
     --text-color: #333;
     --white: #ffffff;
     --gray: #f5f5f5;
+    --highlight-color: #B1E61E;
+    /* Added from palette */
+    --accent-color: #E6C41E;
+    /* Added from palette */
     --border-radius: 10px;
     --transition: all 0.3s ease;
     --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
