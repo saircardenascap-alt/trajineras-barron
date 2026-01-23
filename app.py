@@ -5,60 +5,346 @@ import json
 app = Flask(__name__)
 
 # Datos de los paquetes
+# Datos de los paquetes (actualizados según las imágenes)
 PACKAGES = {
-    "familiar": {
-        "name": "Paquete Familiar",
-        "duration": "3 horas",
-        "price": 1800,
-        "original_price": 2500,
-        "includes": [
-            "Trajinera para 18-20 personas",
-            "Guía certificado",
-            "Seguro básico incluido",
-            "Botanas y refrescos",
-            "Música ambiental"
-        ]
-    },
-    "lunada": {
-        "name": "Paquete Lunada",
+    "recorrido-ajolotario": {
+        "name": "Recorrido Ajolotario",
         "duration": "2 horas",
         "price": 1250,
         "original_price": 1500,
+        "description": "2 horas de aventura + visita al fascinante mundo de los ajolotes. Entrada al ajolotario: $40 adicionales por persona.",
+        "description_en": "2-hour adventure + visit to the fascinating world of axolotls. Ajolotario entrance: $40 additional per person.",
         "includes": [
-            "Trajinera nocturna",
-            "Iluminación especial",
-            "Comida caliente",
-            "Bebidas calientes",
-            "Música suave"
+            "Trajinera decorada con temática de ajolotes",
+            "Anafre profesional para carne asada",
+            "Guía especializado en ajolotes",
+            "Visita al ajolotario (entrada adicional $40)",
+            "Carbón y utensilios para asar",
+            "Música ambiental mexicana",
+            "Seguro básico incluido"
+        ],
+        "highlights": [
+            "🎭 Experiencia única con ajolotes",
+            "🔥 Anafre incluido para tu carne asada",
+            "📸 Fotografías con ajolotes",
+            "🌿 Entorno natural preservado"
         ]
     },
-    "amanecer": {
-        "name": "Paquete Amanecer",
+    "recorrido-normal": {
+        "name": "Trajinera Normal",
+        "duration": "2 horas",
+        "price": 600,
+        "original_price": 750,
+        "description": "¡Disfruta un mágico paseo por los canales! Perfecto para un escape romántico o familiar. Incluye mantel.",
+        "description_en": "Enjoy a magical boat trip along the canals! Perfect for a romantic getaway or a family escape. Tablecloth included.",
+        "includes": [
+            "Trajinera tradicional colorida",
+            "Anafre con carbón incluido",
+            "Mantel de mesa decorativo",
+            "Recorrido por el canal de Apatlaco",
+            "Capacidad para 18 personas máximo",
+            "Guía local experto",
+            "Hielera básica para tus bebidas"
+        ],
+        "highlights": [
+            "🚣‍♀️ Paseo tradicional por canales",
+            "🔥 Anafre para tu carne asada",
+            "💑 Perfecto para parejas o familias",
+            "🛶 Trajinera auténtica mexicana"
+        ]
+    },
+    "recorrido-isla-munecas": {
+        "name": "Recorrido Isla de las Muñecas",
+        "duration": "4 horas",
+        "price": 2250,
+        "original_price": 2500,
+        "description": "Experiencia única de 4 horas visitando la misteriosa y famosa Isla de las Muñecas. Entrada a la isla: $100 adicionales por persona.",
+        "description_en": "Unique 4-hour experience visiting the mysterious and famous Island of the Dolls. Island entrance: $100 additional per person.",
+        "includes": [
+            "Trajinera temática de misterio",
+            "Anafre premium para carne asada",
+            "Guía especializado en leyendas",
+            "Visita a la Isla de las Muñecas (entrada adicional $100)",
+            "Iluminación especial nocturna",
+            "Historia completa de la isla",
+            "Carbón y parrilla profesional"
+        ],
+        "highlights": [
+            "👻 Experiencia misteriosa única",
+            "🔥 Asado bajo las estrellas",
+            "📖 Leyendas e historias reales",
+            "🌙 Ambiente nocturno espeluznante"
+        ]
+    },
+    "recorrido-isla-llorona": {
+        "name": "Recorrido Isla de la Llorona",
+        "duration": "5 horas",
+        "price": 2750,
+        "original_price": 3000,
+        "description": "Aventura de 5 horas a la hermosa y legendaria Isla de la Llorona. Entrada gratis.",
+        "description_en": "5-hour adventure to the beautiful and legendary Island of the Weeping Woman. Free entry.",
+        "includes": [
+            "Trajinera de leyenda especial",
+            "Anafre de lujo para carne asada",
+            "Guía experto en mitología mexicana",
+            "Visita completa a la Isla de la Llorona",
+            "Narración teatralizada de la leyenda",
+            "Decoración temática especial",
+            "Parrilla profesional y carbón premium"
+        ],
+        "highlights": [
+            "👻 Leyenda de la Llorona en vivo",
+            "🔥 Carne asada con vista espectacular",
+            "🎭 Actuación teatral incluida",
+            "🌅 Atardecer en la isla legendaria"
+        ]
+    },
+    "recorrido-familiar": {
+        "name": "Recorrido Familiar",
+        "duration": "3 horas",
+        "price": 1800,
+        "original_price": 2100,
+        "description": "Increíble paseo familiar. Incluye mantel.",
+        "description_en": "Amazing family outing. Includes a tablecloth.",
+        "includes": [
+            "Trajinera familiar decorada",
+            "Anafre familiar grande",
+            "Manteles festivos coloridos",
+            "Juegos y actividades para niños",
+            "Música familiar apropiada",
+            "Capacidad para 20 personas",
+            "Guía especializado en grupos familiares",
+            "Área de juegos segura en la trajinera"
+        ],
+        "highlights": [
+            "👨‍👩‍👧‍👦 Perfecto para toda la familia",
+            "🔥 Asado familiar incluido",
+            "🎮 Actividades para niños",
+            "🎶 Música familiar divertida"
+        ]
+    },
+    "recorrido-lunada-2horas": {
+        "name": "Recorrido Lunada 2 Horas",
+        "duration": "2 horas",
+        "price": 1250,
+        "original_price": 1500,
+        "description": "Romance bajo la luna: mantel elegante, candeleros. Perfecto para propuestas o aniversarios.",
+        "description_en": "Romance under the moon: elegant tablecloth, candlesticks. Perfect for proposals or anniversaries.",
+        "includes": [
+            "Trajinera romántica iluminada",
+            "Anafre romántico para cena especial",
+            "Mantel elegante de lino",
+            "Candeleros y velas aromáticas",
+            "Iluminación suave de luna",
+            "Música romántica personalizada",
+            "Decoración con pétalos de rosa",
+            "Parrilla especial para cortes finos"
+        ],
+        "highlights": [
+            "💖 Romance bajo la luna llena",
+            "🔥 Carne asada gourmet",
+            "🕯️ Ambiente con velas y candeleros",
+            "💍 Perfecto para propuestas"
+        ]
+    },
+    "recorrido-cumpleanos": {
+        "name": "Recorrido Cumpleaños",
+        "duration": "3 horas",
+        "price": 1250,
+        "original_price": 1500,
+        "description": "¡Celebra tu cumpleaños con estilo! Trajinera decorada con globos, guirnaldas y letreros festivos. Incluye mantel de mesa.",
+        "description_en": "Celebrate your birthday in style! A decorated trajinera with balloons, garlands, and festive signs. Includes a tablecloth.",
+        "includes": [
+            "Trajinera decorada para fiesta",
+            "Anafre festivo para carne asada",
+            "Decoración con globos y guirnaldas",
+            "Letrero de 'Feliz Cumpleaños'",
+            "Mantel festivo de cumpleaños",
+            "Música de fiesta personalizada",
+            "Área para pastel y regalos",
+            "Sorpresa de cumpleaños especial"
+        ],
+        "highlights": [
+            "🎂 Celebración única en el agua",
+            "🔥 Asado de cumpleaños incluido",
+            "🎈 Decoración festiva completa",
+            "🎶 Música de fiesta todo el viaje"
+        ]
+    },
+    "recorrido-amanecer": {
+        "name": "Recorrido Amanecer",
         "duration": "3 horas",
         "price": 2250,
         "original_price": 2500,
+        "description": "Experiencia mágica al amanecer en los canales de Xochimilco. Disfruta los primeros rayos del sol con un desayuno especial.",
+        "description_en": "Magical experience at sunrise in the Xochimilco canals. Enjoy the first rays of sun with a special breakfast.",
         "includes": [
-            "Recorrido al amanecer",
-            "Desayuno mexicano",
-            "Café de olla",
-            "Guía especializado",
-            "Fotografías del amanecer"
+            "Trajinera especial para amanecer",
+            "Anafre para desayuno asado",
+            "Desayuno tradicional mexicano",
+            "Café de olla recién hecho",
+            "Guía experto en avistamiento de aves",
+            "Binoculares para observación",
+            "Mantas para el frío matutino",
+            "Fotógrafo opcional (adicional)"
+        ],
+        "highlights": [
+            "🌅 Amanecer espectacular en canales",
+            "🔥 Desayuno asado tradicional",
+            "🦅 Avistamiento de aves migratorias",
+            "☕ Café de olla artesanal"
         ]
     },
-    "personalizado": {
-        "name": "Paquete Personalizado",
-        "duration": "Personalizado",
-        "price": 0,
-        "original_price": 0,
+    "paquete-lunada-4horas": {
+        "name": "Paquete Lunada 4 Horas",
+        "duration": "4 horas",
+        "price": 5250,
+        "original_price": 5560,
+        "description": "4 horas de paseo nocturno + cena a bordo. Decorada con mantel y candelabros.",
+        "description_en": "4-hour night cruise + dinner on board. Decorated with tablecloths and candelabras.",
         "includes": [
-            "Diseño a tu medida",
-            "Decoración personalizada",
-            "Menú especial",
-            "Entretenimiento elegido",
-            "Asesoría personal"
+            "Trajinera de lujo para lunada",
+            "Anafre gourmet profesional",
+            "Cena completa a bordo",
+            "Manteles de seda y candelabros",
+            "Chef a bordo (adicional)",
+            "Bar completo con bartender",
+            "Sistema de sonido premium",
+            "Calefacción para noches frías",
+            "Servicio de mayordomo"
+        ],
+        "highlights": [
+            "🌙 Noche completa bajo las estrellas",
+            "🔥 Cena gourmet asada a bordo",
+            "🍸 Bar completo con mixología",
+            "💎 Experiencia de lujo exclusiva"
         ]
     }
 }
+
+# -------------------------------------------------
+# NUEVA SECCIÓN: ANTOJITOS MEXICANOS
+# -------------------------------------------------
+
+COMIDA_MEXICANA = {
+    "platillos": [
+        {
+            "id": "tlacoyos",
+            "name": "Tlacoyos orden de 4",
+            "price": 160,
+            "original_price": 180,
+            "description": "Tortilla hecha a mano, queso derretido y tu elección de flor de calabaza, hongos, tinga de pollo, chicharrón, huiltaoche, carne deshebrada, papa con chorizo. Acompañadas de salsa verde y lechuga.",
+            "cantidad": "4 piezas",
+            "icono": "🌮",
+            "categoria": "antojitos",
+            "acompañamientos": ["salsa verde", "lechuga"],
+            "opciones": ["flor de calabaza", "hongos", "tinga de pollo", "chicharrón", "huiltaoche", "carne deshebrada", "papa con chorizo"]
+        },
+        {
+            "id": "quesadillas",
+            "name": "Quesadillas orden de 4",
+            "price": 160,
+            "original_price": 180,
+            "description": "Tortilla hecha a mano, queso derretido y tu elección de flor de calabaza, hongos, tinga de pollo, chicharrón, huiltacoche, carne deshebrada, papa con chorizo. Acompañadas de salsa verde y lechuga.",
+            "cantidad": "4 piezas",
+            "icono": "🧀",
+            "categoria": "antojitos",
+            "acompañamientos": ["salsa verde", "lechuga"],
+            "opciones": ["flor de calabaza", "hongos", "tinga de pollo", "chicharrón", "huiltacoche", "carne deshebrada", "papa con chorizo"]
+        },
+        {
+            "id": "tostadas",
+            "name": "Tostadas orden de 3",
+            "price": 160,
+            "original_price": 180,
+            "description": "Tortilla hecha a mano, queso derretido y tu elección de flor de calabaza, hongos, tinga de pollo, chicharrón, huiltacoche, carne deshebrada, papa con chorizo. Acompañadas de salsa verde y lechuga.",
+            "cantidad": "3 piezas",
+            "icono": "🥑",
+            "categoria": "antojitos",
+            "acompañamientos": ["salsa verde", "lechuga"],
+            "opciones": ["flor de calabaza", "hongos", "tinga de pollo", "chicharrón", "huiltacoche", "carne deshebrada", "papa con chorizo"]
+        },
+        {
+            "id": "sopes",
+            "name": "Sopes orden de 3",
+            "price": 160,
+            "original_price": 180,
+            "description": "Tortilla hecha a mano, queso derretido y tu elección de flor de calabaza, hongos, tinga de pollo, chicharrón, huiltacoche, carne deshebrada, papa con chorizo. Acompañadas de salsa verde y lechuga.",
+            "cantidad": "3 piezas",
+            "icono": "🥙",
+            "categoria": "antojitos",
+            "acompañamientos": ["salsa verde", "lechuga"],
+            "opciones": ["flor de calabaza", "hongos", "tinga de pollo", "chicharrón", "huiltacoche", "carne deshebrada", "papa con chorizo"]
+        },
+        {
+            "id": "guacamole",
+            "name": "Guacamole",
+            "price": 100,
+            "original_price": 120,
+            "description": "Guacamole fresco preparado al momento con aguacate Hass, acompañado de chicharrón de cerdo y totopos.",
+            "cantidad": "1 porción grande",
+            "icono": "🥑",
+            "categoria": "entradas",
+            "acompañamientos": ["chicharrón de cerdo", "totopos"],
+            "opciones": ["picante", "normal"]
+        },
+        {
+            "id": "tamales",
+            "name": "Tamales orden de 3",
+            "price": 100,
+            "original_price": 120,
+            "description": "Elija entre verde con pollo, mole con pollo, o dulce y rojos. Hechos al estilo tradicional.",
+            "cantidad": "3 tamales",
+            "icono": "🌽",
+            "categoria": "antojitos",
+            "acompañamientos": ["salsa al gusto"],
+            "opciones": ["verde con pollo", "mole con pollo", "dulce", "rojos"]
+        },
+        {
+            "id": "mole-pollo",
+            "name": "Mole con pollo y arroz",
+            "price": 220,
+            "original_price": 240,
+            "description": "Una pieza de mole con pollo acompañado de arroz y tortillas.",
+            "cantidad": "1 porción",
+            "icono": "🍗",
+            "categoria": "platillos",
+            "acompañamientos": ["arroz", "tortillas"],
+            "opciones": ["extra mole", "sin picante"]
+        },
+        {
+            "id": "carne-asada",
+            "name": "Carne asada",
+            "price": 200,
+            "original_price": 220,
+            "description": "Carne asada acompañada con arroz o nopales y tortillas.",
+            "cantidad": "1 porción",
+            "icono": "🥩",
+            "categoria": "platillos",
+            "acompañamientos": ["arroz", "nopales", "tortillas"],
+            "opciones": ["bien cocida", "término medio", "jugosa"]
+        }
+    ],
+    "categorias": [
+        {"id": "antojitos", "nombre": "🌮 Antojitos", "icono": "fas fa-utensils"},
+        {"id": "entradas", "nombre": "🥑 Entradas", "icono": "fas fa-appetizer"},
+        {"id": "platillos", "nombre": "🍛 Platillos Fuertes", "icono": "fas fa-drumstick-bite"}
+    ],
+    "opciones_adicionales": {
+        "salsas": ["salsa verde", "salsa roja", "salsa habanero", "salsa taquera"],
+        "extras": ["extra queso", "extra crema", "aguacate extra", "cebolla"],
+        "bebidas": ["agua fresca", "refresco", "cerveza", "tequila"]
+    }
+}
+
+# -------------------------------------------------
+# RUTA PARA COMIDA MEXICANA
+# -------------------------------------------------
+
+@app.route('/antojitos-mexicanos')
+def antojitos_mexicanos():
+    """Ruta para la página de antojitos mexicanos"""
+    return render_template('antojitos.html', comida=COMIDA_MEXICANA, packages=PACKAGES)
 
 @app.route('/')
 def inicio():
@@ -101,6 +387,108 @@ def contacto():
 def contacto_gracias():
     return render_template('contacto_gracias.html')
 
+# -------------------------------------------------
+# API PARA COMIDA MEXICANA
+# -------------------------------------------------
+
+@app.route('/api/comida/platillos')
+def obtener_platillos_comida():
+    """API para obtener todos los platillos de comida mexicana"""
+    return jsonify(COMIDA_MEXICANA)
+
+@app.route('/api/comida/agregar-carrito', methods=['POST'])
+def agregar_al_carrito_comida():
+    """API para agregar platillos al carrito de comida"""
+    try:
+        data = request.json
+        platillo_id = data.get('platillo_id')
+        cantidad = int(data.get('cantidad', 1))
+        opciones = data.get('opciones', [])
+        
+        # Buscar el platillo
+        platillo = next((p for p in COMIDA_MEXICANA['platillos'] if p['id'] == platillo_id), None)
+        
+        if not platillo:
+            return jsonify({
+                "success": False,
+                "error": "Platillo no encontrado"
+            }), 404
+        
+        # Calcular total
+        total = platillo['price'] * cantidad
+        
+        # En producción, agregarías al carrito en la sesión o base de datos
+        carrito_item = {
+            "platillo_id": platillo_id,
+            "nombre": platillo['name'],
+            "cantidad": cantidad,
+            "precio_unitario": platillo['price'],
+            "total": total,
+            "opciones": opciones,
+            "timestamp": datetime.now().isoformat()
+        }
+        
+        print(f"Platillo agregado al carrito: {platillo['name']}")
+        print(f"Cantidad: {cantidad}, Total: ${total}")
+        
+        return jsonify({
+            "success": True,
+            "mensaje": f"{platillo['name']} agregado al carrito",
+            "carrito_item": carrito_item,
+            "total_carrito": total  # En producción, calcularías el total actual del carrito
+        })
+        
+    except Exception as e:
+        return jsonify({
+            "success": False,
+            "error": str(e)
+        }), 400
+
+@app.route('/api/comida/calcular-total', methods=['POST'])
+def calcular_total_comida():
+    """API para calcular el total de la orden de comida"""
+    try:
+        data = request.json
+        items = data.get('items', [])
+        
+        subtotal = 0
+        detalle_items = []
+        
+        for item in items:
+            platillo = next((p for p in COMIDA_MEXICANA['platillos'] if p['id'] == item['id']), None)
+            if platillo:
+                cantidad = item.get('cantidad', 1)
+                item_total = platillo['price'] * cantidad
+                subtotal += item_total
+                
+                detalle_items.append({
+                    "nombre": platillo['name'],
+                    "cantidad": cantidad,
+                    "precio_unitario": platillo['price'],
+                    "total_item": item_total
+                })
+        
+        # Calcular IVA (16%)
+        iva = subtotal * 0.16
+        total = subtotal + iva
+        
+        return jsonify({
+            "success": True,
+            "resumen": {
+                "subtotal": subtotal,
+                "iva": iva,
+                "total": total,
+                "items": detalle_items
+            },
+            "resumen_texto": f"Total: ${total:,.2f} MXN (IVA incluido)"
+        })
+        
+    except Exception as e:
+        return jsonify({
+            "success": False,
+            "error": str(e)
+        }), 400
+
 @app.route('/api/check-availability', methods=['POST'])
 def check_availability():
     data = request.json
@@ -137,7 +525,7 @@ SERVICIOS_ADICIONALES = {
     "musica": [
         {"nombre": "Mariachi Completo", "precio": 4500, "duracion": "1 hora", "icono": "🎺"},
         {"nombre": "Trio de Cuerdas", "precio": 2500, "duracion": "1 hora", "icono": "🎸"},
-        {"nombre": "DJ/Bocina Bluetooth", "precio": 500, "duracion": "Evento completo", "icono": "🔊"}
+        {"nombre": "DJ/Bocina Bluetooth", "precio": 400, "duracion": "Evento completo", "icono": "🔊"}
     ],
     "decoracion": [
         {"nombre": "Decoración Temática", "precio": 500, "descripcion": "Globos, manteles, centro de mesa"},
@@ -147,13 +535,67 @@ SERVICIOS_ADICIONALES = {
     "fotografia": [
         {"nombre": "Fotógrafo Profesional", "precio": 1500, "duracion": "2 horas", "fotos": "50+ fotos editadas"},
         {"nombre": "Sesión Básica", "precio": 800, "duracion": "1 hora", "fotos": "25+ fotos"}
-    ],
-    "catering": [
-        {"nombre": "Comida Tradicional", "precio": 300, "pp": True, "descripcion": "por persona - Tacos, quesadillas"},
-        {"nombre": "Comida Premium", "precio": 450, "pp": True, "descripcion": "por persona - Carnes, mariscos"},
-        {"nombre": "Menú Vegetariano", "precio": 350, "pp": True, "descripcion": "por persona - Opciones sin carne"}
     ]
 }
+
+# Ruta para calcular cotización personalizada
+@app.route('/api/calcular-cotizacion', methods=['POST'])
+def calcular_cotizacion():
+    try:
+        data = request.json
+        
+        # Obtener datos del formulario
+        paquete_base = data.get('paquete')
+        personas = int(data.get('personas', 10))
+        extras = data.get('extras', [])
+        
+        # Calcular precio base
+        precio_base = PACKAGES.get(paquete_base, {}).get('price', 0)
+        
+        # Calcular extras
+        total_extras = 0
+        for extra in extras:
+            servicio = next((s for categoria in SERVICIOS_ADICIONALES.values() 
+                           for s in categoria if s['nombre'] == extra), None)
+            if servicio:
+                total_extras += servicio['precio']
+        
+        # Total
+        total = precio_base + total_extras
+        
+        return jsonify({
+            "success": True,
+            "desglose": {
+                "paquete_base": precio_base,
+                "extras": total_extras,
+                "total": total
+            },
+            "resumen": f"Total para {personas} personas: ${total:,} MXN"
+        })
+        
+    except Exception as e:
+        return jsonify({
+            "success": False,
+            "error": str(e)
+        }), 400
+
+# Ruta para guardar personalización
+@app.route('/api/guardar-personalizacion', methods=['POST'])
+def guardar_personalizacion():
+    data = request.json
+    
+    # Generar ID de personalización
+    personalizacion_id = f"PER{datetime.now().strftime('%Y%m%d%H%M%S')}"
+    
+    # En producción, guardarías en base de datos
+    print(f"Personalización guardada: {personalizacion_id}")
+    print(f"Datos: {data}")
+    
+    return jsonify({
+        "success": True,
+        "personalizacion_id": personalizacion_id,
+        "message": "Personalización guardada exitosamente"
+    })
 
 # Ruta para calcular cotización personalizada
 @app.route('/api/calcular-cotizacion', methods=['POST'])
@@ -238,25 +680,50 @@ HORARIOS_DISPONIBLES = {
 
 # Datos de precios dinámicos
 PRECIOS_DINAMICOS = {
-    "familiar": {
+    "recorrido-ajolotario": {
+        "base": 1250,
+        "por_persona": 40,  # $40 adicional por entrada al ajolotario
+        "fines_semana": 150
+    },
+    "recorrido-normal": {
+        "base": 600,
+        "por_persona": 30,
+        "fines_semana": 100
+    },
+    "recorrido-isla-munecas": {
+        "base": 2250,
+        "por_persona": 100,  # $100 adicional por entrada a la isla
+        "fines_semana": 200
+    },
+    "recorrido-isla-llorona": {
+        "base": 2750,
+        "por_persona": 0,  # Entrada gratis
+        "fines_semana": 250
+    },
+    "recorrido-familiar": {
         "base": 1800,
         "por_persona": 100,
         "fines_semana": 200
     },
-    "lunada": {
+    "recorrido-lunada-2horas": {
         "base": 1250,
         "por_persona": 80,
         "fines_semana": 150
     },
-    "amanecer": {
+    "recorrido-cumpleanos": {
+        "base": 1250,
+        "por_persona": 80,
+        "fines_semana": 150
+    },
+    "recorrido-amanecer": {
         "base": 2250,
         "por_persona": 120,
         "fines_semana": 250
     },
-    "personalizado": {
-        "base": 0,
+    "paquete-lunada-4horas": {
+        "base": 5250,
         "por_persona": 150,
-        "fines_semana": 200
+        "fines_semana": 300
     }
 }
 
@@ -285,7 +752,6 @@ METODOS_PAGO = [
     }
 ]
 
-# Ruta para verificar disponibilidad
 @app.route('/api/verificar-disponibilidad', methods=['POST'])
 def verificar_disponibilidad():
     try:
@@ -343,14 +809,10 @@ def calcular_precio_dinamico():
         precio_info = PRECIOS_DINAMICOS[paquete]
         precio_base = precio_info['base']
         
-        if paquete == 'personalizado':
-            precio_personas = precio_info['por_persona'] * personas
-            incremento_fs = precio_info['fines_semana'] if es_fin_semana else 0
-            precio_total = precio_personas + incremento_fs
-        else:
-            precio_personas = precio_info['por_persona'] * max(0, personas - 10)
-            incremento_fs = precio_info['fines_semana'] if es_fin_semana else 0
-            precio_total = precio_base + precio_personas + incremento_fs
+        # Calcular precio por persona adicional
+        precio_personas = precio_info['por_persona'] * max(0, personas - 10)
+        incremento_fs = precio_info['fines_semana'] if es_fin_semana else 0
+        precio_total = precio_base + precio_personas + incremento_fs
         
         return jsonify({
             "success": True,
@@ -392,15 +854,12 @@ def procesar_reserva():
         personas = int(data.get('personas'))
         fecha_str = data.get('fecha')
         
-        # Simular cálculo de precio
+        # Calcular precio
         precio_info = PRECIOS_DINAMICOS.get(paquete, {"base": 0, "por_persona": 0})
         fecha = datetime.strptime(fecha_str, '%Y-%m-%d') if fecha_str else datetime.now()
         es_fin_semana = fecha.weekday() >= 5
         
-        if paquete == 'personalizado':
-            precio_total = precio_info['por_persona'] * personas
-        else:
-            precio_total = precio_info['base'] + (precio_info['por_persona'] * max(0, personas - 10))
+        precio_total = precio_info['base'] + (precio_info['por_persona'] * max(0, personas - 10))
         
         if es_fin_semana:
             precio_total += precio_info.get('fines_semana', 0)
@@ -422,7 +881,7 @@ def procesar_reserva():
                 "paquete": paquete,
                 "personas": personas,
                 "extras": data.get('extras', []),
-                "catering": data.get('catering', [])
+                "comida": data.get('comida', [])  # Nueva sección de comida
             },
             "pago": {
                 "total": precio_total,
@@ -497,19 +956,7 @@ def confirmar_pago():
 def obtener_servicios_adicionales():
     return jsonify(SERVICIOS_ADICIONALES)
 
-@app.route('/api/suscribir', methods=['POST'])
-def suscribir_newsletter():
-    data = request.json
-    email = data.get('email')
-    nombre = data.get('nombre', '')
-    
-    # Guardar suscripción
-    print(f"Nueva suscripción: {nombre} - {email}")
-    
-    return jsonify({
-        "success": True,
-        "message": "¡Te has suscrito exitosamente!"
-    })
+
 
 # -------------------------------------------------
 # NUEVAS RUTAS PARA GALERÍA
@@ -942,7 +1389,6 @@ DATOS_ECOLOGICOS = {
     }
 }
 
-# Ruta para obtener datos ecológicos
 @app.route('/api/ecologico/datos')
 def obtener_datos_ecologicos():
     return jsonify(DATOS_ECOLOGICOS)
@@ -1016,7 +1462,7 @@ def registrar_reserva_ecologica():
         if not exp:
             return jsonify({"error": "Experiencia no válida"}), 400
         
-        precio_total = exp['price'] * personas
+        precio_total = exp['precio'] * personas
         donacion_porcentaje = DATOS_ECOLOGICOS['compromiso']['donacion_porcentaje'] + 10
         donacion = (precio_total * donacion_porcentaje) / 100
         
@@ -1082,6 +1528,7 @@ def obtener_certificado(certificado_id):
             "codigo_verificacion": f"VER-{certificado_id}"
         }
     })
+
 
 # Ruta para suscribirse a newsletter ecológico
 @app.route('/api/ecologico/suscribir', methods=['POST'])
