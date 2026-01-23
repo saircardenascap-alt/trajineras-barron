@@ -360,7 +360,7 @@ def galeria():
 
 @app.route('/reservaciones')
 def reservaciones():
-    return render_template('reservaciones.html', packages=PACKAGES, today=datetime.now().strftime('%Y-%m-%d'))
+    return render_template('reservaciones.html', packages=PACKAGES, comida=COMIDA_MEXICANA, servicios_extra=SERVICIOS_ADICIONALES, today=datetime.now().strftime('%Y-%m-%d'))
 
 @app.route('/ecologica')
 def ecologica():
