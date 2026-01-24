@@ -542,22 +542,7 @@ SERVICIOS_ADICIONALES = {
 
 
 # Ruta para guardar personalización
-@app.route('/api/guardar-personalizacion', methods=['POST'])
-def guardar_personalizacion():
-    data = request.json
-    
-    # Generar ID de personalización
-    personalizacion_id = f"PER{datetime.now().strftime('%Y%m%d%H%M%S')}"
-    
-    # En producción, guardarías en base de datos
-    print(f"Personalización guardada: {personalizacion_id}")
-    print(f"Datos: {data}")
-    
-    return jsonify({
-        "success": True,
-        "personalizacion_id": personalizacion_id,
-        "message": "Personalización guardada exitosamente"
-    })
+
 
 # Ruta para calcular cotización personalizada
 @app.route('/api/calcular-cotizacion', methods=['POST'])
