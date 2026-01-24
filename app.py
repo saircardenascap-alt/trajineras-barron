@@ -539,45 +539,7 @@ SERVICIOS_ADICIONALES = {
 }
 
 # Ruta para calcular cotización personalizada
-@app.route('/api/calcular-cotizacion', methods=['POST'])
-def calcular_cotizacion():
-    try:
-        data = request.json
-        
-        # Obtener datos del formulario
-        paquete_base = data.get('paquete')
-        personas = int(data.get('personas', 10))
-        extras = data.get('extras', [])
-        
-        # Calcular precio base
-        precio_base = PACKAGES.get(paquete_base, {}).get('price', 0)
-        
-        # Calcular extras
-        total_extras = 0
-        for extra in extras:
-            servicio = next((s for categoria in SERVICIOS_ADICIONALES.values() 
-                           for s in categoria if s['nombre'] == extra), None)
-            if servicio:
-                total_extras += servicio['precio']
-        
-        # Total
-        total = precio_base + total_extras
-        
-        return jsonify({
-            "success": True,
-            "desglose": {
-                "paquete_base": precio_base,
-                "extras": total_extras,
-                "total": total
-            },
-            "resumen": f"Total para {personas} personas: ${total:,} MXN"
-        })
-        
-    except Exception as e:
-        return jsonify({
-            "success": False,
-            "error": str(e)
-        }), 400
+
 
 # Ruta para guardar personalización
 @app.route('/api/guardar-personalizacion', methods=['POST'])
