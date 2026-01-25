@@ -530,14 +530,14 @@
             <div class="footer-column">
                 <h3><i class="fas fa-newspaper"></i> Boletin Informativo</h3>
                 <p>Suscríbete para recibir ofertas especiales y novedades sobre nuestros tours y recorridos.</p>
-
+            
                 <form class="newsletter-form" id="newsletterForm">
-                    <input type="email" class="newsletter-input" placeholder="Tu correo electrónico" required>
+                    <input type="email" class="newsletter-input" id="newsletter-email-input" placeholder="Tu correo electrónico" required>
                     <button type="submit" class="btn-newsletter">
                         <i class="fas fa-paper-plane"></i> Suscribirse
                     </button>
                 </form>
-
+            
                 <div class="social-footer">
                     <h4>Síguenos</h4>
                     <div class="social-links-footer">
@@ -553,7 +553,7 @@
                         </a>
                     </div>
                 </div>
-
+            
                 <div class="certifications">
                     <div class="certification-item">
                         <i class="fas fa-award"></i> Turismo Sustentable
@@ -595,11 +595,11 @@
         <i class="fas fa-chevron-up"></i>
     </a>
 
-    <script>
+   <script>
         // Botón de ir arriba
         document.addEventListener('DOMContentLoaded', function () {
             const backToTop = document.getElementById('backToTop');
-
+    
             window.addEventListener('scroll', function () {
                 if (window.pageYOffset > 300) {
                     backToTop.classList.add('visible');
@@ -607,7 +607,7 @@
                     backToTop.classList.remove('visible');
                 }
             });
-
+    
             backToTop.addEventListener('click', function (e) {
                 e.preventDefault();
                 window.scrollTo({
@@ -615,16 +615,32 @@
                     behavior: 'smooth'
                 });
             });
-
-            // Newsletter
+    
+            // Newsletter con WhatsApp automático
             const newsletterForm = document.getElementById('newsletterForm');
             if (newsletterForm) {
                 newsletterForm.addEventListener('submit', function (e) {
                     e.preventDefault();
-                    const email = this.querySelector('.newsletter-input').value;
-
-                    // Aquí iría la lógica para enviar el email al servidor
-                    alert(`¡Gracias por suscribirte con: ${email}! Recibirás nuestras novedades pronto.`);
+                    const email = document.getElementById('newsletter-email-input').value;
+    
+                    // Crear mensaje para WhatsApp
+                    const phone = "525560094568";
+                    const msg = `Hola, me gustaría suscribirme al boletín informativo de Trajineras Barrón.
+    
+    Mi correo electrónico es: ${email}
+    
+    Quiero recibir ofertas especiales y novedades sobre los tours.`;
+    
+                    // Abrir WhatsApp automáticamente en nueva ventana
+                    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+    
+                    // Mostrar mensaje de éxito al usuario
+                    alert(`¡Gracias por suscribirte con: ${email}! 
+    
+    Te hemos redirigido a WhatsApp para confirmar tu suscripción. 
+    Recibirás nuestras mejores ofertas y novedades pronto.`);
+    
+                    // Limpiar formulario
                     this.reset();
                 });
             }
