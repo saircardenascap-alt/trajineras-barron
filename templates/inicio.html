@@ -528,13 +528,6 @@
                     </div>
                 </div>
             </div>
-
-            <div class="text-center" style="margin-top: 30px;">
-                <p>¿No encontraste tu respuesta?</p>
-                <a href="/contacto#faq" class="btn btn-outline">
-                    <i class="fas fa-question-circle"></i> Contáctanos
-                </a>
-            </div>
         </div>
     </section>
 
@@ -543,7 +536,7 @@
         <div class="container">
             <h2 class="section-title">¿Listo para reservar?</h2>
             <p class="section-subtitle">Comienza tu aventura en Xochimilco</p>
-    
+
             <div class="reservation-form-container">
                 <form class="reservation-form" id="contacto-reserva-form">
                     <div class="form-grid">
@@ -553,28 +546,28 @@
                             </label>
                             <input type="text" id="nombre" name="nombre" required placeholder="Ej: Juan Pérez García">
                         </div>
-    
+
                         <div class="form-group">
                             <label for="correo">
                                 <i class="fas fa-envelope"></i> Correo electrónico *
                             </label>
                             <input type="email" id="correo" name="correo" required placeholder="ejemplo@email.com">
                         </div>
-    
+
                         <div class="form-group">
                             <label for="telefono">
                                 <i class="fas fa-phone"></i> Teléfono *
                             </label>
                             <input type="tel" id="telefono" name="telefono" required placeholder="55 1234 5678">
                         </div>
-    
+
                         <div class="form-group">
                             <label for="fecha">
                                 <i class="fas fa-calendar-alt"></i> Fecha deseada *
                             </label>
                             <input type="date" id="fecha" name="fecha" required min="{{ today }}">
                         </div>
-    
+
                         <div class="form-group">
                             <label for="paquete">
                                 <i class="fas fa-gift"></i> Paquete de interés *
@@ -588,7 +581,7 @@
                                 <option value="cotizar">Necesito cotización especial</option>
                             </select>
                         </div>
-    
+
                         <div class="form-group">
                             <label for="personas">
                                 <i class="fas fa-users"></i> Número de personas *
@@ -601,7 +594,7 @@
                             <small>Capacidad máxima: 18 personas</small>
                         </div>
                     </div>
-    
+
                     <div class="form-group full-width">
                         <label for="mensaje">
                             <i class="fas fa-comment"></i> Mensaje adicional (opcional)
@@ -609,17 +602,18 @@
                         <textarea id="mensaje" name="mensaje" rows="4"
                             placeholder="¿Alguna solicitud especial? Ej: Decoración, música, alimentos especiales..."></textarea>
                     </div>
-    
+
                     <div class="form-actions">
                         <button type="submit" class="btn btn-primary btn-large">
                             <i class="fas fa-search"></i> Ver disponibilidad y precios
                         </button>
                         <p class="form-note">
-                            <i class="fas fa-info-circle"></i> Te contactaremos en menos de 4 horas para confirmar disponibilidad
+                            <i class="fas fa-info-circle"></i> Te contactaremos en menos de 4 horas para confirmar
+                            disponibilidad
                         </p>
                     </div>
                 </form>
-    
+
                 <div class="form-sidebar">
                     <h3><i class="fas fa-bolt"></i> Reserva Rápida</h3>
                     <p>¿Prefieres hacerlo por teléfono?</p>
@@ -628,7 +622,7 @@
                         <a href="tel:+525560094568">+52 55 6009 4568</a>
                     </div>
                     <p class="phone-hours">Disponible 7:00 AM - 8:00 PM</p>
-    
+
                     <div class="whatsapp-contact">
                         <a href="https://wa.me/525560094568" class="btn btn-whatsapp" target="_blank">
                             <i class="fab fa-whatsapp"></i> WhatsApp
@@ -684,43 +678,43 @@
     {% include 'footer.html' %}
 
     <script>
-    // Funciones para el formulario de personas
-    function incrementPersonas() {
-        const input = document.getElementById('personas');
-        let value = parseInt(input.value);
-        if (value < 18) {
-            input.value = value + 1;
+        // Funciones para el formulario de personas
+        function incrementPersonas() {
+            const input = document.getElementById('personas');
+            let value = parseInt(input.value);
+            if (value < 18) {
+                input.value = value + 1;
+            }
         }
-    }
-    
-    function decrementPersonas() {
-        const input = document.getElementById('personas');
-        let value = parseInt(input.value);
-        if (value > 1) {
-            input.value = value - 1;
+
+        function decrementPersonas() {
+            const input = document.getElementById('personas');
+            let value = parseInt(input.value);
+            if (value > 1) {
+                input.value = value - 1;
+            }
         }
-    }
-    
-    // Formulario de contacto/reserva con envío automático a WhatsApp
-    document.addEventListener('DOMContentLoaded', function() {
-        const contactoForm = document.getElementById('contacto-reserva-form');
-        
-        if (contactoForm) {
-            contactoForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Obtener valores del formulario
-                const nombre = document.getElementById('nombre').value;
-                const correo = document.getElementById('correo').value;
-                const telefono = document.getElementById('telefono').value;
-                const fecha = document.getElementById('fecha').value;
-                const paquete = document.getElementById('paquete').value;
-                const personas = document.getElementById('personas').value;
-                const mensaje = document.getElementById('mensaje').value;
-                
-                // Crear mensaje para WhatsApp
-                const phone = "525560094568";
-                const msg = `🎉 *NUEVA SOLICITUD DE RESERVA* 🎉
+
+        // Formulario de contacto/reserva con envío automático a WhatsApp
+        document.addEventListener('DOMContentLoaded', function () {
+            const contactoForm = document.getElementById('contacto-reserva-form');
+
+            if (contactoForm) {
+                contactoForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+
+                    // Obtener valores del formulario
+                    const nombre = document.getElementById('nombre').value;
+                    const correo = document.getElementById('correo').value;
+                    const telefono = document.getElementById('telefono').value;
+                    const fecha = document.getElementById('fecha').value;
+                    const paquete = document.getElementById('paquete').value;
+                    const personas = document.getElementById('personas').value;
+                    const mensaje = document.getElementById('mensaje').value;
+
+                    // Crear mensaje para WhatsApp
+                    const phone = "525560094568";
+                    const msg = `🎉 *NUEVA SOLICITUD DE RESERVA* 🎉
     
     📋 *Datos del Cliente:*
     👤 Nombre: ${nombre}
@@ -737,12 +731,12 @@
     
     ---
     ⏰ Solicitud enviada: ${new Date().toLocaleString('es-MX')}`;
-    
-                // Abrir WhatsApp automáticamente en nueva ventana
-                window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
-                
-                // Mostrar mensaje de confirmación al usuario
-                alert(`✅ ¡Tu reservación está en proceso!
+
+                    // Abrir WhatsApp automáticamente en nueva ventana
+                    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+
+                    // Mostrar mensaje de confirmación al usuario
+                    alert(`✅ ¡Tu reservación está en proceso!
     
     Hola ${nombre}, 
     
@@ -751,12 +745,12 @@
     📞 Nos pondremos en contacto contigo en un lapso no mayor a 4 horas para confirmar disponibilidad y precios.
     
     ¡Gracias por elegir Trajineras Barrón! 🚣‍♀️`);
-                
-                // Limpiar formulario
-                contactoForm.reset();
-            });
-        }
-    });
+
+                    // Limpiar formulario
+                    contactoForm.reset();
+                });
+            }
+        });
     </script>
 </body>
 
