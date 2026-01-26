@@ -197,8 +197,8 @@
         <div class="container">
             <h2 class="section-title">Formulario de Contacto Inteligente</h2>
             <p class="section-subtitle">Cuéntanos cómo podemos ayudarte</p>
-
-            <form class="smart-contact-form" method="POST" action="{{ url_for('contacto') }}">
+    
+            <form class="smart-contact-form" id="smart-contact-form">
                 <div class="form-row">
                     <div class="form-group">
                         <label for="contact-nombre">
@@ -207,7 +207,7 @@
                         <input type="text" id="contact-nombre" name="nombre" required
                             placeholder="Ej: Ana García Rodríguez">
                     </div>
-
+    
                     <div class="form-group">
                         <label for="contact-email">
                             <i class="fas fa-envelope"></i> Correo electrónico *
@@ -215,7 +215,7 @@
                         <input type="email" id="contact-email" name="email" required placeholder="ana@ejemplo.com">
                     </div>
                 </div>
-
+    
                 <div class="form-row">
                     <div class="form-group">
                         <label for="contact-telefono">
@@ -224,14 +224,14 @@
                         <input type="tel" id="contact-telefono" name="telefono" required placeholder="55 1234 5678">
                     </div>
                 </div>
-
+    
                 <div class="form-group">
                     <label for="contact-fecha">
                         <i class="fas fa-calendar-alt"></i> Fecha de interés
                     </label>
                     <input type="date" id="contact-fecha" name="fecha" min="{{ today }}">
                 </div>
-
+    
                 <div class="form-row">
                     <div class="form-group">
                         <label for="contact-personas">
@@ -246,7 +246,7 @@
                             <option value="20+">Más de 20</option>
                         </select>
                     </div>
-
+    
                     <div class="form-group">
                         <label for="contact-paquete">
                             <i class="fas fa-gift"></i> Paquete de interés
@@ -260,7 +260,7 @@
                         </select>
                     </div>
                 </div>
-
+    
                 <div class="form-group">
                     <label for="contact-mensaje">
                         <i class="fas fa-comment"></i> Mensaje *
@@ -268,14 +268,14 @@
                     <textarea id="contact-mensaje" name="mensaje" rows="5" required
                         placeholder="Describe tu consulta con detalle..."></textarea>
                 </div>
-
+    
                 <div class="form-options">
                     <label class="checkbox-label">
                         <input type="checkbox" name="ofertas" checked>
                         <span>Acepto recibir ofertas exclusivas y novedades (opcional)</span>
                     </label>
                 </div>
-
+    
                 <div class="form-actions">
                     <button type="submit" class="btn btn-primary btn-large">
                         <i class="fas fa-paper-plane"></i> Enviar mensaje
@@ -529,14 +529,14 @@
                     <p class="quick-subtitle">Comienza tu aventura ahora mismo</p>
                     <p>Simplifica tu reserva con nuestro formulario rápido. Te enviaremos disponibilidad y precios en
                         minutos.</p>
-
+    
                     <div class="quick-features">
                         <p><i class="fas fa-check-circle"></i> Sin compromiso inicial</p>
                         <p><i class="fas fa-check-circle"></i> Respuesta en menos de 1 hora</p>
                         <p><i class="fas fa-check-circle"></i> Precios garantizados</p>
                     </div>
                 </div>
-
+    
                 <div class="quick-reservation-form">
                     <form id="quick-reserve-form">
                         <div class="form-row">
@@ -544,7 +544,7 @@
                                 <label for="quick-fecha">Fecha deseada *</label>
                                 <input type="date" id="quick-fecha" required min="{{ today }}">
                             </div>
-
+    
                             <div class="form-group">
                                 <label for="quick-personas">Personas *</label>
                                 <select id="quick-personas" required>
@@ -556,23 +556,23 @@
                                 </select>
                             </div>
                         </div>
-
+    
                         <div class="form-group">
                             <label for="quick-email">Correo para respuesta *</label>
                             <input type="email" id="quick-email" required placeholder="tu@correo.com">
                         </div>
-
+    
                         <div class="form-group">
-                            <label for="quick-telefono">Teléfono (opcional)</label>
-                            <input type="tel" id="quick-telefono" placeholder="55 1234 5678">
+                            <label for="quick-telefono">Teléfono *</label>
+                            <input type="tel" id="quick-telefono" required placeholder="55 1234 5678">
                         </div>
-
+    
                         <button type="submit" class="btn btn-primary btn-block">
                             <i class="fas fa-search"></i> Ver disponibilidad y precios
                         </button>
-
+    
                         <p class="form-note">
-                            <i class="fas fa-arrow-right"></i> Serás redirigido a la página de reservas
+                            <i class="fas fa-info-circle"></i> Te contactaremos en menos de 4 horas
                         </p>
                     </form>
                 </div>
@@ -707,20 +707,20 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        // Inicializar mapa
+        // Inicializar mapa y formularios
         document.addEventListener('DOMContentLoaded', function () {
             // Mapa de Xochimilco
             const map = L.map('map').setView([19.2650, -99.1060], 15);
-
+    
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '© OpenStreetMap contributors'
             }).addTo(map);
-
+    
             // Marcador del embarcadero
             L.marker([19.2650, -99.1060]).addTo(map)
                 .bindPopup('<b>Trajineras Barrón</b><br>Embarcadero Puente de Urrutia')
                 .openPopup();
-
+    
             // Acordeón de direcciones
             const accordionItems = document.querySelectorAll('.accordion-item');
             accordionItems.forEach(item => {
@@ -732,12 +732,12 @@
                             otherItem.classList.remove('active');
                         }
                     });
-
+    
                     // Abrir/cerrar este item
                     item.classList.toggle('active');
                 });
             });
-
+    
             // FAQ interactivo
             const faqItems = document.querySelectorAll('.contact-faq .faq-item');
             faqItems.forEach(item => {
@@ -749,51 +749,121 @@
                             otherItem.classList.remove('active');
                         }
                     });
-
+    
                     // Abrir/cerrar este item
                     item.classList.toggle('active');
                 });
             });
-
+    
             // Formulario de newsletter
             const newsletterForm = document.getElementById('newsletter-form');
-            newsletterForm.addEventListener('submit', function (e) {
-                e.preventDefault();
-                const email = document.getElementById('newsletter-email').value;
-
-                // Simular envío
-                alert(`¡Gracias por suscribirte! Te hemos enviado un correo de confirmación a ${email}`);
-                newsletterForm.reset();
-            });
-
-            // Formulario de reserva rápida
-            const quickForm = document.getElementById('quick-reserve-form');
-            quickForm.addEventListener('submit', function (e) {
-                e.preventDefault();
-                const fecha = document.getElementById('quick-fecha').value;
-                const personas = document.getElementById('quick-personas').value;
-
-                // Redirigir a reservaciones con parámetros
-                window.location.href = `/reservaciones?fecha=${fecha}&personas=${personas}`;
-            });
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    const email = document.getElementById('newsletter-email').value;
+    
+                    // Simular envío
+                    alert(`¡Gracias por suscribirte! Te hemos enviado un correo de confirmación a ${email}`);
+                    newsletterForm.reset();
+                });
+            }
+    
+            // FORMULARIO DE CONTACTO INTELIGENTE (Sección 2)
+            const smartContactForm = document.getElementById('smart-contact-form');
+            if (smartContactForm) {
+                smartContactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const nombre = document.getElementById('contact-nombre').value;
+                    const email = document.getElementById('contact-email').value;
+                    const telefono = document.getElementById('contact-telefono').value;
+                    const fecha = document.getElementById('contact-fecha').value || 'No especificada';
+                    const personas = document.getElementById('contact-personas').value || 'No especificado';
+                    const paquete = document.getElementById('contact-paquete').value || 'No especificado';
+                    const mensaje = document.getElementById('contact-mensaje').value;
+                    
+                    const phone = "525560094568";
+                    const msg = `📩 *CONSULTA GENERAL* 📩
+    
+    📋 *Datos del Cliente:*
+    👤 Nombre: ${nombre}
+    📧 Email: ${email}
+    📱 Teléfono: ${telefono}
+    
+    📅 *Información de Interés:*
+    📆 Fecha: ${fecha}
+    👥 Personas: ${personas}
+    🎁 Paquete: ${paquete}
+    
+    💬 *Mensaje:*
+    ${mensaje}
+    
+    ---
+    ⏰ Enviado: ${new Date().toLocaleString('es-MX')}`;
+    
+                    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+                    
+                    alert(`✅ Tu consulta está en proceso
+    
+    Hola ${nombre},
+    
+    Hemos recibido tu mensaje correctamente y te hemos redirigido a WhatsApp.
+    
+    📞 Nos pondremos en contacto contigo en un lapso no mayor a 4 horas.
+    
+    ¡Gracias por contactar a Trajineras Barrón! 🚣‍♀️`);
+                    
+                    smartContactForm.reset();
+                });
+            }
+    
+            // FORMULARIO DE RESERVA RÁPIDA (Sección 6)
+            const quickReserveForm = document.getElementById('quick-reserve-form');
+            if (quickReserveForm) {
+                quickReserveForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const fecha = document.getElementById('quick-fecha').value;
+                    const personas = document.getElementById('quick-personas').value;
+                    const email = document.getElementById('quick-email').value;
+                    const telefono = document.getElementById('quick-telefono').value;
+                    
+                    const phone = "525560094568";
+                    const msg = `⚡ *RESERVA RÁPIDA* ⚡
+    
+    📅 Fecha deseada: ${fecha}
+    👥 Número de personas: ${personas}
+    📧 Email: ${email}
+    📱 Teléfono: ${telefono}
+    
+    💬 Solicito información sobre disponibilidad y precios para esta fecha.
+    
+    ---
+    ⏰ Solicitud enviada: ${new Date().toLocaleString('es-MX')}`;
+    
+                    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+                    
+                    alert(`✅ Tu reservación está en proceso
+    
+    Hemos recibido tu solicitud de reserva rápida correctamente.
+    
+    📞 Te contactaremos en un lapso no mayor a 4 horas con disponibilidad y precios.
+    
+    ¡Gracias por elegir Trajineras Barrón! 🚣‍♀️`);
+                    
+                    quickReserveForm.reset();
+                });
+            }
         });
-
+    
         // Funciones para el chat
         function openChat() {
             document.getElementById('chat-widget').classList.add('open');
         }
-
+    
         function closeChat() {
             document.getElementById('chat-widget').classList.remove('open');
         }
-
-        // Formulario de prensa
-        const pressForm = document.getElementById('press-form');
-        pressForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-            alert('¡Gracias por tu interés! Te contactaremos en menos de 48 horas.');
-            pressForm.reset();
-        });
     </script>
 </body>
 
