@@ -1235,36 +1235,209 @@
     flex-wrap: wrap;
 }
 
+/* ========================================
+   ESTILOS PARA BOTONES CTA Y PACKAGE
+   ======================================== */
+
+/* Estilos base para todos los botones */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px 35px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn i {
+    font-size: 1.3rem;
+    transition: transform 0.3s ease;
+}
+
+.btn:hover i {
+    transform: scale(1.15) rotate(5deg);
+}
+
+/* Botón Warning (Reservar ahora) */
 .btn-warning {
-    background-color: var(--secondary-color);
-    color: white;
+    background: linear-gradient(135deg, #FFB300 0%, #FF6F00 100%);
+    color: #ffffff;
+    border: 3px solid transparent;
+    background-clip: padding-box;
 }
 
 .btn-warning:hover {
-    background-color: #F57C00;
+    background: linear-gradient(135deg, #FF8F00 0%, #E65100 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 111, 0, 0.4);
 }
 
-.btn-light {
-    background-color: var(--white);
-    color: var(--primary-color);
+.btn-warning:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(255, 111, 0, 0.3);
 }
 
-.btn-light:hover {
-    background-color: #f0f0f0;
-}
-
+/* Botón Success (WhatsApp) */
 .btn-success {
-    background-color: #25D366;
-    color: white;
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    color: #ffffff;
+    border: 3px solid transparent;
+    background-clip: padding-box;
 }
 
 .btn-success:hover {
-    background-color: #128C7E;
+    background: linear-gradient(135deg, #20BA5A 0%, #0E7A6A 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
 }
 
-/* Botones flotantes */
-.customize-btn {
-    background-color: #9C27B0;
+.btn-success:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+}
+
+/* Botón Primary (Reservar en package cards) */
+.btn-primary {
+    background: linear-gradient(135deg, #4AE600 0%, #2E8B00 100%);
+    color: #ffffff;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #3BD100 0%, #257300 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(74, 230, 0, 0.4);
+}
+
+.btn-primary:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(74, 230, 0, 0.3);
+}
+
+/* Modificador para botones grandes */
+.btn-large {
+    padding: 18px 45px;
+    font-size: 1.2rem;
+    border-radius: 60px;
+}
+
+.btn-large i {
+    font-size: 1.5rem;
+}
+
+/* Modificador para botones de bloque completo */
+.btn-block {
+    width: 100%;
+    padding: 16px 30px;
+}
+
+/* Animación de pulso para destacar */
+@keyframes pulse-glow {
+    0% {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    50% {
+        box-shadow: 0 4px 20px rgba(74, 230, 0, 0.5);
+    }
+
+    100% {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+}
+
+/* Aplicar animación de pulso al botón primary cada 3 segundos */
+.btn-primary {
+    animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Estados de focus para accesibilidad */
+.btn:focus {
+    outline: 3px solid rgba(74, 230, 0, 0.5);
+    outline-offset: 3px;
+}
+
+.btn-warning:focus {
+    outline-color: rgba(255, 111, 0, 0.5);
+}
+
+.btn-success:focus {
+    outline-color: rgba(37, 211, 102, 0.5);
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 768px) {
+    .btn {
+        padding: 14px 28px;
+        font-size: 1rem;
+    }
+
+    .btn-large {
+        padding: 16px 35px;
+        font-size: 1.1rem;
+    }
+
+    .btn i {
+        font-size: 1.2rem;
+    }
+
+    .btn-large i {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn {
+        padding: 12px 24px;
+        font-size: 0.95rem;
+    }
+
+    .btn-large {
+        padding: 14px 30px;
+        font-size: 1rem;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .cta-buttons .btn {
+        width: 100%;
+    }
 }
 
 /* Responsive */
