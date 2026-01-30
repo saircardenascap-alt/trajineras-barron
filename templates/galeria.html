@@ -424,81 +424,81 @@
         let currentPage = 1;
         let isLoading = false;
         let selectedImage = null;
-    
+
         // Datos de ejemplo para la galería
         const galleryImages = [
             // Eventos
             {
-                id: 1, category: 'eventos', url: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed',
+                id: 1, category: 'eventos', url: '{{ url_for("static", filename="imagenes/galeria/eventos/evento-xv-anos.jpeg") }}',
                 author: 'Juan Pérez', likes: 45, date: '2024-03-15', description: 'Celebración de XV años en trajinera',
                 tags: ['#XVaños', '#fiesta', '#trajineras']
             },
             {
-                id: 2, category: 'eventos', url: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09',
+                id: 2, category: 'eventos', url: '{{ url_for("static", filename="imagenes/galeria/eventos/evento-boda.jpeg") }}',
                 author: 'María García', likes: 32, date: '2024-02-28', description: 'Boda en los canales de Xochimilco',
                 tags: ['#boda', '#romantico', '#xochimilco']
             },
             // Familiar
             {
-                id: 3, category: 'familiar', url: 'https://images.unsplash.com/photo-1566073771259-6a8506099945',
+                id: 3, category: 'familiar', url: '{{ url_for("static", filename="imagenes/galeria/familiar/familia-01.jpeg") }}',
                 author: 'Familia Rodríguez', likes: 89, date: '2024-03-10', description: 'Día familiar en Xochimilco',
                 tags: ['#familia', '#disfrute', '#paseo']
             },
             {
-                id: 4, category: 'familiar', url: 'https://images.unsplash.com/photo-1528433556524-74e7e3bfa599',
+                id: 4, category: 'familiar', url: '{{ url_for("static", filename="imagenes/galeria/familiar/familia-02.jpeg") }}',
                 author: 'Ana Martínez', likes: 56, date: '2024-03-05', description: 'Los niños disfrutando del recorrido',
                 tags: ['#niños', '#alegria', '#recorrido']
             },
             // Romántico
             {
-                id: 5, category: 'romantico', url: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3',
+                id: 5, category: 'romantico', url: '{{ url_for("static", filename="imagenes/galeria/romantico/cena-romantica.jpeg") }}',
                 author: 'Carlos y Sofía', likes: 67, date: '2024-02-14', description: 'Cena romántica al atardecer',
                 tags: ['#romantico', '#atardecer', '#cena']
             },
             // Amanecer/Atardecer
             {
-                id: 6, category: 'amanecer', url: 'https://images.unsplash.com/photo-1501854140801-50d01698950b',
+                id: 6, category: 'amanecer', url: '{{ url_for("static", filename="imagenes/galeria/amanecer/amanecer-canales-01.jpeg") }}',
                 author: 'Fotógrafo Anónimo', likes: 78, date: '2024-03-01', description: 'Amanecer en los canales',
                 tags: ['#amanecer', '#naturaleza', '#paisaje']
             },
             // Gastronomía
             {
-                id: 7, category: 'gastronomia', url: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187',
+                id: 7, category: 'gastronomia', url: '{{ url_for("static", filename="imagenes/galeria/gastronomia/comida-tradicional-01.jpeg") }}',
                 author: 'Chef Miguel', likes: 42, date: '2024-03-12', description: 'Comida tradicional mexicana',
                 tags: ['#comida', '#mexicana', '#tradicion']
             },
             // Música
             {
-                id: 8, category: 'musica', url: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d',
+                id: 8, category: 'musica', url: '{{ url_for("static", filename="imagenes/galeria/musica/mariachi-trajinera.jpeg") }}',
                 author: 'Grupo Musical', likes: 53, date: '2024-03-08', description: 'Mariachi en trajinera',
                 tags: ['#musica', '#mariachi', '#fiesta']
             },
             // Naturaleza
             {
-                id: 9, category: 'naturaleza', url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4',
+                id: 9, category: 'naturaleza', url: '{{ url_for("static", filename="imagenes/galeria/naturaleza/paisaje-natural.jpeg") }}',
                 author: 'Ecologista', likes: 91, date: '2024-03-03', description: 'Flora y fauna de Xochimilco',
                 tags: ['#naturaleza', '#ecologia', '#chinampas']
             }
         ];
-    
+
         // Inicialización
         document.addEventListener('DOMContentLoaded', function () {
             loadGalleryData();
             initExperiencesCarousel();
             initEventListeners();
             loadImages();
-            
+
             // FORMULARIO DE COTIZACIÓN RÁPIDA EN GALERÍA
             const quickReserveFormGaleria = document.getElementById('quick-reserve-form-galeria');
             if (quickReserveFormGaleria) {
-                quickReserveFormGaleria.addEventListener('submit', function(e) {
+                quickReserveFormGaleria.addEventListener('submit', function (e) {
                     e.preventDefault();
-                    
+
                     const fecha = document.getElementById('galeria-quick-fecha').value;
                     const personas = document.getElementById('galeria-quick-personas').value;
                     const email = document.getElementById('galeria-quick-email').value;
                     const telefono = document.getElementById('galeria-quick-telefono').value;
-                    
+
                     const phone = "525560094568";
                     const msg = `⚡ *RESERVA RÁPIDA DESDE GALERÍA* ⚡
     
@@ -511,9 +511,9 @@
     
     ---
     ⏰ Solicitud enviada: ${new Date().toLocaleString('es-MX')}`;
-    
+
                     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
-                    
+
                     alert(`✅ Tu reservación está en proceso
     
     Hemos recibido tu solicitud de reserva rápida correctamente.
@@ -521,12 +521,12 @@
     📞 Te contactaremos en un lapso no mayor a 4 horas con disponibilidad y precios.
     
     ¡Gracias por elegir Trajineras Barrón! 🚣‍♀️`);
-                    
+
                     quickReserveFormGaleria.reset();
                 });
             }
         });
-    
+
         // Cargar datos de la galería desde el servidor
         async function loadGalleryData() {
             try {
@@ -542,7 +542,7 @@
                 loadDefaultData();
             }
         }
-    
+
         function loadDefaultData() {
             const defaultCategories = [
                 { id: "eventos", nombre: "🎉 Eventos", icono: "fas fa-calendar-star", contador: 45 },
@@ -555,13 +555,13 @@
             ];
             loadCategories(defaultCategories);
         }
-    
+
         function loadCategories(categorias) {
             const filtersContainer = document.querySelector('.filters-container');
             const allButton = document.querySelector('.filter-btn[data-filter="all"]');
             const totalImages = galleryImages.length;
             allButton.innerHTML = `<i class="fas fa-border-all"></i> Todas (${totalImages})`;
-    
+
             categorias.forEach(categoria => {
                 const count = galleryImages.filter(img => img.category === categoria.id).length;
                 if (count > 0) {
@@ -575,7 +575,7 @@
             });
             updateFilterCount();
         }
-    
+
         function setFilter(filterId) {
             currentFilter = filterId;
             currentPage = 1;
@@ -587,19 +587,19 @@
             updateFilterCount();
             document.getElementById('galeria').scrollIntoView({ behavior: 'smooth' });
         }
-    
+
         function updateFilterCount() {
             const countElement = document.getElementById('filter-count');
             const filteredImages = currentFilter === 'all' ? galleryImages : galleryImages.filter(img => img.category === currentFilter);
             countElement.textContent = `${filteredImages.length} fotos`;
         }
-    
+
         function loadImages() {
             const grid = document.getElementById('gallery-grid');
             grid.innerHTML = `<div class="loading-gallery"><i class="fas fa-spinner fa-spin"></i><p>Cargando fotos...</p></div>`;
             setTimeout(() => { renderImages(); }, 500);
         }
-    
+
         function renderImages() {
             const grid = document.getElementById('gallery-grid');
             const filteredImages = currentFilter === 'all' ? galleryImages : galleryImages.filter(img => img.category === currentFilter);
@@ -607,7 +607,7 @@
             const startIndex = (currentPage - 1) * imagesPerPage;
             const endIndex = Math.min(startIndex + imagesPerPage, filteredImages.length);
             const imagesToShow = filteredImages.slice(startIndex, endIndex);
-    
+
             let html = '';
             imagesToShow.forEach(image => {
                 html += `
@@ -636,11 +636,11 @@
                 `;
             });
             grid.innerHTML = html;
-    
+
             const loadMoreBtn = document.getElementById('load-more-btn');
             loadMoreBtn.style.display = endIndex < filteredImages.length ? 'block' : 'none';
         }
-    
+
         function loadMoreImages() {
             currentPage++;
             const loadMoreBtn = document.getElementById('load-more-btn');
@@ -652,23 +652,23 @@
                 loadMoreBtn.disabled = false;
             }, 1000);
         }
-    
+
         function openImageModal(imageId) {
             const image = galleryImages.find(img => img.id === imageId);
             if (!image) return;
-    
+
             selectedImage = image;
             const modal = document.getElementById('image-modal');
             const modalImage = document.getElementById('modal-image');
             const loader = document.querySelector('.image-loader');
-    
+
             modal.style.display = 'block';
             document.body.style.overflow = 'hidden';
             loader.style.display = 'flex';
             modalImage.style.display = 'none';
             modalImage.src = image.url;
             modalImage.alt = image.description;
-    
+
             modalImage.onload = function () {
                 loader.style.display = 'none';
                 modalImage.style.display = 'block';
@@ -679,13 +679,13 @@
                 document.getElementById('modal-tags').innerHTML = image.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
             };
         }
-    
+
         function closeModal() {
             document.getElementById('image-modal').style.display = 'none';
             document.body.style.overflow = 'auto';
             selectedImage = null;
         }
-    
+
         function toggleLike(imageId) {
             const image = galleryImages.find(img => img.id === imageId);
             if (!image) return;
@@ -694,7 +694,7 @@
             if (likeElement) likeElement.textContent = image.likes;
             showNotification('¡Like registrado!', 'success');
         }
-    
+
         function shareImage(imageId) {
             const image = galleryImages.find(img => img.id === imageId);
             if (!image) return;
@@ -705,7 +705,7 @@
                 showNotification('Enlace copiado al portapapeles', 'info');
             }
         }
-    
+
         function loadVideos(videos) { /* código existente */ }
         function playVideo(videoId) { alert(`Reproduciendo video: ${videoId}`); }
         function initExperiencesCarousel() {
@@ -724,7 +724,7 @@
             navigator.clipboard.writeText('#TrajinerasBarron');
             showNotification('Hashtag copiado al portapapeles', 'success');
         }
-    
+
         function initEventListeners() {
             document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
             document.getElementById('image-modal').addEventListener('click', function (e) { if (e.target === this) closeModal(); });
@@ -738,7 +738,7 @@
                 });
             });
         }
-    
+
         function showNotification(message, type = 'info') {
             const notification = document.createElement('div');
             notification.className = `notification ${type}`;
@@ -751,7 +751,7 @@
             }, 3000);
         }
     </script>
-    
+
 </body>
 
 </html>

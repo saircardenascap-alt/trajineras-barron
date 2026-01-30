@@ -242,6 +242,11 @@ body {
     color: var(--dark-color);
 }
 
+.text-center-spaced {
+    text-align: center;
+    margin-top: 40px;
+}
+
 .video-features {
     list-style: none;
     margin-top: 20px;
