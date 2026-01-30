@@ -71,55 +71,55 @@
                 <div class="package-card">
                     <div class="package-image"
                         style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('{{ url_for(" static",
-                        filename='imagenes/albumes/portada-paquete-' + key + '.jpeg' ) }}') center/cover;"></div>
-                    <div class="package-badge">
-                        {% if key == 'familiar' %}
-                        <span class="badge popular">Más Popular</span>
-                        {% elif key == 'amanecer' %}
-                        <span class="badge nuevo">Nuevo</span>
-                        {% endif %}
+                        filename='imagenes/albumes/portada-paquete-' ~ key ~ '.jpeg' ) }}') center/cover;">
+                        <div class="package-badge">
+                            {% if key == 'familiar' %}
+                            <span class="badge popular">Más Popular</span>
+                            {% elif key == 'amanecer' %}
+                            <span class="badge nuevo">Nuevo</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="package-content">
+                        <h3 class="package-name">{{ package.name }}</h3>
+                        <p class="package-duration">
+                            <i class="far fa-clock"></i> {{ package.duration }}
+                        </p>
+                        <div class="package-price">
+                            {% if package.price > 0 %}
+                            <div class="price-current">${{ package.price }} MXN</div>
+                            {% if package.original_price > package.price %}
+                            <div class="price-original">${{ package.original_price }} MXN</div>
+                            <div class="price-discount">Ahorra {{ ((package.original_price - package.price) /
+                                package.original_price * 100)|int }}%</div>
+                            {% endif %}
+                            {% else %}
+                            <div class="price-current">Cotizar</div>
+                            {% endif %}
+                        </div>
+                        <ul class="package-includes">
+                            {% for item in package.includes %}
+                            <li><i class="fas fa-check"></i> {{ item }}</li>
+                            {% endfor %}
+                        </ul>
+                        <div class="package-actions">
+                            <a href="/reservaciones" class="btn btn-primary">
+                                <i class="fas fa-shopping-cart"></i> Reservar
+                            </a>
+                            <a href="#detalle-{{ key }}" class="btn-link">
+                                <i class="fas fa-info-circle"></i> Más detalles
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="package-content">
-                    <h3 class="package-name">{{ package.name }}</h3>
-                    <p class="package-duration">
-                        <i class="far fa-clock"></i> {{ package.duration }}
-                    </p>
-                    <div class="package-price">
-                        {% if package.price > 0 %}
-                        <div class="price-current">${{ package.price }} MXN</div>
-                        {% if package.original_price > package.price %}
-                        <div class="price-original">${{ package.original_price }} MXN</div>
-                        <div class="price-discount">Ahorra {{ ((package.original_price - package.price) /
-                            package.original_price * 100)|int }}%</div>
-                        {% endif %}
-                        {% else %}
-                        <div class="price-current">Cotizar</div>
-                        {% endif %}
-                    </div>
-                    <ul class="package-includes">
-                        {% for item in package.includes %}
-                        <li><i class="fas fa-check"></i> {{ item }}</li>
-                        {% endfor %}
-                    </ul>
-                    <div class="package-actions">
-                        <a href="/reservaciones" class="btn btn-primary">
-                            <i class="fas fa-shopping-cart"></i> Reservar
-                        </a>
-                        <a href="#detalle-{{ key }}" class="btn-link">
-                            <i class="fas fa-info-circle"></i> Más detalles
-                        </a>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
-        </div>
 
-        <div class="text-center-spaced">
-            <a href="/servicios" class="btn btn-outline">
-                <i class="fas fa-list"></i> Ver todos los paquetes
-            </a>
-        </div>
+            <div class="text-center-spaced">
+                <a href="/servicios" class="btn btn-outline">
+                    <i class="fas fa-list"></i> Ver todos los paquetes
+                </a>
+            </div>
         </div>
     </section>
 
@@ -372,10 +372,9 @@
             <div class="map-container">
                 <div class="map-wrapper">
                     <div class="map-iframe">
-                        <iframe
+                        <iframe class="map-frame"
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3143.6534502765526!2d-99.07824752478997!3d19.26065498198226!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce03b35e8c304d%3A0x7f3bf14e52b5d53d!2sTrajineras%20Barr%C3%B3n%20(Nuevo%20Embarcadero%20puente%20de%20Urrutia)!5e1!3m2!1ses!2smx!4v1768928383398!5m2!1ses!2smx"
-                            width="100%" height="450" allowfullscreen="" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade">
+                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
                     </div>
                     <div class="map-actions">
