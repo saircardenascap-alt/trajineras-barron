@@ -61,7 +61,7 @@
     </section>
 
     <!-- 3. PAQUETES DESTACADOS -->
-    <section class="section">
+    <!-- <section class="section">
         <div class="container">
             <h2 class="section-title">Paquetes Destacados</h2>
             <p class="section-subtitle">Elige la experiencia perfecta para ti y tu familia</p>
@@ -70,12 +70,11 @@
                 {% for key, package in packages.items() %}
                 <div class="package-card">
                     <div class="package-image"
-                        style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('{{ url_for(" static",
-                        filename='imagenes/albumes/portada-paquete-' ~ key ~ '.jpeg' ) }}') center/cover;">
+                        style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('{{ url_for('static', filename='imagenes/paquetes/' ~ key ~ '.jpeg') }}') center/cover;">
                         <div class="package-badge">
-                            {% if key == 'familiar' %}
+                            {% if key == 'recorrido-familiar' %}
                             <span class="badge popular">Más Popular</span>
-                            {% elif key == 'amanecer' %}
+                            {% elif key == 'recorrido-amanecer' %}
                             <span class="badge nuevo">Nuevo</span>
                             {% endif %}
                         </div>
@@ -121,7 +120,7 @@
                 </a>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- 4. TRADICIONES DE XOCHIMILCO -->
     <section class="section traditions-section">
