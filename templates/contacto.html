@@ -180,10 +180,11 @@
                     <p class="contact-detail">@trajinerasbarron</p>
                     <p class="contact-info">Facebook Messenger, Instagram DM</p>
                     <div class="social-buttons">
-                        <a href="#" class="social-btn facebook">
+                        <a href="https://www.facebook.com/profile.php?id=100069584681293" class="social-btn facebook">
                             <i class="fab fa-facebook-messenger"></i>
                         </a>
-                        <a href="#" class="social-btn instagram">
+                        <a href="https://www.instagram.com/nuevo_embarcadero_puente_de_ur/"
+                            class="social-btn instagram">
                             <i class="fab fa-instagram"></i>
                         </a>
                     </div>
@@ -197,7 +198,7 @@
         <div class="container">
             <h2 class="section-title">Formulario de Contacto Inteligente</h2>
             <p class="section-subtitle">Cuéntanos cómo podemos ayudarte</p>
-    
+
             <form class="smart-contact-form" id="smart-contact-form">
                 <div class="form-row">
                     <div class="form-group">
@@ -207,7 +208,7 @@
                         <input type="text" id="contact-nombre" name="nombre" required
                             placeholder="Ej: Ana García Rodríguez">
                     </div>
-    
+
                     <div class="form-group">
                         <label for="contact-email">
                             <i class="fas fa-envelope"></i> Correo electrónico *
@@ -215,7 +216,7 @@
                         <input type="email" id="contact-email" name="email" required placeholder="ana@ejemplo.com">
                     </div>
                 </div>
-    
+
                 <div class="form-row">
                     <div class="form-group">
                         <label for="contact-telefono">
@@ -224,14 +225,14 @@
                         <input type="tel" id="contact-telefono" name="telefono" required placeholder="55 1234 5678">
                     </div>
                 </div>
-    
+
                 <div class="form-group">
                     <label for="contact-fecha">
                         <i class="fas fa-calendar-alt"></i> Fecha de interés
                     </label>
                     <input type="date" id="contact-fecha" name="fecha" min="{{ today }}">
                 </div>
-    
+
                 <div class="form-row">
                     <div class="form-group">
                         <label for="contact-personas">
@@ -246,7 +247,7 @@
                             <option value="20+">Más de 20</option>
                         </select>
                     </div>
-    
+
                     <div class="form-group">
                         <label for="contact-paquete">
                             <i class="fas fa-gift"></i> Paquete de interés
@@ -260,7 +261,7 @@
                         </select>
                     </div>
                 </div>
-    
+
                 <div class="form-group">
                     <label for="contact-mensaje">
                         <i class="fas fa-comment"></i> Mensaje *
@@ -268,14 +269,14 @@
                     <textarea id="contact-mensaje" name="mensaje" rows="5" required
                         placeholder="Describe tu consulta con detalle..."></textarea>
                 </div>
-    
+
                 <div class="form-options">
                     <label class="checkbox-label">
                         <input type="checkbox" name="ofertas" checked>
                         <span>Acepto recibir ofertas exclusivas y novedades (opcional)</span>
                     </label>
                 </div>
-    
+
                 <div class="form-actions">
                     <button type="submit" class="btn btn-primary btn-large">
                         <i class="fas fa-paper-plane"></i> Enviar mensaje
@@ -462,59 +463,116 @@
         </div>
     </section>
 
-    <!-- Sección 5: Newsletter -->
-    <section class="section newsletter-section">
+    <!-- Sección 5: La Parada Obligada - Ajolotario -->
+    <section class="section parada-obligada-section">
         <div class="container">
-            <div class="newsletter-container">
-                <div class="newsletter-content">
-                    <h2><i class="fas fa-users"></i> Únete a la Comunidad Barrón</h2>
-                    <p class="newsletter-subtitle">Recibe beneficios exclusivos y mantente informado</p>
+            <div class="section-header text-center">
+                <h2><i class="fas fa-star"></i> La Parada Obligada</h2>
+                <p class="section-subtitle">Ajolotario Certificado & Gastronomía Regional</p>
+            </div>
 
-                    <ul class="benefits-list">
-                        <li><i class="fas fa-gift"></i> Ofertas exclusivas para suscriptores</li>
-                        <li><i class="fas fa-calendar-star"></i> Acceso prioritario a eventos especiales</li>
-                        <li><i class="fas fa-leaf"></i> Consejos de ecología y conservación</li>
-                    </ul>
+            <div class="parada-content">
+                <!-- Columna Izquierda: Galería de Imágenes -->
+                <div class="parada-galeria">
+                    <div class="galeria-carousel">
+                        <div class="carousel-track" id="paradaCarousel">
+                            <!-- Ajolotes -->
+                            <img src="{{ url_for('static', filename='imagenes/ajolotario/ajolotes1.jpg') }}"
+                                alt="Ajolotes en criadero" class="carousel-image active">
+                            <img src="{{ url_for('static', filename='imagenes/ajolotario/ajolotes2.jpg') }}"
+                                alt="Ajolotes certificados" class="carousel-image">
+                            <img src="{{ url_for('static', filename='imagenes/ajolotario/ajolotes3.jpg') }}"
+                                alt="Criadero de ajolotes" class="carousel-image">
+
+                            <!-- Restaurante -->
+                            <img src="{{ url_for('static', filename='imagenes/ajolotario/restaurante1.jpg') }}"
+                                alt="Restaurante y comida regional" class="carousel-image">
+                            <img src="{{ url_for('static', filename='imagenes/ajolotario/restaurante2.jpg') }}"
+                                alt="Desayunos típicos" class="carousel-image">
+                            <img src="{{ url_for('static', filename='imagenes/ajolotario/restaurante3.jpg') }}"
+                                alt="Gastronomía local" class="carousel-image">
+
+                            <!-- Souvenirs -->
+                            <img src="{{ url_for('static', filename='imagenes/ajolotario/suvenir1.jpg') }}"
+                                alt="Souvenirs artesanales" class="carousel-image">
+                            <img src="{{ url_for('static', filename='imagenes/ajolotario/suvenir2.jpg') }}"
+                                alt="Recuerdos de todos los estados" class="carousel-image">
+                            <img src="{{ url_for('static', filename='imagenes/ajolotario/suvenir3.jpg') }}"
+                                alt="Artesanías regionales" class="carousel-image">
+                        </div>
+
+                        <!-- Indicadores -->
+                        <div class="carousel-indicators">
+                            <span class="indicator active" data-slide="0"></span>
+                            <span class="indicator" data-slide="1"></span>
+                            <span class="indicator" data-slide="2"></span>
+                            <span class="indicator" data-slide="3"></span>
+                            <span class="indicator" data-slide="4"></span>
+                            <span class="indicator" data-slide="5"></span>
+                            <span class="indicator" data-slide="6"></span>
+                            <span class="indicator" data-slide="7"></span>
+                            <span class="indicator" data-slide="8"></span>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="newsletter-form">
-                    <form id="newsletter-form">
-                        <div class="form-group">
-                            <label for="newsletter-nombre">Nombre</label>
-                            <input type="text" id="newsletter-nombre" placeholder="Tu nombre">
+                <!-- Columna Derecha: Información -->
+                <div class="parada-info">
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-fish"></i>
                         </div>
+                        <h3>Criadero Certificado de Ajolotes</h3>
+                        <p>Somos un criadero oficial certificado dedicado a la conservación del ajolote mexicano
+                            (Ambystoma mexicanum), una especie endémica en peligro de extinción. Conoce de cerca a estas
+                            fascinantes criaturas y aprende sobre su importancia ecológica.</p>
 
-                        <div class="form-group">
-                            <label for="newsletter-email">Correo electrónico *</label>
-                            <input type="email" id="newsletter-email" required placeholder="tucorreo@ejemplo.com">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Intereses (opcional)</label>
-                            <div class="interests-grid">
-                                <label class="checkbox-label small">
-                                    <input type="checkbox" name="interes" value="ofertas">
-                                    <span>Ofertas especiales</span>
-                                </label>
-                                <label class="checkbox-label small">
-                                    <input type="checkbox" name="interes" value="eventos">
-                                    <span>Eventos culturales</span>
-                                </label>
-                                <label class="checkbox-label small">
-                                    <input type="checkbox" name="interes" value="ecologia">
-                                    <span>Ecología y conservación</span>
-                                </label>
+                        <div class="caracteristicas-parada">
+                            <div class="caracteristica-item">
+                                <i class="fas fa-certificate"></i>
+                                <span>Certificación Oficial</span>
+                            </div>
+                            <div class="caracteristica-item">
+                                <i class="fas fa-leaf"></i>
+                                <span>Conservación Ambiental</span>
                             </div>
                         </div>
+                    </div>
 
-                        <button type="submit" class="btn btn-primary btn-block">
-                            <i class="fas fa-paper-plane"></i> Suscribirme
-                        </button>
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <h3>Gastronomía Regional</h3>
+                        <p>Disfruta de auténticos desayunos y comidas tradicionales mexicanas. Nuestra cocina celebra
+                            los sabores de Xochimilco con platillos preparados con recetas ancestrales y ingredientes
+                            frescos de la región.</p>
+                    </div>
 
-                        <p class="privacy-note">
-                            <i class="fas fa-lock"></i> Tus datos están seguros. No compartimos tu información.
-                        </p>
-                    </form>
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <h3>Souvenirs de Toda la República</h3>
+                        <p>Ubicados en una federación que reúne comunidades artesanales de cada estado de México.
+                            Encuentra recuerdos únicos, artesanías auténticas y productos tradicionales representativos
+                            de todas las regiones del país.</p>
+
+                        <div class="caracteristicas-parada">
+                            <div class="caracteristica-item">
+                                <i class="fas fa-palette"></i>
+                                <span>Artesanías Auténticas</span>
+                            </div>
+                            <div class="caracteristica-item">
+                                <i class="fas fa-flag"></i>
+                                <span>32 Estados Representados</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cta-parada">
+                        <p><i class="fas fa-map-pin"></i> <strong>Visítanos en tu recorrido por Xochimilco</strong></p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -529,14 +587,14 @@
                     <p class="quick-subtitle">Comienza tu aventura ahora mismo</p>
                     <p>Simplifica tu reserva con nuestro formulario rápido. Te enviaremos disponibilidad y precios en
                         minutos.</p>
-    
+
                     <div class="quick-features">
                         <p><i class="fas fa-check-circle"></i> Sin compromiso inicial</p>
                         <p><i class="fas fa-check-circle"></i> Respuesta en menos de 1 hora</p>
                         <p><i class="fas fa-check-circle"></i> Precios garantizados</p>
                     </div>
                 </div>
-    
+
                 <div class="quick-reservation-form">
                     <form id="quick-reserve-form">
                         <div class="form-row">
@@ -544,7 +602,7 @@
                                 <label for="quick-fecha">Fecha deseada *</label>
                                 <input type="date" id="quick-fecha" required min="{{ today }}">
                             </div>
-    
+
                             <div class="form-group">
                                 <label for="quick-personas">Personas *</label>
                                 <select id="quick-personas" required>
@@ -556,21 +614,21 @@
                                 </select>
                             </div>
                         </div>
-    
+
                         <div class="form-group">
                             <label for="quick-email">Correo para respuesta *</label>
                             <input type="email" id="quick-email" required placeholder="tu@correo.com">
                         </div>
-    
+
                         <div class="form-group">
                             <label for="quick-telefono">Teléfono *</label>
                             <input type="tel" id="quick-telefono" required placeholder="55 1234 5678">
                         </div>
-    
+
                         <button type="submit" class="btn btn-primary btn-block">
                             <i class="fas fa-search"></i> Ver disponibilidad y precios
                         </button>
-    
+
                         <p class="form-note">
                             <i class="fas fa-info-circle"></i> Te contactaremos en menos de 4 horas
                         </p>
@@ -711,16 +769,16 @@
         document.addEventListener('DOMContentLoaded', function () {
             // Mapa de Xochimilco
             const map = L.map('map').setView([19.2650, -99.1060], 15);
-    
+
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '© OpenStreetMap contributors'
             }).addTo(map);
-    
+
             // Marcador del embarcadero
             L.marker([19.2650, -99.1060]).addTo(map)
                 .bindPopup('<b>Trajineras Barrón</b><br>Embarcadero Puente de Urrutia')
                 .openPopup();
-    
+
             // Acordeón de direcciones
             const accordionItems = document.querySelectorAll('.accordion-item');
             accordionItems.forEach(item => {
@@ -732,12 +790,12 @@
                             otherItem.classList.remove('active');
                         }
                     });
-    
+
                     // Abrir/cerrar este item
                     item.classList.toggle('active');
                 });
             });
-    
+
             // FAQ interactivo
             const faqItems = document.querySelectorAll('.contact-faq .faq-item');
             faqItems.forEach(item => {
@@ -749,31 +807,31 @@
                             otherItem.classList.remove('active');
                         }
                     });
-    
+
                     // Abrir/cerrar este item
                     item.classList.toggle('active');
                 });
             });
-    
+
             // Formulario de newsletter
             const newsletterForm = document.getElementById('newsletter-form');
             if (newsletterForm) {
                 newsletterForm.addEventListener('submit', function (e) {
                     e.preventDefault();
                     const email = document.getElementById('newsletter-email').value;
-    
+
                     // Simular envío
                     alert(`¡Gracias por suscribirte! Te hemos enviado un correo de confirmación a ${email}`);
                     newsletterForm.reset();
                 });
             }
-    
+
             // FORMULARIO DE CONTACTO INTELIGENTE (Sección 2)
             const smartContactForm = document.getElementById('smart-contact-form');
             if (smartContactForm) {
-                smartContactForm.addEventListener('submit', function(e) {
+                smartContactForm.addEventListener('submit', function (e) {
                     e.preventDefault();
-                    
+
                     const nombre = document.getElementById('contact-nombre').value;
                     const email = document.getElementById('contact-email').value;
                     const telefono = document.getElementById('contact-telefono').value;
@@ -781,7 +839,7 @@
                     const personas = document.getElementById('contact-personas').value || 'No especificado';
                     const paquete = document.getElementById('contact-paquete').value || 'No especificado';
                     const mensaje = document.getElementById('contact-mensaje').value;
-                    
+
                     const phone = "525560094568";
                     const msg = `📩 *CONSULTA GENERAL* 📩
     
@@ -800,9 +858,9 @@
     
     ---
     ⏰ Enviado: ${new Date().toLocaleString('es-MX')}`;
-    
+
                     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
-                    
+
                     alert(`✅ Tu consulta está en proceso
     
     Hola ${nombre},
@@ -812,22 +870,22 @@
     📞 Nos pondremos en contacto contigo en un lapso no mayor a 4 horas.
     
     ¡Gracias por contactar a Trajineras Barrón! 🚣‍♀️`);
-                    
+
                     smartContactForm.reset();
                 });
             }
-    
+
             // FORMULARIO DE RESERVA RÁPIDA (Sección 6)
             const quickReserveForm = document.getElementById('quick-reserve-form');
             if (quickReserveForm) {
-                quickReserveForm.addEventListener('submit', function(e) {
+                quickReserveForm.addEventListener('submit', function (e) {
                     e.preventDefault();
-                    
+
                     const fecha = document.getElementById('quick-fecha').value;
                     const personas = document.getElementById('quick-personas').value;
                     const email = document.getElementById('quick-email').value;
                     const telefono = document.getElementById('quick-telefono').value;
-                    
+
                     const phone = "525560094568";
                     const msg = `⚡ *RESERVA RÁPIDA* ⚡
     
@@ -840,9 +898,9 @@
     
     ---
     ⏰ Solicitud enviada: ${new Date().toLocaleString('es-MX')}`;
-    
+
                     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
-                    
+
                     alert(`✅ Tu reservación está en proceso
     
     Hemos recibido tu solicitud de reserva rápida correctamente.
@@ -850,20 +908,58 @@
     📞 Te contactaremos en un lapso no mayor a 4 horas con disponibilidad y precios.
     
     ¡Gracias por elegir Trajineras Barrón! 🚣‍♀️`);
-                    
+
                     quickReserveForm.reset();
                 });
             }
         });
-    
+
         // Funciones para el chat
         function openChat() {
             document.getElementById('chat-widget').classList.add('open');
         }
-    
+
         function closeChat() {
             document.getElementById('chat-widget').classList.remove('open');
         }
+
+        // Carousel Automático - La Parada Obligada
+        document.addEventListener('DOMContentLoaded', function () {
+            const images = document.querySelectorAll('.carousel-image');
+            const indicators = document.querySelectorAll('.indicator');
+            let currentSlide = 0;
+            const slideInterval = 4000; // 4 segundos
+
+            function showSlide(index) {
+                // Remover active de todos
+                images.forEach(img => img.classList.remove('active'));
+                indicators.forEach(ind => ind.classList.remove('active'));
+
+                // Activar el índice actual
+                images[index].classList.add('active');
+                indicators[index].classList.add('active');
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % images.length;
+                showSlide(currentSlide);
+            }
+
+            // Auto-play
+            let autoPlay = setInterval(nextSlide, slideInterval);
+
+            // Click en indicadores
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    currentSlide = index;
+                    showSlide(currentSlide);
+
+                    // Reiniciar autoplay
+                    clearInterval(autoPlay);
+                    autoPlay = setInterval(nextSlide, slideInterval);
+                });
+            });
+        });
     </script>
 </body>
 

@@ -1219,3 +1219,225 @@
         bottom: 90px;
     }
 }
+
+/* ============================================
+   SECCIÓN: LA PARADA OBLIGADA - AJOLOTARIO
+   ============================================ */
+
+.parada-obligada-section {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    padding: 80px 0;
+}
+
+.parada-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    margin-top: 40px;
+    align-items: start;
+}
+
+/* Galería Carousel */
+.parada-galeria {
+    position: sticky;
+    top: 100px;
+}
+
+.galeria-carousel {
+    position: relative;
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.carousel-track {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/3;
+}
+
+.carousel-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.carousel-image.active {
+    opacity: 1;
+    z-index: 1;
+}
+
+.carousel-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.indicator.active {
+    background: #fff;
+    width: 30px;
+    border-radius: 5px;
+}
+
+.indicator:hover {
+    background: rgba(255, 255, 255, 0.8);
+    transform: scale(1.2);
+}
+
+/* Columna de Información */
+.parada-info {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.info-card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.info-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.info-icon i {
+    font-size: 28px;
+    color: white;
+}
+
+.info-card h3 {
+    color: #1e293b;
+    font-size: 22px;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.info-card p {
+    color: #475569;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.caracteristicas-parada {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.caracteristica-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    background: #f1f5f9;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #334155;
+    font-weight: 600;
+}
+
+.caracteristica-item i {
+    color: #0ea5e9;
+    font-size: 18px;
+}
+
+.cta-parada {
+    background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+    color: white;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.cta-parada p {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.cta-parada i {
+    margin-right: 8px;
+    font-size: 20px;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+    .parada-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .parada-galeria {
+        position: relative;
+        top: 0;
+    }
+
+    .caracteristicas-parada {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    .parada-obligada-section {
+        padding: 50px 0;
+    }
+
+    .info-card {
+        padding: 20px;
+    }
+
+    .info-card h3 {
+        font-size: 20px;
+    }
+
+    .carousel-indicators {
+        bottom: 10px;
+        gap: 5px;
+    }
+
+    .indicator {
+        width: 8px;
+        height: 8px;
+    }
+
+    .indicator.active {
+        width: 24px;
+    }
+}

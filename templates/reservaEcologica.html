@@ -233,35 +233,256 @@
         </div>
     </section>
 
-    <!-- 4. TURISMO RESPONSABLE -->
-    <section class="section responsabilidad-section">
+    <!-- Sección 5: La Parada Obligada - Ajolotario -->
+    <section class="section parada-obligada-section" id="parada-obligada">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">
-                    <i class="fas fa-clipboard-check"></i> Turismo Responsable: Nuestras Reglas
-                </h2>
-                <p class="section-subtitle">
-                    Sigue estas pautas para minimizar tu impacto ambiental
-                </p>
+            <!-- Header de la Sección -->
+            <div class="section-header-parada">
+                <div class="header-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <h2 class="section-title">La Parada Obligada</h2>
+                <p class="section-subtitle">Ajolotario Certificado • Gastronomía Regional • Artesanías de México</p>
+                <div class="header-divider"></div>
             </div>
 
-            <div class="reglas-container">
-                <div class="reglas-column">
-                    <h3 class="reglas-title hacer">
-                        <i class="fas fa-check-circle"></i> Qué Hacer
-                    </h3>
-                    <ul class="reglas-list" id="reglas-hacer">
-                        <!-- Se cargará dinámicamente -->
-                    </ul>
+            <!-- Contenedor Principal -->
+            <div class="parada-main-content">
+
+                <!-- COLUMNA IZQUIERDA: Galería Carousel -->
+                <div class="parada-galeria-wrapper">
+                    <div class="galeria-carousel-container">
+                        <!-- Carousel Track -->
+                        <div class="carousel-track" id="paradaCarousel">
+                            <!-- Imágenes de Ajolotes -->
+                            <div class="carousel-slide active">
+                                <img src="{{ url_for('static', filename='imagenes/ajolotario/ajolotes1.jpg') }}"
+                                    alt="Ajolotes en criadero certificado" class="carousel-image">
+                                <div class="carousel-caption">
+                                    <i class="fas fa-fish"></i>
+                                    <span>Criadero Certificado</span>
+                                </div>
+                            </div>
+
+                            <div class="carousel-slide">
+                                <img src="{{ url_for('static', filename='imagenes/ajolotario/ajolotes2.jpg') }}"
+                                    alt="Conservación de ajolotes mexicanos" class="carousel-image">
+                                <div class="carousel-caption">
+                                    <i class="fas fa-heart"></i>
+                                    <span>Conservación Ambiental</span>
+                                </div>
+                            </div>
+
+                            <div class="carousel-slide">
+                                <img src="{{ url_for('static', filename='imagenes/ajolotario/ajolotes3.jpg') }}"
+                                    alt="Especies endémicas de Xochimilco" class="carousel-image">
+                                <div class="carousel-caption">
+                                    <i class="fas fa-leaf"></i>
+                                    <span>Especie Protegida</span>
+                                </div>
+                            </div>
+
+                            <!-- Imágenes de Restaurante -->
+                            <div class="carousel-slide">
+                                <img src="{{ url_for('static', filename='imagenes/ajolotario/restaurante1.jpg') }}"
+                                    alt="Restaurante con comida tradicional" class="carousel-image">
+                                <div class="carousel-caption">
+                                    <i class="fas fa-utensils"></i>
+                                    <span>Gastronomía Regional</span>
+                                </div>
+                            </div>
+
+                            <div class="carousel-slide">
+                                <img src="{{ url_for('static', filename='imagenes/ajolotario/restaurante2.jpg') }}"
+                                    alt="Desayunos típicos mexicanos" class="carousel-image">
+                                <div class="carousel-caption">
+                                    <i class="fas fa-coffee"></i>
+                                    <span>Desayunos Típicos</span>
+                                </div>
+                            </div>
+
+                            <div class="carousel-slide">
+                                <img src="{{ url_for('static', filename='imagenes/ajolotario/restaurante3.jpg') }}"
+                                    alt="Comidas tradicionales de Xochimilco" class="carousel-image">
+                                <div class="carousel-caption">
+                                    <i class="fas fa-drumstick-bite"></i>
+                                    <span>Sabores Auténticos</span>
+                                </div>
+                            </div>
+
+                            <!-- Imágenes de Souvenirs -->
+                            <div class="carousel-slide">
+                                <img src="{{ url_for('static', filename='imagenes/ajolotario/suvenir1.jpg') }}"
+                                    alt="Artesanías mexicanas auténticas" class="carousel-image">
+                                <div class="carousel-caption">
+                                    <i class="fas fa-gifts"></i>
+                                    <span>Artesanías Únicas</span>
+                                </div>
+                            </div>
+
+                            <div class="carousel-slide">
+                                <img src="{{ url_for('static', filename='imagenes/ajolotario/suvenir2.jpg') }}"
+                                    alt="Souvenirs de toda la República Mexicana" class="carousel-image">
+                                <div class="carousel-caption">
+                                    <i class="fas fa-flag"></i>
+                                    <span>32 Estados de México</span>
+                                </div>
+                            </div>
+
+                            <div class="carousel-slide">
+                                <img src="{{ url_for('static', filename='imagenes/ajolotario/suvenir3.jpg') }}"
+                                    alt="Recuerdos artesanales tradicionales" class="carousel-image">
+                                <div class="carousel-caption">
+                                    <i class="fas fa-palette"></i>
+                                    <span>Arte Tradicional</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Controles del Carousel -->
+                        <button class="carousel-control prev" id="prevSlide">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="carousel-control next" id="nextSlide">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+
+                        <!-- Indicadores -->
+                        <div class="carousel-indicators" id="carouselIndicators">
+                            <button class="indicator active" data-slide="0"></button>
+                            <button class="indicator" data-slide="1"></button>
+                            <button class="indicator" data-slide="2"></button>
+                            <button class="indicator" data-slide="3"></button>
+                            <button class="indicator" data-slide="4"></button>
+                            <button class="indicator" data-slide="5"></button>
+                            <button class="indicator" data-slide="6"></button>
+                            <button class="indicator" data-slide="7"></button>
+                            <button class="indicator" data-slide="8"></button>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="reglas-column">
-                    <h3 class="reglas-title no-hacer">
-                        <i class="fas fa-times-circle"></i> Qué No Hacer
-                    </h3>
-                    <ul class="reglas-list" id="reglas-no-hacer">
-                        <!-- Se cargará dinámicamente -->
-                    </ul>
+                <!-- COLUMNA DERECHA: Información -->
+                <div class="parada-info-wrapper">
+
+                    <!-- Card 1: Criadero de Ajolotes -->
+                    <div class="info-card-parada ajolotes">
+                        <div class="card-header-parada">
+                            <div class="card-icon">
+                                <i class="fas fa-fish"></i>
+                            </div>
+                            <h3>Criadero Certificado de Ajolotes</h3>
+                        </div>
+                        <div class="card-body-parada">
+                            <p>Somos un <strong>criadero oficial certificado</strong> dedicado a la conservación del
+                                ajolote mexicano <em>(Ambystoma mexicanum)</em>, una especie endémica en peligro crítico
+                                de extinción.</p>
+
+                            <div class="highlight-box">
+                                <i class="fas fa-award"></i>
+                                <p>Conoce de cerca estas fascinantes criaturas y aprende sobre su importancia ecológica
+                                    para los ecosistemas de Xochimilco.</p>
+                            </div>
+
+                            <div class="features-grid">
+                                <div class="feature-badge">
+                                    <i class="fas fa-certificate"></i>
+                                    <span>Certificación Oficial SEMARNAT</span>
+                                </div>
+                                <div class="feature-badge">
+                                    <i class="fas fa-microscope"></i>
+                                    <span>Investigación Científica</span>
+                                </div>
+                                <div class="feature-badge">
+                                    <i class="fas fa-graduation-cap"></i>
+                                    <span>Educación Ambiental</span>
+                                </div>
+                                <div class="feature-badge">
+                                    <i class="fas fa-heartbeat"></i>
+                                    <span>Conservación Activa</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Gastronomía -->
+                    <div class="info-card-parada gastronomia">
+                        <div class="card-header-parada">
+                            <div class="card-icon">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <h3>Gastronomía Regional Auténtica</h3>
+                        </div>
+                        <div class="card-body-parada">
+                            <p>Disfruta de auténticos <strong>desayunos y comidas tradicionales</strong> mexicanas.
+                                Nuestra cocina celebra los sabores ancestrales de Xochimilco.</p>
+
+                            <ul class="menu-highlights">
+                                <li><i class="fas fa-check-circle"></i> Desayunos típicos mexicanos</li>
+                                <li><i class="fas fa-check-circle"></i> Comidas tradicionales de Xochimilco</li>
+                                <li><i class="fas fa-check-circle"></i> Ingredientes frescos locales</li>
+                                <li><i class="fas fa-check-circle"></i> Recetas ancestrales auténticas</li>
+                            </ul>
+
+                            <div class="food-badge">
+                                <i class="fas fa-star"></i>
+                                <span>Sabor Auténtico Garantizado</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Souvenirs -->
+                    <div class="info-card-parada souvenirs">
+                        <div class="card-header-parada">
+                            <div class="card-icon">
+                                <i class="fas fa-map-marked-alt"></i>
+                            </div>
+                            <h3>Souvenirs de Toda la República</h3>
+                        </div>
+                        <div class="card-body-parada">
+                            <p>Ubicados en una <strong>federación artesanal</strong> que reúne comunidades de cada
+                                estado de México. Encuentra recuerdos únicos y auténticos.</p>
+
+                            <div class="souvenirs-features">
+                                <div class="souvenir-item">
+                                    <i class="fas fa-handshake"></i>
+                                    <div>
+                                        <strong>Artesanías 100% Auténticas</strong>
+                                        <p>Directamente de artesanos locales</p>
+                                    </div>
+                                </div>
+                                <div class="souvenir-item">
+                                    <i class="fas fa-flag-checkered"></i>
+                                    <div>
+                                        <strong>32 Estados Representados</strong>
+                                        <p>La diversidad cultural de México</p>
+                                    </div>
+                                </div>
+                                <div class="souvenir-item">
+                                    <i class="fas fa-gifts"></i>
+                                    <div>
+                                        <strong>Productos Únicos</strong>
+                                        <p>No encontrarás en otro lugar</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Call to Action -->
+                    <div class="parada-cta">
+                        <div class="cta-content">
+                            <i class="fas fa-map-pin"></i>
+                            <div>
+                                <h4>¡Visítanos en tu Recorrido!</h4>
+                                <p>Una experiencia completa en un solo lugar</p>
+                            </div>
+                        </div>
+                        <a href="#ubicacion" class="btn btn-primary btn-cta">
+                            <i class="fas fa-compass"></i> Ver Ubicación
+                        </a>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -420,6 +641,121 @@
 
             // Configurar contadores animados
             iniciarContadoresAnimados();
+        });
+
+        // ========== CAROUSEL AUTOMÁTICO - LA PARADA OBLIGADA ==========
+        document.addEventListener('DOMContentLoaded', function () {
+            const slides = document.querySelectorAll('.carousel-slide');
+            const indicators = document.querySelectorAll('.indicator');
+            const prevBtn = document.getElementById('prevSlide');
+            const nextBtn = document.getElementById('nextSlide');
+
+            let currentIndex = 0;
+            const slideInterval = 4000; // 4 segundos
+            let autoPlayTimer;
+
+            // Función para mostrar slide
+            function showSlide(index) {
+                // Remover active de todos
+                slides.forEach(slide => slide.classList.remove('active'));
+                indicators.forEach(indicator => indicator.classList.remove('active'));
+
+                // Activar el índice actual
+                if (slides[index]) {
+                    slides[index].classList.add('active');
+                    indicators[index].classList.add('active');
+                }
+            }
+
+            // Función para ir al siguiente slide
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % slides.length;
+                showSlide(currentIndex);
+            }
+
+            // Función para ir al slide anterior
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                showSlide(currentIndex);
+            }
+
+            // Iniciar autoplay
+            function startAutoPlay() {
+                autoPlayTimer = setInterval(nextSlide, slideInterval);
+            }
+
+            // Detener autoplay
+            function stopAutoPlay() {
+                clearInterval(autoPlayTimer);
+            }
+
+            // Reiniciar autoplay
+            function resetAutoPlay() {
+                stopAutoPlay();
+                startAutoPlay();
+            }
+
+            // Event listeners para controles
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    nextSlide();
+                    resetAutoPlay();
+                });
+            }
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    prevSlide();
+                    resetAutoPlay();
+                });
+            }
+
+            // Event listeners para indicadores
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    currentIndex = index;
+                    showSlide(currentIndex);
+                    resetAutoPlay();
+                });
+            });
+
+            // Pausar en hover
+            const carouselContainer = document.querySelector('.galeria-carousel-container');
+            if (carouselContainer) {
+                carouselContainer.addEventListener('mouseenter', stopAutoPlay);
+                carouselContainer.addEventListener('mouseleave', startAutoPlay);
+            }
+
+            // Iniciar autoplay al cargar
+            startAutoPlay();
+
+            // Soporte para swipe en móviles
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            if (carouselContainer) {
+                carouselContainer.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                });
+
+                carouselContainer.addEventListener('touchend', (e) => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleSwipe();
+                });
+            }
+
+            function handleSwipe() {
+                if (touchEndX < touchStartX - 50) {
+                    // Swipe left
+                    nextSlide();
+                    resetAutoPlay();
+                }
+                if (touchEndX > touchStartX + 50) {
+                    // Swipe right
+                    prevSlide();
+                    resetAutoPlay();
+                }
+            }
         });
     </script>
 </body>

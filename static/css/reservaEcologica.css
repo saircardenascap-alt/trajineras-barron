@@ -1975,3 +1975,843 @@
         font-size: 1.1rem;
     }
 }
+
+/* ============================================================
+   SECCIÓN: LA PARADA OBLIGADA - AJOLOTARIO
+   Ultra Responsivo y Moderno
+   ============================================================ */
+
+.parada-obligada-section {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #dbeafe 100%);
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.parada-obligada-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: radial-gradient(circle at 20% 50%, rgba(14, 165, 233, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(56, 189, 248, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* Header de la Sección */
+.section-header-parada {
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+    z-index: 2;
+}
+
+.header-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    box-shadow: 0 10px 30px rgba(245, 158, 11, 0.3);
+    animation: floatIcon 3s ease-in-out infinite;
+}
+
+@keyframes floatIcon {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.header-icon i {
+    font-size: 36px;
+    color: white;
+}
+
+.section-header-parada .section-title {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #0c4a6e;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.section-header-parada .section-subtitle {
+    font-size: 1.3rem;
+    color: #475569;
+    font-weight: 500;
+    max-width: 700px;
+    margin: 0 auto 25px;
+}
+
+.header-divider {
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, #f59e0b, #f97316, #f59e0b);
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+/* Contenedor Principal */
+.parada-main-content {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 50px;
+    align-items: start;
+    position: relative;
+    z-index: 2;
+}
+
+/* ========== GALERÍA CAROUSEL ========== */
+.parada-galeria-wrapper {
+    position: sticky;
+    top: 120px;
+}
+
+.galeria-carousel-container {
+    position: relative;
+    width: 100%;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.2);
+    background: #000;
+}
+
+.carousel-track {
+    position: relative;
+    width: 100%;
+    padding-bottom: 75%;
+    /* Aspect ratio 4:3 */
+    overflow: hidden;
+}
+
+.carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 1;
+}
+
+.carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.carousel-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, transparent 100%);
+    color: white;
+    padding: 25px 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    z-index: 2;
+}
+
+.carousel-caption i {
+    font-size: 24px;
+    color: #fbbf24;
+}
+
+/* Controles del Carousel */
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.95);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-control:hover {
+    background: white;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.carousel-control.prev {
+    left: 20px;
+}
+
+.carousel-control.next {
+    right: 20px;
+}
+
+.carousel-control i {
+    font-size: 20px;
+    color: #0c4a6e;
+}
+
+/* Indicadores */
+.carousel-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 10px 20px;
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    transition: all 0.4s ease;
+    padding: 0;
+}
+
+.indicator:hover {
+    background: rgba(255, 255, 255, 0.8);
+    transform: scale(1.3);
+}
+
+.indicator.active {
+    background: #fbbf24;
+    border-color: #fbbf24;
+    width: 35px;
+    border-radius: 10px;
+}
+
+/* ========== COLUMNA DE INFORMACIÓN ========== */
+.parada-info-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.info-card-parada {
+    background: white;
+    border-radius: 20px;
+    padding: 0;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s ease;
+    overflow: hidden;
+    border-left: 5px solid transparent;
+}
+
+.info-card-parada:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15);
+}
+
+.info-card-parada.ajolotes {
+    border-left-color: #0ea5e9;
+}
+
+.info-card-parada.gastronomia {
+    border-left-color: #f59e0b;
+}
+
+.info-card-parada.souvenirs {
+    border-left-color: #8b5cf6;
+}
+
+.card-header-parada {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    padding: 25px 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.card-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.ajolotes .card-icon {
+    background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+}
+
+.gastronomia .card-icon {
+    background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+}
+
+.souvenirs .card-icon {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+}
+
+.card-icon i {
+    font-size: 28px;
+    color: white;
+}
+
+.card-header-parada h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0;
+    line-height: 1.3;
+}
+
+.card-body-parada {
+    padding: 30px;
+}
+
+.card-body-parada p {
+    color: #475569;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    font-size: 1.05rem;
+}
+
+.card-body-parada strong {
+    color: #1e293b;
+    font-weight: 700;
+}
+
+.card-body-parada em {
+    color: #64748b;
+    font-style: italic;
+}
+
+/* Highlight Box */
+.highlight-box {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    border-left: 4px solid #0ea5e9;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 20px 0;
+    display: flex;
+    gap: 15px;
+    align-items: start;
+}
+
+.highlight-box i {
+    font-size: 24px;
+    color: #0ea5e9;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.highlight-box p {
+    margin: 0;
+    color: #0c4a6e;
+    font-weight: 500;
+}
+
+/* Features Grid */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.feature-badge {
+    background: #f8fafc;
+    padding: 15px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s ease;
+    border: 2px solid #e2e8f0;
+}
+
+.feature-badge:hover {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+    transform: translateX(5px);
+}
+
+.feature-badge i {
+    font-size: 20px;
+    color: #0ea5e9;
+}
+
+.feature-badge span {
+    font-size: 0.95rem;
+    color: #334155;
+    font-weight: 600;
+}
+
+/* Menu Highlights */
+.menu-highlights {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.menu-highlights li {
+    padding: 12px 0;
+    border-bottom: 1px solid #f1f5f9;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #475569;
+    font-size: 1.05rem;
+}
+
+.menu-highlights li:last-child {
+    border-bottom: none;
+}
+
+.menu-highlights i {
+    color: #f59e0b;
+    font-size: 18px;
+}
+
+.food-badge {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    padding: 15px 20px;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+    border: 2px solid #fbbf24;
+}
+
+.food-badge i {
+    color: #f59e0b;
+    font-size: 18px;
+}
+
+.food-badge span {
+    color: #92400e;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+/* Souvenirs Features */
+.souvenirs-features {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.souvenir-item {
+    display: flex;
+    gap: 20px;
+    align-items: start;
+    padding: 20px;
+    background: #faf5ff;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    border: 2px solid #e9d5ff;
+}
+
+.souvenir-item:hover {
+    background: #f3e8ff;
+    border-color: #d8b4fe;
+    transform: translateX(5px);
+}
+
+.souvenir-item i {
+    font-size: 28px;
+    color: #8b5cf6;
+    flex-shrink: 0;
+}
+
+.souvenir-item strong {
+    display: block;
+    color: #581c87;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.souvenir-item p {
+    margin: 0;
+    color: #6b21a8;
+    font-size: 0.95rem;
+}
+
+/* Call to Action */
+.parada-cta {
+    background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
+    margin-top: 10px;
+}
+
+.cta-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: white;
+    flex: 1;
+}
+
+.cta-content i {
+    font-size: 36px;
+    color: #fbbf24;
+}
+
+.cta-content h4 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0 0 5px 0;
+}
+
+.cta-content p {
+    margin: 0;
+    font-size: 1rem;
+    opacity: 0.95;
+}
+
+.btn-cta {
+    background: white;
+    color: #0284c7;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
+}
+
+.btn-cta:hover {
+    background: #fbbf24;
+    color: #0c4a6e;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+
+/* Tablets Grandes (1024px - 1200px) */
+@media (max-width: 1200px) {
+    .parada-main-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .parada-galeria-wrapper {
+        position: relative;
+        top: 0;
+        max-width: 100%;
+    }
+
+    .section-header-parada .section-title {
+        font-size: 2.5rem;
+    }
+}
+
+/* Tablets (768px - 1024px) */
+@media (max-width: 1024px) {
+    .parada-obligada-section {
+        padding: 70px 0;
+    }
+
+    .section-header-parada {
+        margin-bottom: 50px;
+    }
+
+    .header-icon {
+        width: 70px;
+        height: 70px;
+    }
+
+    .header-icon i {
+        font-size: 32px;
+    }
+
+    .section-header-parada .section-title {
+        font-size: 2.2rem;
+    }
+
+    .section-header-parada .section-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .carousel-control {
+        width: 45px;
+        height: 45px;
+    }
+
+    .carousel-control i {
+        font-size: 18px;
+    }
+
+    .parada-cta {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .cta-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* Móviles Grandes (576px - 768px) */
+@media (max-width: 768px) {
+    .parada-obligada-section {
+        padding: 50px 0;
+    }
+
+    .section-header-parada .section-title {
+        font-size: 2rem;
+    }
+
+    .section-header-parada .section-subtitle {
+        font-size: 1rem;
+    }
+
+    .header-icon {
+        width: 60px;
+        height: 60px;
+    }
+
+    .header-icon i {
+        font-size: 28px;
+    }
+
+    .card-header-parada {
+        padding: 20px;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .card-header-parada h3 {
+        font-size: 1.3rem;
+    }
+
+    .card-body-parada {
+        padding: 20px;
+    }
+
+    .carousel-caption {
+        padding: 15px 20px;
+        font-size: 0.95rem;
+    }
+
+    .carousel-caption i {
+        font-size: 20px;
+    }
+
+    .carousel-control {
+        width: 40px;
+        height: 40px;
+    }
+
+    .carousel-control.prev {
+        left: 10px;
+    }
+
+    .carousel-control.next {
+        right: 10px;
+    }
+
+    .carousel-indicators {
+        bottom: 15px;
+        padding: 8px 15px;
+        gap: 8px;
+    }
+
+    .indicator {
+        width: 10px;
+        height: 10px;
+    }
+
+    .indicator.active {
+        width: 28px;
+    }
+}
+
+/* Móviles Pequeños (< 576px) */
+@media (max-width: 576px) {
+    .parada-obligada-section {
+        padding: 40px 0;
+    }
+
+    .section-header-parada {
+        margin-bottom: 35px;
+    }
+
+    .section-header-parada .section-title {
+        font-size: 1.75rem;
+    }
+
+    .section-header-parada .section-subtitle {
+        font-size: 0.95rem;
+        padding: 0 10px;
+    }
+
+    .header-icon {
+        width: 55px;
+        height: 55px;
+    }
+
+    .header-icon i {
+        font-size: 24px;
+    }
+
+    .parada-main-content {
+        gap: 30px;
+    }
+
+    .card-header-parada h3 {
+        font-size: 1.2rem;
+    }
+
+    .card-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .card-icon i {
+        font-size: 24px;
+    }
+
+    .card-body-parada p {
+        font-size: 1rem;
+    }
+
+    .carousel-caption {
+        padding: 12px 15px;
+        font-size: 0.9rem;
+    }
+
+    .carousel-caption i {
+        font-size: 18px;
+    }
+
+    .carousel-control {
+        width: 35px;
+        height: 35px;
+    }
+
+    .carousel-control i {
+        font-size: 16px;
+    }
+
+    .carousel-indicators {
+        bottom: 10px;
+        padding: 6px 12px;
+        gap: 6px;
+    }
+
+    .indicator {
+        width: 8px;
+        height: 8px;
+    }
+
+    .indicator.active {
+        width: 24px;
+    }
+
+    .cta-content h4 {
+        font-size: 1.2rem;
+    }
+
+    .cta-content p {
+        font-size: 0.9rem;
+    }
+
+    .cta-content i {
+        font-size: 30px;
+    }
+
+    .btn-cta {
+        padding: 12px 24px;
+        font-size: 0.95rem;
+    }
+
+    .highlight-box {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .souvenir-item {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+    }
+}
+
+/* Ajustes Ultra Pequeños (< 400px) */
+@media (max-width: 400px) {
+    .section-header-parada .section-title {
+        font-size: 1.5rem;
+    }
+
+    .carousel-caption {
+        padding: 10px;
+        font-size: 0.85rem;
+        gap: 8px;
+    }
+
+    .carousel-control {
+        width: 32px;
+        height: 32px;
+    }
+
+    .carousel-control i {
+        font-size: 14px;
+    }
+
+    .indicator {
+        width: 7px;
+        height: 7px;
+    }
+
+    .indicator.active {
+        width: 20px;
+    }
+}
